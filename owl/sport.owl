@@ -82,6 +82,9 @@
         <Class IRI="#Klettern"/>
     </Declaration>
     <Declaration>
+        <Class IRI="#KoerperlicheEinschraenkung"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="#Koerperliche_Einschraenkungen"/>
     </Declaration>
     <Declaration>
@@ -150,6 +153,17 @@
     <Declaration>
         <DataProperty IRI="#istWassersport"/>
     </Declaration>
+    <EquivalentClasses>
+        <Class IRI="#KoerperlicheEinschraenkung"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Koerperliche_Einschraenkungen"/>
+            <ObjectUnionOf>
+                <Class IRI="#Armbereich"/>
+                <Class IRI="#Beinbereich"/>
+                <Class IRI="#Hoehenangst"/>
+            </ObjectUnionOf>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
     <SubClassOf>
         <Class IRI="#Armbereich"/>
         <Class IRI="#Koerperliche_Einschraenkungen"/>
@@ -393,6 +407,10 @@
             <ObjectProperty IRI="#ungeeignetBei"/>
             <Class IRI="#Hoehenangst"/>
         </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#KoerperlicheEinschraenkung"/>
+        <Class IRI="#Koerperliche_Einschraenkungen"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Lacrosse"/>
