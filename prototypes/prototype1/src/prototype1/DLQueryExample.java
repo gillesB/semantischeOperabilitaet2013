@@ -47,6 +47,7 @@ import java.util.Collections;
 import java.util.Set;
 
 import org.coode.owlapi.manchesterowlsyntax.ManchesterOWLSyntaxEditorParser;
+import org.semanticweb.HermiT.Reasoner.ReasonerFactory;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.expression.OWLEntityChecker;
 import org.semanticweb.owlapi.expression.ParserException;
@@ -149,9 +150,13 @@ public class DLQueryExample {
         // obtain the subclasses of a class etc. To do this we use a reasoner
         // factory.
         // Create a reasoner factory.
-        OWLReasonerFactory reasonerFactory = new StructuralReasonerFactory();
-        //OWLReasoner reasoner=new ReasonerFactory().createReasoner(o);
-        return reasonerFactory.createReasoner(rootOntology);
+        
+        //old code
+        //OWLReasonerFactory reasonerFactory = new StructuralReasonerFactory();
+        //return reasonerFactory.createReasoner(rootOntology);
+        
+        OWLReasoner reasoner=new ReasonerFactory().createReasoner(rootOntology);
+        return reasoner;
     }
 }
 
