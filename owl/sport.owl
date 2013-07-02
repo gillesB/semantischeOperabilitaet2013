@@ -677,6 +677,12 @@
         <Class IRI="#Ziele"/>
     </SubClassOf>
     <DisjointClasses>
+        <Class IRI="#Armbereich"/>
+        <Class IRI="#Beinbereich"/>
+        <Class IRI="#Hoehenangst"/>
+        <Class IRI="#Keine"/>
+    </DisjointClasses>
+    <DisjointClasses>
         <Class IRI="#Baseball"/>
         <Class IRI="#Basketball"/>
         <Class IRI="#Beachvolleyball"/>
