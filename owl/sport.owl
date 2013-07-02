@@ -256,6 +256,16 @@
         </ObjectSomeValuesFrom>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#Boxen"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#ungeeignetBei"/>
+            <ObjectUnionOf>
+                <Class IRI="#Armbereich"/>
+                <Class IRI="#Beinbereich"/>
+            </ObjectUnionOf>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#Einzelsport"/>
         <Class IRI="#Sport"/>
     </SubClassOf>
@@ -319,6 +329,13 @@
         </ObjectSomeValuesFrom>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#Headis"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#ungeeignetBei"/>
+            <Class IRI="#Beinbereich"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#Hoehenangst"/>
         <Class IRI="#Koerperliche_Einschraenkungen"/>
     </SubClassOf>
@@ -341,6 +358,16 @@
         </ObjectSomeValuesFrom>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#Judo"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#ungeeignetBei"/>
+            <ObjectUnionOf>
+                <Class IRI="#Armbereich"/>
+                <Class IRI="#Beinbereich"/>
+            </ObjectUnionOf>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#Kanu_und_Kajak"/>
         <Class IRI="#Einzelsport"/>
     </SubClassOf>
@@ -350,6 +377,13 @@
             <ObjectProperty IRI="#ungeeignetBei"/>
             <Class IRI="#Armbereich"/>
         </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Kanu_und_Kajak"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#ungeeignetBei"/>
+            <Class IRI="#Armbereich"/>
+        </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Karate"/>
@@ -442,6 +476,13 @@
         </ObjectSomeValuesFrom>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#Laufen"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#ungeeignetBei"/>
+            <Class IRI="#Beinbereich"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#Power_Workout"/>
         <Class IRI="#Einzelsport"/>
     </SubClassOf>
@@ -460,6 +501,16 @@
         </ObjectSomeValuesFrom>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#Power_Workout"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#ungeeignetBei"/>
+            <ObjectUnionOf>
+                <Class IRI="#Armbereich"/>
+                <Class IRI="#Beinbereich"/>
+            </ObjectUnionOf>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#Radsport"/>
         <Class IRI="#Einzelsport"/>
     </SubClassOf>
@@ -469,6 +520,13 @@
             <ObjectProperty IRI="#ungeeignetBei"/>
             <Class IRI="#Beinbereich"/>
         </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Radsport"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#ungeeignetBei"/>
+            <Class IRI="#Beinbereich"/>
+        </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Rugby"/>
@@ -541,6 +599,16 @@
         </ObjectSomeValuesFrom>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#Tennis"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#ungeeignetBei"/>
+            <ObjectUnionOf>
+                <Class IRI="#Armbereich"/>
+                <Class IRI="#Beinbereich"/>
+            </ObjectUnionOf>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#Tischtennis"/>
         <Class IRI="#Einzelsport"/>
     </SubClassOf>
@@ -557,6 +625,16 @@
             <ObjectProperty IRI="#ungeeignetBei"/>
             <Class IRI="#Beinbereich"/>
         </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Tischtennis"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#ungeeignetBei"/>
+            <ObjectUnionOf>
+                <Class IRI="#Armbereich"/>
+                <Class IRI="#Beinbereich"/>
+            </ObjectUnionOf>
+        </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Ultimate_Frisbee"/>
