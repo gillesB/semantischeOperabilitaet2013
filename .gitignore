@@ -4,3 +4,5 @@
 *.jar
 *.war
 *.ear
+/prototypes/prototype1/nbproject/private/
+/prototypes/prototype1/build/
