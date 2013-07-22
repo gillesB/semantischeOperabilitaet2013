@@ -43,6 +43,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.coode.owlapi.manchesterowlsyntax.ManchesterOWLSyntaxEditorParser;
@@ -94,21 +95,33 @@ public class OntolgyConnection {
 
 	}
 
-	public static OntolgyConnection getInstance()
-			throws OWLOntologyCreationException {
+	public static OntolgyConnection getInstance() {
 		if (instance == null) {
 			synchronized (OntolgyConnection.class) {
 				if (instance == null) {
-					instance = new OntolgyConnection();
+					try {
+						instance = new OntolgyConnection();
+					} catch (OWLOntologyCreationException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						System.exit(1);
+					}
 				}
 			}
 		}
 		return instance;
 	}
 
-	public Set<OWLClass> doQuery(String query) throws ParserException {
+	public Set<OWLClass> doQuery(String query){
 		query = query.trim();
-		Set<OWLClass> subClasses = queryEngine.getSubClasses(query, true);
+		Set<OWLClass> subClasses = new HashSet<>();
+		try {
+			//gets also descendant classes
+			subClasses = queryEngine.getSubClasses(query, false);
+		} catch (ParserException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		return subClasses;
 	}

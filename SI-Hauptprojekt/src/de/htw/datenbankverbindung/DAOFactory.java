@@ -64,8 +64,15 @@ public class DAOFactory {
     }
  
     /* Diese Methode stellt die Verbindung mit der Datenbank her*/
-    public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection( url, username, password );
+    public Connection getConnection() {
+        try {
+			return DriverManager.getConnection( url, username, password );
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.exit(2);
+		}
+        return null;
     }
  
 }
