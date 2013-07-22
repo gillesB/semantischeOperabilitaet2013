@@ -6,3 +6,5 @@
 *.ear
 /prototypes/prototype1/nbproject/private/
 /prototypes/prototype1/build/
+/SI-DatabaseResquests/nbproject/private/
+*/bin/
