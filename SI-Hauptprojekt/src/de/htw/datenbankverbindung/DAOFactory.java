@@ -1,4 +1,4 @@
-package de.htw.dao;
+package de.htw.datenbankverbindung;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,7 +9,7 @@ import java.util.Properties;
  
 public class DAOFactory {
  
-    private static final String PROPERTIES_FILE       = "de/htw/dao/dao.properties";
+    private static final String PROPERTIES_FILE       = "de/htw/datenbankverbindung/dao.properties";
     private static final String PROPERTY_URL             = "url";
     private static final String PROPERTY_DRIVER          = "driver";
     private static final String PROPERTY_USERNAME = "user";

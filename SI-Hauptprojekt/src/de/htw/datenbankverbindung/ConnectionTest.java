@@ -1,4 +1,4 @@
-package de.htw.dao;
+package de.htw.datenbankverbindung;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

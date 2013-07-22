@@ -1,4 +1,4 @@
-package de.htw.dao;
+package de.htw.datenbankverbindung;
 
 public class DAOConfigurationException extends RuntimeException {
 	
