@@ -46,7 +46,7 @@
         <Class IRI="#Einzelsport"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Feldenkrais_–_Bewusstheit_durch_Bewegung"/>
+        <Class IRI="#Feldenkrais"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Fitness"/>
@@ -450,15 +450,15 @@
         <Class IRI="#Sport"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Feldenkrais_–_Bewusstheit_durch_Bewegung"/>
+        <Class IRI="#Feldenkrais"/>
         <Class IRI="#Einzelsport"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Feldenkrais_–_Bewusstheit_durch_Bewegung"/>
+        <Class IRI="#Feldenkrais"/>
         <Class IRI="#SozialkontakteZiel"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Feldenkrais_–_Bewusstheit_durch_Bewegung"/>
+        <Class IRI="#Feldenkrais"/>
         <ObjectAllValuesFrom>
             <ObjectProperty IRI="#ungeeignetBei"/>
             <Class IRI="#Keine"/>
@@ -1185,7 +1185,7 @@
     <DisjointClasses>
         <Class IRI="#Bauch-Killer"/>
         <Class IRI="#Boxen"/>
-        <Class IRI="#Feldenkrais_–_Bewusstheit_durch_Bewegung"/>
+        <Class IRI="#Feldenkrais"/>
         <Class IRI="#Headis"/>
         <Class IRI="#Judo"/>
         <Class IRI="#Kanu_und_Kajak"/>
