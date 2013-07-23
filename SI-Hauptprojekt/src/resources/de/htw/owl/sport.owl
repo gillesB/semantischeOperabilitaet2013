@@ -196,30 +196,39 @@
     </EquivalentClasses>
     <EquivalentClasses>
         <Class IRI="#GeeignetBeiArmbereichKE"/>
-        <ObjectComplementOf>
-            <ObjectSomeValuesFrom>
-                <ObjectProperty IRI="#ungeeignetBei"/>
-                <Class IRI="#Armbereich"/>
-            </ObjectSomeValuesFrom>
-        </ObjectComplementOf>
+        <ObjectIntersectionOf>
+            <Class IRI="#Sport"/>
+            <ObjectComplementOf>
+                <ObjectSomeValuesFrom>
+                    <ObjectProperty IRI="#ungeeignetBei"/>
+                    <Class IRI="#Armbereich"/>
+                </ObjectSomeValuesFrom>
+            </ObjectComplementOf>
+        </ObjectIntersectionOf>
     </EquivalentClasses>
     <EquivalentClasses>
         <Class IRI="#GeeignetBeiBeinbereichKE"/>
-        <ObjectComplementOf>
-            <ObjectSomeValuesFrom>
-                <ObjectProperty IRI="#ungeeignetBei"/>
-                <Class IRI="#Beinbereich"/>
-            </ObjectSomeValuesFrom>
-        </ObjectComplementOf>
+        <ObjectIntersectionOf>
+            <Class IRI="#Sport"/>
+            <ObjectComplementOf>
+                <ObjectSomeValuesFrom>
+                    <ObjectProperty IRI="#ungeeignetBei"/>
+                    <Class IRI="#Beinbereich"/>
+                </ObjectSomeValuesFrom>
+            </ObjectComplementOf>
+        </ObjectIntersectionOf>
     </EquivalentClasses>
     <EquivalentClasses>
         <Class IRI="#GeeignetBeiHoehenangst"/>
-        <ObjectComplementOf>
-            <ObjectSomeValuesFrom>
-                <ObjectProperty IRI="#ungeeignetBei"/>
-                <Class IRI="#Hoehenangst"/>
-            </ObjectSomeValuesFrom>
-        </ObjectComplementOf>
+        <ObjectIntersectionOf>
+            <Class IRI="#Sport"/>
+            <ObjectComplementOf>
+                <ObjectSomeValuesFrom>
+                    <ObjectProperty IRI="#ungeeignetBei"/>
+                    <Class IRI="#Hoehenangst"/>
+                </ObjectSomeValuesFrom>
+            </ObjectComplementOf>
+        </ObjectIntersectionOf>
     </EquivalentClasses>
     <EquivalentClasses>
         <Class IRI="#KoerperlicheEinschraenkung"/>
@@ -1201,6 +1210,15 @@
     <DisjointClasses>
         <Class IRI="#Einzelsport"/>
         <Class IRI="#Teamsport"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Koerperliche_Einschraenkungen"/>
+        <Class IRI="#Sport"/>
+        <Class IRI="#Ziele"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Koerperliche_Einschraenkungen"/>
+        <Class IRI="#Ziele"/>
     </DisjointClasses>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#hatZiel"/>
