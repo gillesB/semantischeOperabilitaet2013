@@ -126,7 +126,7 @@ public class Queries {
 			return sportClasses;
 		}
 
-		Set<OWLClass> acceptableClassesSet = new HashSet<>();
+		Set<OWLClass> acceptableClassesSet = new HashSet<OWLClass>();
 		try {
 			while (acceptableClasses.next()) {
 				String sportName = acceptableClasses

@@ -114,7 +114,7 @@ public class OntolgyConnection {
 
 	public Set<OWLClass> doQuery(String query){
 		query = query.trim();
-		Set<OWLClass> subClasses = new HashSet<>();
+		Set<OWLClass> subClasses = new HashSet<OWLClass>();
 		try {
 			//gets also descendant classes
 			subClasses = queryEngine.getSubClasses(query, false);
