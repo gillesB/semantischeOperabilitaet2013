@@ -9,21 +9,26 @@ import org.semanticweb.owlapi.util.SimpleShortFormProvider;
 public class QueriesTest {
 
 	public static void main(String[] args) {
+		// Die Idee ist dass man sich alle Sportarten holt und diese Menge wird
+		// dann nach beliebigen Kriterien gefiltert
 		System.out.println("Sport\n");
 		Set<OWLClass> sportClasses = Queries.querySport();
 		printSportClasses(sportClasses);
 
+		//Einzelsportarten werden rausgefiltert.
+		//Es bleiben nur Teamsportarten übrig
 		System.out.println("Teamsp.\n");
 		sportClasses = Queries.queryTeamsport(sportClasses);
 		printSportClasses(sportClasses);
 
+		//Sportarten die mehr als 0 Euro Kosten werden rausgefiltert
 		System.out.println("Kosten 0.\n");
 		sportClasses = Queries.queryPrice(sportClasses, 0.0);
 		printSportClasses(sportClasses);
 
 	}
 
-	public static void printSportClasses(Set<OWLClass> classes) {
+	private static void printSportClasses(Set<OWLClass> classes) {
 		// print shortForm of OWLClass
 		ShortFormProvider shortFormProvider = new SimpleShortFormProvider();
 		if (classes.isEmpty()) {
