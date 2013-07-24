@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ConnectionTest {
 
 	public static void main(String[] args) throws SQLException {
-		DAOFactory factory = DAOFactory.getInstance();
+		ConnectionJDBC factory = ConnectionJDBC.getInstance();
 		Connection connection = factory.getConnection();
 		ResultSet results = connection.createStatement().executeQuery("select * from Campus");
 		while (results.next()){
