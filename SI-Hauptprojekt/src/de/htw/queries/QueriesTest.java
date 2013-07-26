@@ -1,13 +1,9 @@
 package de.htw.queries;
 
 import java.util.Map;
-import java.util.Set;
-
-import org.semanticweb.owlapi.model.OWLClass;
-import org.semanticweb.owlapi.util.ShortFormProvider;
-import org.semanticweb.owlapi.util.SimpleShortFormProvider;
 
 import business.model.Sportangebot;
+import business.model.ontology.KoerperlicheEinschraenkungen;
 
 public class QueriesTest {
 
@@ -27,6 +23,10 @@ public class QueriesTest {
 		//Sportarten die mehr als 0 Euro Kosten werden rausgefiltert
 		System.out.println("Kosten 0.\n");
 		sportClasses = Queries.queryPrice(sportClasses, 0.0);
+		printSportangebote(sportClasses);
+		
+		System.out.println("Keine Höhenangst\n");
+		sportClasses = Queries.queryFilterKörperlicheEinschraenkungen(sportClasses, KoerperlicheEinschraenkungen.HOEHENANGST);
 		printSportangebote(sportClasses);
 
 	}

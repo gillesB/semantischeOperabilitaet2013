@@ -13,6 +13,7 @@ import org.semanticweb.owlapi.util.ShortFormProvider;
 import org.semanticweb.owlapi.util.SimpleShortFormProvider;
 
 import business.model.Sportangebot;
+import business.model.ontology.KoerperlicheEinschraenkungen;
 import de.htw.datenbankverbindung.DAOFactory;
 import de.htw.ontologieverbindung.OntoUtil;
 import de.htw.ontologieverbindung.OntolgyConnection;
@@ -88,6 +89,24 @@ public class Queries {
 		return removeUnacceptableClasses(inputClasses, fetchedClasses);
 	}
 
+	
+	public static Map<String, Sportangebot> queryFilterKörperlicheEinschraenkungen(Map<String, Sportangebot> inputClasses, KoerperlicheEinschraenkungen ... koerperlicheEinschraenkungen ){
+		StringBuilder query = new StringBuilder("Sport ");
+		for(KoerperlicheEinschraenkungen k : koerperlicheEinschraenkungen){
+			query.append("and not (ungeeignetBei some ");
+			query.append(k.getName());
+			query.append(") ");
+		}
+		query.append(createAccepableClassesCondition_Ontology(inputClasses));
+		
+		Set<OWLClass> fetchedClasses = ontolgy.doQuery(query.toString());
+		
+		return removeUnacceptableClasses(inputClasses, fetchedClasses);
+		
+	}
+	
+	
+	
 	/**
 	 * Gibt die Sportarten zurück die in inputClasses stehen und höchsten
 	 * maxPrice kosten.
@@ -113,13 +132,15 @@ public class Queries {
 		}
 
 		return removeUnacceptableClasses(inputClasses, results);
-	}	
+	}
 	
 	private static  Map<String, Sportangebot> removeUnacceptableClasses(Map<String, Sportangebot> originalClasses, Set<OWLClass> acceptableClasses){
 		Map<String, Sportangebot> sportangebote = new HashMap<String, Sportangebot>();
 		for(OWLClass fetchedClass : acceptableClasses){
 			String sportName = OntoUtil.getShortForm(fetchedClass);
-			sportangebote.put(sportName, originalClasses.get(sportName));
+			if(originalClasses.containsKey(sportName)){
+				sportangebote.put(sportName, originalClasses.get(sportName));
+			}			
 		}
 		return sportangebote;
 	}
