@@ -4,13 +4,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 import org.semanticweb.owlapi.model.OWLClass;
-import org.semanticweb.owlapi.util.ShortFormProvider;
-import org.semanticweb.owlapi.util.SimpleShortFormProvider;
 
 import business.model.Sportangebot;
 import business.model.ontology.KoerperlicheEinschraenkungen;
@@ -194,8 +191,8 @@ public class Queries {
 
 	/**
 	 * Condition Anhang an die DB-Query </br> Select * from xy where ... </br>
-	 * AND Sportangebot.name = 'Basketball'</br> OR Sportangebot.name =
-	 * 'Volleyball'</br> ...
+	 * AND ( Sportangebot.name = 'Basketball'</br> OR Sportangebot.name =
+	 * 'Volleyball'</br> ... )
 	 * 
 	 * @param inputClasses
 	 * @return
@@ -206,7 +203,7 @@ public class Queries {
 		boolean first = true;
 		for (String sportName : inputClasses.keySet()) {
 			if (first) {
-				condition.append(" AND ");
+				condition.append(" AND ( ");
 				first = false;
 			} else {
 				condition.append(" OR ");
@@ -215,7 +212,8 @@ public class Queries {
 			condition.append(sportName);
 			condition.append("'" + System.lineSeparator());
 		}
-
+		condition.append(" )");
+		
 		return condition.toString();
 	}
 
