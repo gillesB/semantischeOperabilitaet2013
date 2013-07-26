@@ -11,6 +11,7 @@ import org.semanticweb.owlapi.model.OWLClass;
 
 import business.model.Sportangebot;
 import business.model.ontology.KoerperlicheEinschraenkungen;
+import business.model.ontology.Ziele;
 import de.htw.datenbankverbindung.DAOFactory;
 import de.htw.ontologieverbindung.OntoUtil;
 import de.htw.ontologieverbindung.OntolgyConnection;
@@ -103,10 +104,28 @@ public class Queries {
 		}
 		query.append(createAccepableClassesCondition_Ontology(inputClasses));
 		
+		Set<OWLClass> fetchedClasses = ontolgy.doQuery(query.toString());		
+		return removeUnacceptableClasses(inputClasses, fetchedClasses);		
+	}
+	
+	
+	/**
+	 * Filter welche der Sportarten ein oder mehrere Ziele verfolgen
+	 * 
+	 * @param inputClasses
+	 * @param ziele
+	 * @return
+	 */
+	public static Map<String, Sportangebot> queryZiele(Map<String, Sportangebot> inputClasses, Ziele... ziele){
+		StringBuilder query = new StringBuilder("Sport ");
+		for(Ziele ziel: ziele){
+			query.append(" and hatZiel some ");
+			query.append(ziel.getName());
+		}
+		query.append(createAccepableClassesCondition_Ontology(inputClasses));
+		
 		Set<OWLClass> fetchedClasses = ontolgy.doQuery(query.toString());
-		
-		return removeUnacceptableClasses(inputClasses, fetchedClasses);
-		
+		return removeUnacceptableClasses(inputClasses, fetchedClasses);		
 	}
 	
 	
@@ -130,6 +149,13 @@ public class Queries {
 		return queryDB(inputClasses, query);
 	}
 	
+	/**
+	 * Filtert ob eine SPortart innen oder außen ist
+	 * 
+	 * @param inputClasses
+	 * @param indoor
+	 * @return
+	 */
 	public static Map<String, Sportangebot> queryIndoor(Map<String, Sportangebot> inputClasses, boolean indoor){
 		int indoor_db = indoor ? 1 : 0;
 		String query = "SELECT DISTINCT Sportangebot.name FROM "
@@ -250,7 +276,7 @@ public class Queries {
 	 */
 	private static String createAccepableClassesCondition_Ontology(
 			Map<String, Sportangebot> inputClasses) {
-		StringBuilder condition = new StringBuilder("and (");
+		StringBuilder condition = new StringBuilder(" and (");
 		int i = 0;
 		for (String sportangebotName : inputClasses.keySet()) {
 			condition.append(" " + sportangebotName);

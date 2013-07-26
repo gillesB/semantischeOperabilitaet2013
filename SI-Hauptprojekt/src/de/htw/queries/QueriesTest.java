@@ -4,6 +4,7 @@ import java.util.Map;
 
 import business.model.Sportangebot;
 import business.model.ontology.KoerperlicheEinschraenkungen;
+import business.model.ontology.Ziele;
 
 public class QueriesTest {
 
@@ -32,6 +33,10 @@ public class QueriesTest {
 		System.out.println("Innen\n");
 		sportClasses = Queries.queryIndoor(sportClasses, true);
 		printSportangebote(sportClasses);
+		
+		System.out.println("Ziele\n");
+		sportClasses = Queries.queryZiele(sportClasses, Ziele.WETTBEWERB, Ziele.SOZIALKONTAKTE);
+		printSportangebote(sportClasses);		
 
 	}
 
