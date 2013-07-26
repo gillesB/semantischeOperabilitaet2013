@@ -127,6 +127,30 @@ public class Queries {
 				+ "AND kosten <= " + maxPrice
 				+ createAccepableClassesCondition_DB(inputClasses);
 
+		return queryDB(inputClasses, query);
+	}
+	
+	public static Map<String, Sportangebot> queryIndoor(Map<String, Sportangebot> inputClasses, boolean indoor){
+		int indoor_db = indoor ? 1 : 0;
+		String query = "SELECT DISTINCT Sportangebot.name FROM "
+				+ " Sportangebot, Kurs, Ort WHERE "
+				+ " Sportangebot.idSportangebot = Kurs.idSportangebot "
+				+ " AND Kurs.idOrt = Ort.idOrt "
+				+ " AND Ort.innen = " + indoor_db
+				+ createAccepableClassesCondition_DB(inputClasses);
+		
+		return queryDB(inputClasses, query);
+		
+	}
+	
+	/**
+	 * führt eine Query auf der DB aus und filtert die nicht akzeptierbaren Resultate aus inputClasses
+	 * @param inputClasses
+	 * @param query
+	 * @return
+	 */
+	private static Map<String, Sportangebot> queryDB(Map<String, Sportangebot> inputClasses, String query){
+		System.out.println("DB: " + query);
 		ResultSet results = null;
 		try {
 			results = database.createStatement().executeQuery(query);

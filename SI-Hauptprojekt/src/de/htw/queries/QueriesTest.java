@@ -28,6 +28,10 @@ public class QueriesTest {
 		System.out.println("Keine Höhenangst\n");
 		sportClasses = Queries.queryFilterKörperlicheEinschraenkungen(sportClasses, KoerperlicheEinschraenkungen.HOEHENANGST);
 		printSportangebote(sportClasses);
+		
+		System.out.println("Innen\n");
+		sportClasses = Queries.queryIndoor(sportClasses, true);
+		printSportangebote(sportClasses);
 
 	}
 
