@@ -90,6 +90,13 @@ public class Queries {
 	}
 
 	
+	/**
+	 * Filtert die Sportarten aus inputClasses raus, die man NICHT mit den angegebenen Einschränkungen machen kann.
+	 * 
+	 * @param inputClasses
+	 * @param koerperlicheEinschraenkungen
+	 * @return
+	 */
 	public static Map<String, Sportangebot> queryFilterKörperlicheEinschraenkungen(Map<String, Sportangebot> inputClasses, KoerperlicheEinschraenkungen ... koerperlicheEinschraenkungen ){
 		StringBuilder query = new StringBuilder("Sport ");
 		for(KoerperlicheEinschraenkungen k : koerperlicheEinschraenkungen){
@@ -134,6 +141,15 @@ public class Queries {
 		return removeUnacceptableClasses(inputClasses, results);
 	}
 	
+	/**
+	 * Filtert die Sportarten aus originalClasses raus, die sich nicht in
+	 * acceptableClasses befinden. </br> Diese Methode wird für Queries auf der
+	 * Onotlogie benutzt um eine Menge aus Sportangeboten zu erstellen.
+	 * 
+	 * @param sportClasses
+	 * @param acceptableClasses
+	 * @return gefiltertes sportClasses
+	 */
 	private static  Map<String, Sportangebot> removeUnacceptableClasses(Map<String, Sportangebot> originalClasses, Set<OWLClass> acceptableClasses){
 		Map<String, Sportangebot> sportangebote = new HashMap<String, Sportangebot>();
 		for(OWLClass fetchedClass : acceptableClasses){
@@ -147,9 +163,9 @@ public class Queries {
 	
 
 	/**
-	 * Filtert die Sportarten aus sportClasses raus, die sich nicht in
+	 * Filtert die Sportarten aus originalClasses raus, die sich nicht in
 	 * acceptableClasses befinden. </br> Diese Methode wird für Queries auf der
-	 * Datenbank benutzt um eine Menge aus OWLClass zu erstellen.
+	 * Datenbank benutzt um eine Menge aus Sportangeboten zu erstellen.
 	 * 
 	 * @param sportClasses
 	 * @param acceptableClasses
