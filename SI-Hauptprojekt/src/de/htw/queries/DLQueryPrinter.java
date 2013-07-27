@@ -51,7 +51,7 @@ public class DLQueryPrinter {
                         .getEquivalentClasses(classExpression);
                 printEntities("EquivalentClasses", equivalentClasses, sb);
                 Set<OWLClass> subClasses = dlQueryEngine.getSubClasses(classExpression,
-                                                                       true);
+                                                                       false);
                 printEntities("SubClasses", subClasses, sb);
                 Set<OWLNamedIndividual> individuals = dlQueryEngine.getInstances(
                         classExpression, true);

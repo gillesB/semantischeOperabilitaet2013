@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="org.semanticweb.HermiT">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/org.semanticweb.HermiT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
