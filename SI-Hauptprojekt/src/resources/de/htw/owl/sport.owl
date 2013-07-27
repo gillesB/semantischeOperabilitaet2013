@@ -40,10 +40,19 @@
         <Class IRI="#Beinbereich"/>
     </Declaration>
     <Declaration>
+        <Class IRI="#Boolean"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="#Boxen"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Einzelsport"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ExotischeSportarten"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#False"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Feldenkrais"/>
@@ -85,6 +94,9 @@
         <Class IRI="#Judo"/>
     </Declaration>
     <Declaration>
+        <Class IRI="#Kampfsportarten"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="#Kanu_und_Kajak"/>
     </Declaration>
     <Declaration>
@@ -97,6 +109,9 @@
         <Class IRI="#Klettern"/>
     </Declaration>
     <Declaration>
+        <Class IRI="#Koerperkontaktsportarten"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="#KoerperlicheEinschraenkung"/>
     </Declaration>
     <Declaration>
@@ -107,6 +122,18 @@
     </Declaration>
     <Declaration>
         <Class IRI="#Laufen"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#NichtexotischeSportarten"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Nichtkampfsportarten"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#NichtkoerperkontaktSportarten"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Nichtwassersportarten"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Power_Workout"/>
@@ -148,10 +175,16 @@
         <Class IRI="#Tischtennis"/>
     </Declaration>
     <Declaration>
+        <Class IRI="#True"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="#Ultimate_Frisbee"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Volleyball"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Wassersportarten"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Wettbewerb"/>
@@ -166,20 +199,30 @@
         <ObjectProperty IRI="#hatZiel"/>
     </Declaration>
     <Declaration>
+        <ObjectProperty IRI="#istExotisch"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#istKampfsport"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#istKoerperkontakt"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#istWassersport"/>
+    </Declaration>
+    <Declaration>
         <ObjectProperty IRI="#ungeeignetBei"/>
     </Declaration>
-    <Declaration>
-        <DataProperty IRI="#istExotisch"/>
-    </Declaration>
-    <Declaration>
-        <DataProperty IRI="#istKampfsportart"/>
-    </Declaration>
-    <Declaration>
-        <DataProperty IRI="#istKoerperkontaktsport"/>
-    </Declaration>
-    <Declaration>
-        <DataProperty IRI="#istWassersport"/>
-    </Declaration>
+    <EquivalentClasses>
+        <Class IRI="#ExotischeSportarten"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Sport"/>
+            <ObjectAllValuesFrom>
+                <ObjectProperty IRI="#istExotisch"/>
+                <Class IRI="#True"/>
+            </ObjectAllValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
     <EquivalentClasses>
         <Class IRI="#FitnessZiel"/>
         <ObjectSomeValuesFrom>
@@ -231,12 +274,72 @@
         </ObjectIntersectionOf>
     </EquivalentClasses>
     <EquivalentClasses>
+        <Class IRI="#Kampfsportarten"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Sport"/>
+            <ObjectAllValuesFrom>
+                <ObjectProperty IRI="#istKampfsport"/>
+                <Class IRI="#True"/>
+            </ObjectAllValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Koerperkontaktsportarten"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Sport"/>
+            <ObjectAllValuesFrom>
+                <ObjectProperty IRI="#istKoerperkontakt"/>
+                <Class IRI="#True"/>
+            </ObjectAllValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
         <Class IRI="#KoerperlicheEinschraenkung"/>
         <ObjectUnionOf>
             <Class IRI="#Armbereich"/>
             <Class IRI="#Beinbereich"/>
             <Class IRI="#Hoehenangst"/>
         </ObjectUnionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#NichtexotischeSportarten"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Sport"/>
+            <ObjectAllValuesFrom>
+                <ObjectProperty IRI="#istExotisch"/>
+                <Class IRI="#False"/>
+            </ObjectAllValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Nichtkampfsportarten"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Sport"/>
+            <ObjectAllValuesFrom>
+                <ObjectProperty IRI="#istKampfsport"/>
+                <Class IRI="#False"/>
+            </ObjectAllValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#NichtkoerperkontaktSportarten"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Sport"/>
+            <ObjectAllValuesFrom>
+                <ObjectProperty IRI="#istKoerperkontakt"/>
+                <Class IRI="#False"/>
+            </ObjectAllValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Nichtwassersportarten"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Sport"/>
+            <ObjectAllValuesFrom>
+                <ObjectProperty IRI="#istWassersport"/>
+                <Class IRI="#False"/>
+            </ObjectAllValuesFrom>
+        </ObjectIntersectionOf>
     </EquivalentClasses>
     <EquivalentClasses>
         <Class IRI="#SelfDefenseZiel"/>
@@ -251,6 +354,16 @@
             <ObjectProperty IRI="#hatZiel"/>
             <Class IRI="#Sozialkontakte"/>
         </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Wassersportarten"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Sport"/>
+            <ObjectAllValuesFrom>
+                <ObjectProperty IRI="#istWassersport"/>
+                <Class IRI="#True"/>
+            </ObjectAllValuesFrom>
+        </ObjectIntersectionOf>
     </EquivalentClasses>
     <EquivalentClasses>
         <Class IRI="#WettbewerbZiel"/>
@@ -300,6 +413,34 @@
     <SubClassOf>
         <Class IRI="#Baseball"/>
         <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istExotisch"/>
+            <Class IRI="#True"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Baseball"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKampfsport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Baseball"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKoerperkontakt"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Baseball"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istWassersport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Baseball"/>
+        <ObjectAllValuesFrom>
             <ObjectProperty IRI="#ungeeignetBei"/>
             <ObjectUnionOf>
                 <Class IRI="#Armbereich"/>
@@ -344,6 +485,34 @@
     <SubClassOf>
         <Class IRI="#Basketball"/>
         <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istExotisch"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Basketball"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKampfsport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Basketball"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKoerperkontakt"/>
+            <Class IRI="#True"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Basketball"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istWassersport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Basketball"/>
+        <ObjectAllValuesFrom>
             <ObjectProperty IRI="#ungeeignetBei"/>
             <ObjectUnionOf>
                 <Class IRI="#Armbereich"/>
@@ -358,6 +527,34 @@
     <SubClassOf>
         <Class IRI="#Bauch-Killer"/>
         <Class IRI="#FitnessZiel"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Bauch-Killer"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istExotisch"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Bauch-Killer"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKampfsport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Bauch-Killer"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKoerperkontakt"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Bauch-Killer"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istWassersport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Bauch-Killer"/>
@@ -399,6 +596,34 @@
             <ObjectProperty IRI="#ungeeignetBei"/>
             <Class IRI="#Beinbereich"/>
         </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Beachvolleyball"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istExotisch"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Beachvolleyball"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKampfsport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Beachvolleyball"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKoerperkontakt"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Beachvolleyball"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istWassersport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Beachvolleyball"/>
@@ -447,6 +672,34 @@
     <SubClassOf>
         <Class IRI="#Boxen"/>
         <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istExotisch"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Boxen"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKampfsport"/>
+            <Class IRI="#True"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Boxen"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKoerperkontakt"/>
+            <Class IRI="#True"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Boxen"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istWassersport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Boxen"/>
+        <ObjectAllValuesFrom>
             <ObjectProperty IRI="#ungeeignetBei"/>
             <ObjectUnionOf>
                 <Class IRI="#Armbereich"/>
@@ -459,12 +712,48 @@
         <Class IRI="#Sport"/>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#ExotischeSportarten"/>
+        <Class IRI="#Sport"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#False"/>
+        <Class IRI="#Boolean"/>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#Feldenkrais"/>
         <Class IRI="#Einzelsport"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Feldenkrais"/>
         <Class IRI="#SozialkontakteZiel"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Feldenkrais"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istExotisch"/>
+            <Class IRI="#True"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Feldenkrais"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKampfsport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Feldenkrais"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKoerperkontakt"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Feldenkrais"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istWassersport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Feldenkrais"/>
@@ -515,6 +804,34 @@
             <ObjectProperty IRI="#ungeeignetBei"/>
             <Class IRI="#Beinbereich"/>
         </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Fussball"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istExotisch"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Fussball"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKampfsport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Fussball"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKoerperkontakt"/>
+            <Class IRI="#True"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Fussball"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istWassersport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Fussball"/>
@@ -572,6 +889,34 @@
     <SubClassOf>
         <Class IRI="#Handball"/>
         <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istExotisch"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Handball"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKampfsport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Handball"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKoerperkontakt"/>
+            <Class IRI="#True"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Handball"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istWassersport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Handball"/>
+        <ObjectAllValuesFrom>
             <ObjectProperty IRI="#ungeeignetBei"/>
             <ObjectUnionOf>
                 <Class IRI="#Armbereich"/>
@@ -593,6 +938,34 @@
             <ObjectProperty IRI="#ungeeignetBei"/>
             <Class IRI="#Beinbereich"/>
         </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Headis"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istExotisch"/>
+            <Class IRI="#True"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Headis"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKampfsport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Headis"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKoerperkontakt"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Headis"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istWassersport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Headis"/>
@@ -638,12 +1011,44 @@
     <SubClassOf>
         <Class IRI="#Judo"/>
         <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istExotisch"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Judo"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKampfsport"/>
+            <Class IRI="#True"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Judo"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKoerperkontakt"/>
+            <Class IRI="#True"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Judo"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istWassersport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Judo"/>
+        <ObjectAllValuesFrom>
             <ObjectProperty IRI="#ungeeignetBei"/>
             <ObjectUnionOf>
                 <Class IRI="#Armbereich"/>
                 <Class IRI="#Beinbereich"/>
             </ObjectUnionOf>
         </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Kampfsportarten"/>
+        <Class IRI="#Sport"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Kanu_und_Kajak"/>
@@ -667,6 +1072,34 @@
             <ObjectProperty IRI="#ungeeignetBei"/>
             <Class IRI="#Armbereich"/>
         </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Kanu_und_Kajak"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istExotisch"/>
+            <Class IRI="#True"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Kanu_und_Kajak"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKampfsport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Kanu_und_Kajak"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKoerperkontakt"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Kanu_und_Kajak"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istWassersport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Kanu_und_Kajak"/>
@@ -704,6 +1137,34 @@
             <ObjectProperty IRI="#ungeeignetBei"/>
             <Class IRI="#Beinbereich"/>
         </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Karate"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istExotisch"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Karate"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKampfsport"/>
+            <Class IRI="#True"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Karate"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKoerperkontakt"/>
+            <Class IRI="#True"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Karate"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istWassersport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Karate"/>
@@ -759,6 +1220,34 @@
     <SubClassOf>
         <Class IRI="#Klettern"/>
         <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istExotisch"/>
+            <Class IRI="#True"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Klettern"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKampfsport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Klettern"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKoerperkontakt"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Klettern"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istWassersport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Klettern"/>
+        <ObjectAllValuesFrom>
             <ObjectProperty IRI="#ungeeignetBei"/>
             <ObjectUnionOf>
                 <Class IRI="#Armbereich"/>
@@ -766,6 +1255,10 @@
                 <Class IRI="#Hoehenangst"/>
             </ObjectUnionOf>
         </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Koerperkontaktsportarten"/>
+        <Class IRI="#Sport"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#KoerperlicheEinschraenkung"/>
@@ -808,6 +1301,34 @@
     <SubClassOf>
         <Class IRI="#Lacrosse"/>
         <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istExotisch"/>
+            <Class IRI="#True"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Lacrosse"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKampfsport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Lacrosse"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKoerperkontakt"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Lacrosse"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istWassersport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Lacrosse"/>
+        <ObjectAllValuesFrom>
             <ObjectProperty IRI="#ungeeignetBei"/>
             <ObjectUnionOf>
                 <Class IRI="#Armbereich"/>
@@ -837,9 +1358,53 @@
     <SubClassOf>
         <Class IRI="#Laufen"/>
         <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istExotisch"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Laufen"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKampfsport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Laufen"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKoerperkontakt"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Laufen"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istWassersport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Laufen"/>
+        <ObjectAllValuesFrom>
             <ObjectProperty IRI="#ungeeignetBei"/>
             <Class IRI="#Beinbereich"/>
         </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#NichtexotischeSportarten"/>
+        <Class IRI="#Sport"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Nichtkampfsportarten"/>
+        <Class IRI="#Sport"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#NichtkoerperkontaktSportarten"/>
+        <Class IRI="#Sport"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Nichtwassersportarten"/>
+        <Class IRI="#Sport"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Power_Workout"/>
@@ -862,6 +1427,34 @@
             <ObjectProperty IRI="#ungeeignetBei"/>
             <Class IRI="#Beinbereich"/>
         </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Power_Workout"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istExotisch"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Power_Workout"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKampfsport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Power_Workout"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKoerperkontakt"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Power_Workout"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istWassersport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Power_Workout"/>
@@ -895,6 +1488,34 @@
             <ObjectProperty IRI="#ungeeignetBei"/>
             <Class IRI="#Beinbereich"/>
         </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Radsport"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istExotisch"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Radsport"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKampfsport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Radsport"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKoerperkontakt"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Radsport"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istWassersport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Radsport"/>
@@ -940,6 +1561,34 @@
     <SubClassOf>
         <Class IRI="#Rugby"/>
         <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istExotisch"/>
+            <Class IRI="#True"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Rugby"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKampfsport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Rugby"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKoerperkontakt"/>
+            <Class IRI="#True"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Rugby"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istWassersport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Rugby"/>
+        <ObjectAllValuesFrom>
             <ObjectProperty IRI="#ungeeignetBei"/>
             <ObjectUnionOf>
                 <Class IRI="#Armbereich"/>
@@ -962,6 +1611,34 @@
     <SubClassOf>
         <Class IRI="#Schwimmen"/>
         <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istExotisch"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Schwimmen"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKampfsport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Schwimmen"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKoerperkontakt"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Schwimmen"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istWassersport"/>
+            <Class IRI="#True"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Schwimmen"/>
+        <ObjectAllValuesFrom>
             <ObjectProperty IRI="#ungeeignetBei"/>
             <Class IRI="#Keine"/>
         </ObjectAllValuesFrom>
@@ -977,6 +1654,34 @@
     <SubClassOf>
         <Class IRI="#Selbstverteidigung"/>
         <Class IRI="#SelfDefenseZiel"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Selbstverteidigung"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istExotisch"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Selbstverteidigung"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKampfsport"/>
+            <Class IRI="#True"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Selbstverteidigung"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKoerperkontakt"/>
+            <Class IRI="#True"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Selbstverteidigung"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istWassersport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Selbstverteidigung"/>
@@ -1034,6 +1739,34 @@
     <SubClassOf>
         <Class IRI="#Tennis"/>
         <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istExotisch"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Tennis"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKampfsport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Tennis"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKoerperkontakt"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Tennis"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istWassersport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Tennis"/>
+        <ObjectAllValuesFrom>
             <ObjectProperty IRI="#ungeeignetBei"/>
             <ObjectUnionOf>
                 <Class IRI="#Armbereich"/>
@@ -1070,12 +1803,44 @@
     <SubClassOf>
         <Class IRI="#Tischtennis"/>
         <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istExotisch"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Tischtennis"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKampfsport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Tischtennis"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKoerperkontakt"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Tischtennis"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istWassersport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Tischtennis"/>
+        <ObjectAllValuesFrom>
             <ObjectProperty IRI="#ungeeignetBei"/>
             <ObjectUnionOf>
                 <Class IRI="#Armbereich"/>
                 <Class IRI="#Beinbereich"/>
             </ObjectUnionOf>
         </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#True"/>
+        <Class IRI="#Boolean"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Ultimate_Frisbee"/>
@@ -1110,6 +1875,34 @@
             <ObjectProperty IRI="#ungeeignetBei"/>
             <Class IRI="#Beinbereich"/>
         </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Ultimate_Frisbee"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istExotisch"/>
+            <Class IRI="#True"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Ultimate_Frisbee"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKampfsport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Ultimate_Frisbee"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKoerperkontakt"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Ultimate_Frisbee"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istWassersport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Ultimate_Frisbee"/>
@@ -1158,12 +1951,44 @@
     <SubClassOf>
         <Class IRI="#Volleyball"/>
         <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istExotisch"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Volleyball"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKampfsport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Volleyball"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istKoerperkontakt"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Volleyball"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#istWassersport"/>
+            <Class IRI="#False"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Volleyball"/>
+        <ObjectAllValuesFrom>
             <ObjectProperty IRI="#ungeeignetBei"/>
             <ObjectUnionOf>
                 <Class IRI="#Armbereich"/>
                 <Class IRI="#Beinbereich"/>
             </ObjectUnionOf>
         </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Wassersportarten"/>
+        <Class IRI="#Sport"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Wettbewerb"/>
@@ -1208,10 +2033,26 @@
         <Class IRI="#Tischtennis"/>
     </DisjointClasses>
     <DisjointClasses>
+        <Class IRI="#Boolean"/>
+        <Class IRI="#Koerperliche_Einschraenkungen"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Boolean"/>
+        <Class IRI="#Sport"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Boolean"/>
+        <Class IRI="#Ziele"/>
+    </DisjointClasses>
+    <DisjointClasses>
         <Class IRI="#Einzelsport"/>
         <Class IRI="#Teamsport"/>
     </DisjointClasses>
     <DisjointClasses>
+        <Class IRI="#False"/>
+        <Class IRI="#True"/>
+    </DisjointClasses>
+    <DisjointClasses>
         <Class IRI="#Koerperliche_Einschraenkungen"/>
         <Class IRI="#Sport"/>
         <Class IRI="#Ziele"/>
@@ -1225,6 +2066,22 @@
         <Class IRI="#Sport"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
+        <ObjectProperty IRI="#istExotisch"/>
+        <Class IRI="#Sport"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#istKampfsport"/>
+        <Class IRI="#Sport"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#istKoerperkontakt"/>
+        <Class IRI="#Sport"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#istWassersport"/>
+        <Class IRI="#Sport"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
         <ObjectProperty IRI="#ungeeignetBei"/>
         <Class IRI="#Sport"/>
     </ObjectPropertyDomain>
@@ -1233,41 +2090,25 @@
         <Class IRI="#Ziele"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
+        <ObjectProperty IRI="#istExotisch"/>
+        <Class IRI="#Boolean"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#istKampfsport"/>
+        <Class IRI="#Boolean"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#istKoerperkontakt"/>
+        <Class IRI="#Boolean"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#istWassersport"/>
+        <Class IRI="#Boolean"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
         <ObjectProperty IRI="#ungeeignetBei"/>
         <Class IRI="#Koerperliche_Einschraenkungen"/>
     </ObjectPropertyRange>
-    <DataPropertyDomain>
-        <DataProperty IRI="#istExotisch"/>
-        <Class IRI="#Sport"/>
-    </DataPropertyDomain>
-    <DataPropertyDomain>
-        <DataProperty IRI="#istKampfsportart"/>
-        <Class IRI="#Sport"/>
-    </DataPropertyDomain>
-    <DataPropertyDomain>
-        <DataProperty IRI="#istKoerperkontaktsport"/>
-        <Class IRI="#Sport"/>
-    </DataPropertyDomain>
-    <DataPropertyDomain>
-        <DataProperty IRI="#istWassersport"/>
-        <Class IRI="#Sport"/>
-    </DataPropertyDomain>
-    <DataPropertyRange>
-        <DataProperty IRI="#istExotisch"/>
-        <Datatype abbreviatedIRI="xsd:boolean"/>
-    </DataPropertyRange>
-    <DataPropertyRange>
-        <DataProperty IRI="#istKampfsportart"/>
-        <Datatype abbreviatedIRI="xsd:boolean"/>
-    </DataPropertyRange>
-    <DataPropertyRange>
-        <DataProperty IRI="#istKoerperkontaktsport"/>
-        <Datatype abbreviatedIRI="xsd:boolean"/>
-    </DataPropertyRange>
-    <DataPropertyRange>
-        <DataProperty IRI="#istWassersport"/>
-        <Datatype abbreviatedIRI="xsd:boolean"/>
-    </DataPropertyRange>
 </Ontology>
 
 
