@@ -33,7 +33,7 @@ import javax.swing.border.BevelBorder;
 public class test extends JFrame {
 
 	private JPanel contentPane;
-	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private final ButtonGroup btngArtVonSport = new ButtonGroup();
 	private JList<Sportangebot> lstSportarten;
 
 	/**
@@ -121,7 +121,7 @@ public class test extends JFrame {
 		panel.setLayout(gbl_panel);
 		
 		JRadioButton rdbtnEinzelsport = new JRadioButton("Einzelsport");
-		buttonGroup.add(rdbtnEinzelsport);
+		btngArtVonSport.add(rdbtnEinzelsport);
 		GridBagConstraints gbc_rdbtnEinzelsport = new GridBagConstraints();
 		gbc_rdbtnEinzelsport.fill = GridBagConstraints.HORIZONTAL;
 		gbc_rdbtnEinzelsport.anchor = GridBagConstraints.NORTH;
@@ -131,7 +131,7 @@ public class test extends JFrame {
 		panel.add(rdbtnEinzelsport, gbc_rdbtnEinzelsport);
 		
 		JRadioButton rdbtnTeamsport = new JRadioButton("Teamsport");
-		buttonGroup.add(rdbtnTeamsport);
+		btngArtVonSport.add(rdbtnTeamsport);
 		GridBagConstraints gbc_rdbtnTeamsport = new GridBagConstraints();
 		gbc_rdbtnTeamsport.insets = new Insets(0, 0, 5, 0);
 		gbc_rdbtnTeamsport.fill = GridBagConstraints.HORIZONTAL;
@@ -142,7 +142,7 @@ public class test extends JFrame {
 		
 		JRadioButton rdbtnEgal = new JRadioButton("Egal");
 		rdbtnEgal.setSelected(true);
-		buttonGroup.add(rdbtnEgal);
+		btngArtVonSport.add(rdbtnEgal);
 		GridBagConstraints gbc_rdbtnEgal = new GridBagConstraints();
 		gbc_rdbtnEgal.insets = new Insets(0, 0, 5, 0);
 		gbc_rdbtnEgal.fill = GridBagConstraints.HORIZONTAL;
@@ -163,7 +163,7 @@ public class test extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				QueryBuilder builder = new QueryBuilder();
 				
-				String selectedArtVonSportButton = getSelectedButtonText(buttonGroup);
+				String selectedArtVonSportButton = getSelectedButtonText(btngArtVonSport);
 				ArtVonSport selectedArtVonSport = ArtVonSport.EGAL;
 				if(selectedArtVonSportButton.equals("Einzelsport")){
 					selectedArtVonSport = ArtVonSport.EINZELSPORT;
