@@ -196,10 +196,17 @@ public class test extends JFrame {
 		
 		JPanel panel_5 = new JPanel();
 		GridBagConstraints gbc_panel_5 = new GridBagConstraints();
+		gbc_panel_5.insets = new Insets(2, 2, 2, 2);
 		gbc_panel_5.anchor = GridBagConstraints.NORTH;
 		gbc_panel_5.gridx = 1;
 		gbc_panel_5.gridy = 0;
 		panel_4.add(panel_5, gbc_panel_5);
+		GridBagLayout gbl_panel_5 = new GridBagLayout();
+		gbl_panel_5.columnWidths = new int[]{159, 0};
+		gbl_panel_5.rowHeights = new int[]{25, 0, 0};
+		gbl_panel_5.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_panel_5.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		panel_5.setLayout(gbl_panel_5);
 		
 		JButton btnSearch = new JButton("Suche Sportarten");
 		btnSearch.addActionListener(new ActionListener() {
@@ -228,7 +235,19 @@ public class test extends JFrame {
 				lstSportarten.setModel(model);					
 			}
 		});
-		panel_5.add(btnSearch);
+		GridBagConstraints gbc_btnSearch = new GridBagConstraints();
+		gbc_btnSearch.insets = new Insets(0, 0, 5, 0);
+		gbc_btnSearch.fill = GridBagConstraints.BOTH;
+		gbc_btnSearch.gridx = 0;
+		gbc_btnSearch.gridy = 0;
+		panel_5.add(btnSearch, gbc_btnSearch);
+		
+		JButton btnZeit = new JButton("Zur Zeitangabe");
+		GridBagConstraints gbc_btnZeit = new GridBagConstraints();
+		gbc_btnZeit.fill = GridBagConstraints.BOTH;
+		gbc_btnZeit.gridx = 0;
+		gbc_btnZeit.gridy = 1;
+		panel_5.add(btnZeit, gbc_btnZeit);
 	}
 	
     private String getSelectedButtonText(ButtonGroup buttonGroup) {
