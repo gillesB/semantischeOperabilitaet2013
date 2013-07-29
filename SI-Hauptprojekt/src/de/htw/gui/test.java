@@ -28,6 +28,7 @@ import business.model.Sportangebot;
 import de.htw.queries.QueryBuilder;
 import de.htw.queries.QueryBuilder.ArtVonSport;
 import javax.swing.JScrollPane;
+import javax.swing.border.BevelBorder;
 
 public class test extends JFrame {
 
@@ -105,6 +106,7 @@ public class test extends JFrame {
 		panel_4.setLayout(gbl_panel_4);
 		
 		JPanel panel = new JPanel();
+		panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.insets = new Insets(0, 0, 0, 5);
 		gbc_panel.fill = GridBagConstraints.BOTH;
