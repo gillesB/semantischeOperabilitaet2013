@@ -46,7 +46,7 @@ import java.awt.Color;
 
 import javax.swing.JCheckBox;
 
-public class test extends JFrame {
+public class MainFrame extends JFrame {
 
 	private JPanel contentPane;
 	private final ButtonGroup btngArtVonSport = new ButtonGroup();
@@ -63,7 +63,7 @@ public class test extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					test frame = new test();
+					MainFrame frame = new MainFrame();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -75,7 +75,7 @@ public class test extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public test() {
+	public MainFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 614, 436);
 		contentPane = new JPanel();
