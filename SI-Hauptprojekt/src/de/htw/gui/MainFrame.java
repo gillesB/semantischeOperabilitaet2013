@@ -1,5 +1,6 @@
 package de.htw.gui;
 
+import java.awt.Cursor;
 import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -25,6 +26,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JSplitPane;
 import javax.swing.JTextPane;
 import javax.swing.ListModel;
+import javax.swing.SwingWorker;
 import javax.swing.border.EmptyBorder;
 
 import business.model.Sportangebot;
@@ -55,6 +57,7 @@ public class MainFrame extends JFrame {
 	private JCheckBox chckbxArmeinschraenkung;
 	private JCheckBox chckbxBeineinschrnkung;
 	private JCheckBox chckbxHhenangst;
+	private JButton btnSearch;
 
 	/**
 	 * Launch the application.
@@ -259,46 +262,11 @@ public class MainFrame extends JFrame {
 		gbl_panel_5.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		panel_5.setLayout(gbl_panel_5);
 		
-		JButton btnSearch = new JButton("Suche Sportarten");
+		btnSearch = new JButton("Suche Sportarten");
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				QueryBuilder builder = new QueryBuilder();
-				
-				String selectedArtVonSportButton = getSelectedButtonText(btngArtVonSport);
-				ArtVonSport selectedArtVonSport = ArtVonSport.EGAL;
-				if(selectedArtVonSportButton.equals("Einzelsport")){
-					selectedArtVonSport = ArtVonSport.EINZELSPORT;
-				} else if(selectedArtVonSportButton.equals("Teamsport")){
-					selectedArtVonSport = ArtVonSport.TEAMSPORT;
-				}				
-				builder.setSelectedArtVonSport(selectedArtVonSport);
-				
-			 	if(txtKosten.isEditValid()){
-			 		Number maxPrice = ( Number ) txtKosten.getValue();
-			 		builder.setMaximalPrice(maxPrice.doubleValue());
-			 	}
-				
-			 	ArrayList<KoerperlicheEinschraenkungen> einschraenkungen = new ArrayList<KoerperlicheEinschraenkungen>();
-				if(chckbxArmeinschraenkung.isSelected()){
-					einschraenkungen.add(KoerperlicheEinschraenkungen.ARMBEREICH);
-				}
-				if(chckbxBeineinschrnkung.isSelected()){
-					einschraenkungen.add(KoerperlicheEinschraenkungen.BEINBEREICH);
-				}
-				if(chckbxHhenangst.isSelected()){
-					einschraenkungen.add(KoerperlicheEinschraenkungen.HOEHENANGST);
-				}
-				builder.setEinschraenkungen(einschraenkungen.toArray(new KoerperlicheEinschraenkungen[0]));
-			 	
-				Map<String, Sportangebot> result = builder.execute();
-				DefaultListModel<Sportangebot> model = new DefaultListModel<Sportangebot>();
-				for(Sportangebot sport : result.values()){
-					model.addElement(sport);
-				}
-				
-				
-				
-				lstSportarten.setModel(model);					
+				btnSearch.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				new ExecuteQuery().execute();			
 			}
 		});
 		GridBagConstraints gbc_btnSearch = new GridBagConstraints();
@@ -326,5 +294,53 @@ public class MainFrame extends JFrame {
         }
 
         return null;
+    }
+    
+    private class ExecuteQuery extends SwingWorker<Void, Void>{
+
+    	private DefaultListModel<Sportangebot> model = new DefaultListModel<Sportangebot>();
+		@Override
+		protected Void doInBackground() throws Exception {
+			QueryBuilder builder = new QueryBuilder();
+			
+			String selectedArtVonSportButton = getSelectedButtonText(btngArtVonSport);
+			ArtVonSport selectedArtVonSport = ArtVonSport.EGAL;
+			if(selectedArtVonSportButton.equals("Einzelsport")){
+				selectedArtVonSport = ArtVonSport.EINZELSPORT;
+			} else if(selectedArtVonSportButton.equals("Teamsport")){
+				selectedArtVonSport = ArtVonSport.TEAMSPORT;
+			}				
+			builder.setSelectedArtVonSport(selectedArtVonSport);
+			
+		 	if(txtKosten.isEditValid()){
+		 		Number maxPrice = ( Number ) txtKosten.getValue();
+		 		builder.setMaximalPrice(maxPrice.doubleValue());
+		 	}
+			
+		 	ArrayList<KoerperlicheEinschraenkungen> einschraenkungen = new ArrayList<KoerperlicheEinschraenkungen>();
+			if(chckbxArmeinschraenkung.isSelected()){
+				einschraenkungen.add(KoerperlicheEinschraenkungen.ARMBEREICH);
+			}
+			if(chckbxBeineinschrnkung.isSelected()){
+				einschraenkungen.add(KoerperlicheEinschraenkungen.BEINBEREICH);
+			}
+			if(chckbxHhenangst.isSelected()){
+				einschraenkungen.add(KoerperlicheEinschraenkungen.HOEHENANGST);
+			}
+			builder.setEinschraenkungen(einschraenkungen.toArray(new KoerperlicheEinschraenkungen[0]));
+		 	
+			Map<String, Sportangebot> result = builder.execute();
+			for(Sportangebot sport : result.values()){
+				model.addElement(sport);
+			}
+
+			return null;	
+		}
+
+		@Override
+		protected void done() {			
+			btnSearch.setCursor(Cursor.getDefaultCursor());			
+			lstSportarten.setModel(model);
+		}
     }
 }
