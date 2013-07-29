@@ -3,6 +3,7 @@ package de.htw.queries;
 import java.util.Map;
 
 import business.model.Sportangebot;
+import business.model.ontology.KoerperlicheEinschraenkungen;
 
 public class QueryBuilder {
 
@@ -12,6 +13,7 @@ public class QueryBuilder {
 	
 	private ArtVonSport selectedArtVonSport = ArtVonSport.EGAL;
 	private double maximalPrice = 0.0;
+	private KoerperlicheEinschraenkungen[] einschraenkungen = new KoerperlicheEinschraenkungen[0];
 
 	public Map<String, Sportangebot> execute() {
 		Map<String, Sportangebot> sport = Queries.querySport();
@@ -23,6 +25,12 @@ public class QueryBuilder {
 		}
 		
 		sport = Queries.queryPrice(sport, maximalPrice);
+		
+		if(einschraenkungen.length > 0){
+			sport = Queries.queryFilterKörperlicheEinschraenkungen(sport, einschraenkungen);
+		}
+		
+		
 		
 		return sport;
 		
@@ -47,6 +55,15 @@ public class QueryBuilder {
 		this.maximalPrice = maximalPrice;
 	}
 
+	public KoerperlicheEinschraenkungen[] getEinschraenkungen() {
+		return einschraenkungen;
+	}
+
+	public void setEinschraenkungen(KoerperlicheEinschraenkungen[] einschraenkungen) {
+		this.einschraenkungen = einschraenkungen;
+	}
+
+	
 
 	
 	

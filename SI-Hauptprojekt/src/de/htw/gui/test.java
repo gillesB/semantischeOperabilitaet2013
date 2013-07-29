@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Map;
 
@@ -27,6 +28,8 @@ import javax.swing.ListModel;
 import javax.swing.border.EmptyBorder;
 
 import business.model.Sportangebot;
+import business.model.ontology.KoerperlicheEinschraenkungen;
+import business.model.ontology.Ziele;
 import de.htw.queries.QueryBuilder;
 import de.htw.queries.QueryBuilder.ArtVonSport;
 
@@ -35,12 +38,23 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JFormattedTextField;
 
+import java.text.Format;
+
+import javax.swing.border.LineBorder;
+
+import java.awt.Color;
+
+import javax.swing.JCheckBox;
+
 public class test extends JFrame {
 
 	private JPanel contentPane;
 	private final ButtonGroup btngArtVonSport = new ButtonGroup();
 	private JList<Sportangebot> lstSportarten;
 	private JFormattedTextField txtKosten;
+	private JCheckBox chckbxArmeinschraenkung;
+	private JCheckBox chckbxBeineinschrnkung;
+	private JCheckBox chckbxHhenangst;
 
 	/**
 	 * Launch the application.
@@ -120,9 +134,9 @@ public class test extends JFrame {
 		panel_4.add(panel, gbc_panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{180, 0};
-		gbl_panel.rowHeights = new int[]{23, 0, 0};
+		gbl_panel.rowHeights = new int[]{23, 0, 0, 0};
 		gbl_panel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
 		JPanel panel_1 = new JPanel();
@@ -173,7 +187,7 @@ public class test extends JFrame {
 		JPanel panel_6 = new JPanel();
 		panel_6.setBorder(new TitledBorder(null, "max. Kosten", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		GridBagConstraints gbc_panel_6 = new GridBagConstraints();
-		gbc_panel_6.insets = new Insets(2, 2, 2, 2);
+		gbc_panel_6.insets = new Insets(2, 2, 5, 2);
 		gbc_panel_6.fill = GridBagConstraints.BOTH;
 		gbc_panel_6.gridx = 0;
 		gbc_panel_6.gridy = 1;
@@ -193,6 +207,43 @@ public class test extends JFrame {
 		gbc_txtKosten.gridx = 0;
 		gbc_txtKosten.gridy = 0;
 		panel_6.add(txtKosten, gbc_txtKosten);
+		
+		JPanel panel_7 = new JPanel();
+		panel_7.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "geeignet bei", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		GridBagConstraints gbc_panel_7 = new GridBagConstraints();
+		gbc_panel_7.fill = GridBagConstraints.BOTH;
+		gbc_panel_7.gridx = 0;
+		gbc_panel_7.gridy = 2;
+		panel.add(panel_7, gbc_panel_7);
+		GridBagLayout gbl_panel_7 = new GridBagLayout();
+		gbl_panel_7.columnWidths = new int[]{195, 0};
+		gbl_panel_7.rowHeights = new int[]{0, 0, 0, 0};
+		gbl_panel_7.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_panel_7.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panel_7.setLayout(gbl_panel_7);
+		
+		chckbxArmeinschraenkung = new JCheckBox("Armeinschränkung");
+		GridBagConstraints gbc_chckbxArmeinschraenkung = new GridBagConstraints();
+		gbc_chckbxArmeinschraenkung.anchor = GridBagConstraints.WEST;
+		gbc_chckbxArmeinschraenkung.gridx = 0;
+		gbc_chckbxArmeinschraenkung.gridy = 0;
+		panel_7.add(chckbxArmeinschraenkung, gbc_chckbxArmeinschraenkung);
+		
+		chckbxBeineinschrnkung = new JCheckBox("Beineinschränkung");
+		GridBagConstraints gbc_chckbxBeineinschrnkung = new GridBagConstraints();
+		gbc_chckbxBeineinschrnkung.insets = new Insets(5, 0, 0, 0);
+		gbc_chckbxBeineinschrnkung.anchor = GridBagConstraints.WEST;
+		gbc_chckbxBeineinschrnkung.gridx = 0;
+		gbc_chckbxBeineinschrnkung.gridy = 1;
+		panel_7.add(chckbxBeineinschrnkung, gbc_chckbxBeineinschrnkung);
+		
+		chckbxHhenangst = new JCheckBox("Höhenangst");
+		GridBagConstraints gbc_chckbxHhenangst = new GridBagConstraints();
+		gbc_chckbxHhenangst.insets = new Insets(5, 0, 0, 0);
+		gbc_chckbxHhenangst.anchor = GridBagConstraints.WEST;
+		gbc_chckbxHhenangst.gridx = 0;
+		gbc_chckbxHhenangst.gridy = 2;
+		panel_7.add(chckbxHhenangst, gbc_chckbxHhenangst);
 		
 		JPanel panel_5 = new JPanel();
 		GridBagConstraints gbc_panel_5 = new GridBagConstraints();
@@ -227,11 +278,26 @@ public class test extends JFrame {
 			 		builder.setMaximalPrice(maxPrice.doubleValue());
 			 	}
 				
+			 	ArrayList<KoerperlicheEinschraenkungen> einschraenkungen = new ArrayList<KoerperlicheEinschraenkungen>();
+				if(chckbxArmeinschraenkung.isSelected()){
+					einschraenkungen.add(KoerperlicheEinschraenkungen.ARMBEREICH);
+				}
+				if(chckbxBeineinschrnkung.isSelected()){
+					einschraenkungen.add(KoerperlicheEinschraenkungen.BEINBEREICH);
+				}
+				if(chckbxHhenangst.isSelected()){
+					einschraenkungen.add(KoerperlicheEinschraenkungen.HOEHENANGST);
+				}
+				builder.setEinschraenkungen(einschraenkungen.toArray(new KoerperlicheEinschraenkungen[0]));
+			 	
 				Map<String, Sportangebot> result = builder.execute();
 				DefaultListModel<Sportangebot> model = new DefaultListModel<Sportangebot>();
 				for(Sportangebot sport : result.values()){
 					model.addElement(sport);
 				}
+				
+				
+				
 				lstSportarten.setModel(model);					
 			}
 		});
