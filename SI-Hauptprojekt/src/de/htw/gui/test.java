@@ -7,6 +7,8 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Enumeration;
 import java.util.Map;
 
@@ -27,14 +29,18 @@ import javax.swing.border.EmptyBorder;
 import business.model.Sportangebot;
 import de.htw.queries.QueryBuilder;
 import de.htw.queries.QueryBuilder.ArtVonSport;
+
 import javax.swing.JScrollPane;
 import javax.swing.border.BevelBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.JFormattedTextField;
 
 public class test extends JFrame {
 
 	private JPanel contentPane;
 	private final ButtonGroup btngArtVonSport = new ButtonGroup();
 	private JList<Sportangebot> lstSportarten;
+	private JFormattedTextField txtKosten;
 
 	/**
 	 * Launch the application.
@@ -101,55 +107,92 @@ public class test extends JFrame {
 		GridBagLayout gbl_panel_4 = new GridBagLayout();
 		gbl_panel_4.columnWidths = new int[]{220, 98, 0};
 		gbl_panel_4.rowHeights = new int[]{398, 0};
-		gbl_panel_4.columnWeights = new double[]{1.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_4.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		gbl_panel_4.rowWeights = new double[]{1.0, Double.MIN_VALUE};
 		panel_4.setLayout(gbl_panel_4);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		GridBagConstraints gbc_panel = new GridBagConstraints();
-		gbc_panel.insets = new Insets(0, 0, 0, 5);
 		gbc_panel.fill = GridBagConstraints.BOTH;
 		gbc_panel.gridx = 0;
 		gbc_panel.gridy = 0;
 		panel_4.add(panel, gbc_panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{149, 0};
-		gbl_panel.rowHeights = new int[]{23, 0, 0, 0, 0};
-		gbl_panel.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel.columnWidths = new int[]{180, 0};
+		gbl_panel.rowHeights = new int[]{23, 0, 0};
+		gbl_panel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new TitledBorder(null, "Art des Sportes", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
+		gbc_panel_1.insets = new Insets(2, 2, 5, 2);
+		gbc_panel_1.fill = GridBagConstraints.BOTH;
+		gbc_panel_1.gridx = 0;
+		gbc_panel_1.gridy = 0;
+		panel.add(panel_1, gbc_panel_1);
+		GridBagLayout gbl_panel_1 = new GridBagLayout();
+		gbl_panel_1.columnWidths = new int[]{149, 0};
+		gbl_panel_1.rowHeights = new int[]{23, 0, 0, 0};
+		gbl_panel_1.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panel_1.setLayout(gbl_panel_1);
+		
 		JRadioButton rdbtnEinzelsport = new JRadioButton("Einzelsport");
-		btngArtVonSport.add(rdbtnEinzelsport);
 		GridBagConstraints gbc_rdbtnEinzelsport = new GridBagConstraints();
-		gbc_rdbtnEinzelsport.fill = GridBagConstraints.HORIZONTAL;
 		gbc_rdbtnEinzelsport.anchor = GridBagConstraints.NORTH;
+		gbc_rdbtnEinzelsport.fill = GridBagConstraints.HORIZONTAL;
 		gbc_rdbtnEinzelsport.insets = new Insets(0, 0, 5, 0);
 		gbc_rdbtnEinzelsport.gridx = 0;
 		gbc_rdbtnEinzelsport.gridy = 0;
-		panel.add(rdbtnEinzelsport, gbc_rdbtnEinzelsport);
+		panel_1.add(rdbtnEinzelsport, gbc_rdbtnEinzelsport);
+		btngArtVonSport.add(rdbtnEinzelsport);
 		
 		JRadioButton rdbtnTeamsport = new JRadioButton("Teamsport");
-		btngArtVonSport.add(rdbtnTeamsport);
 		GridBagConstraints gbc_rdbtnTeamsport = new GridBagConstraints();
-		gbc_rdbtnTeamsport.insets = new Insets(0, 0, 5, 0);
-		gbc_rdbtnTeamsport.fill = GridBagConstraints.HORIZONTAL;
 		gbc_rdbtnTeamsport.anchor = GridBagConstraints.NORTH;
+		gbc_rdbtnTeamsport.fill = GridBagConstraints.HORIZONTAL;
+		gbc_rdbtnTeamsport.insets = new Insets(0, 0, 5, 0);
 		gbc_rdbtnTeamsport.gridx = 0;
 		gbc_rdbtnTeamsport.gridy = 1;
-		panel.add(rdbtnTeamsport, gbc_rdbtnTeamsport);
+		panel_1.add(rdbtnTeamsport, gbc_rdbtnTeamsport);
+		btngArtVonSport.add(rdbtnTeamsport);
 		
 		JRadioButton rdbtnEgal = new JRadioButton("Egal");
-		rdbtnEgal.setSelected(true);
-		btngArtVonSport.add(rdbtnEgal);
 		GridBagConstraints gbc_rdbtnEgal = new GridBagConstraints();
-		gbc_rdbtnEgal.insets = new Insets(0, 0, 5, 0);
-		gbc_rdbtnEgal.fill = GridBagConstraints.HORIZONTAL;
 		gbc_rdbtnEgal.anchor = GridBagConstraints.NORTH;
+		gbc_rdbtnEgal.fill = GridBagConstraints.HORIZONTAL;
 		gbc_rdbtnEgal.gridx = 0;
 		gbc_rdbtnEgal.gridy = 2;
-		panel.add(rdbtnEgal, gbc_rdbtnEgal);
+		panel_1.add(rdbtnEgal, gbc_rdbtnEgal);
+		rdbtnEgal.setSelected(true);
+		btngArtVonSport.add(rdbtnEgal);
+		
+		JPanel panel_6 = new JPanel();
+		panel_6.setBorder(new TitledBorder(null, "max. Kosten", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		GridBagConstraints gbc_panel_6 = new GridBagConstraints();
+		gbc_panel_6.insets = new Insets(2, 2, 2, 2);
+		gbc_panel_6.fill = GridBagConstraints.BOTH;
+		gbc_panel_6.gridx = 0;
+		gbc_panel_6.gridy = 1;
+		panel.add(panel_6, gbc_panel_6);
+		GridBagLayout gbl_panel_6 = new GridBagLayout();
+		gbl_panel_6.columnWidths = new int[]{195, 0};
+		gbl_panel_6.rowHeights = new int[]{38, 0};
+		gbl_panel_6.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_panel_6.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		panel_6.setLayout(gbl_panel_6);
+		
+		DecimalFormat priceFormat = new DecimalFormat( "####,##" );
+		txtKosten = new JFormattedTextField(priceFormat);
+		txtKosten.setValue(0.0);
+		GridBagConstraints gbc_txtKosten = new GridBagConstraints();
+		gbc_txtKosten.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtKosten.gridx = 0;
+		gbc_txtKosten.gridy = 0;
+		panel_6.add(txtKosten, gbc_txtKosten);
 		
 		JPanel panel_5 = new JPanel();
 		GridBagConstraints gbc_panel_5 = new GridBagConstraints();
@@ -171,6 +214,11 @@ public class test extends JFrame {
 					selectedArtVonSport = ArtVonSport.TEAMSPORT;
 				}				
 				builder.setSelectedArtVonSport(selectedArtVonSport);
+				
+			 	if(txtKosten.isEditValid()){
+			 		Number maxPrice = ( Number ) txtKosten.getValue();
+			 		builder.setMaximalPrice(maxPrice.doubleValue());
+			 	}
 				
 				Map<String, Sportangebot> result = builder.execute();
 				DefaultListModel<Sportangebot> model = new DefaultListModel<Sportangebot>();

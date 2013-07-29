@@ -10,7 +10,8 @@ public class QueryBuilder {
 		EINZELSPORT, TEAMSPORT, EGAL;
 	}
 	
-	ArtVonSport selectedArtVonSport = ArtVonSport.EGAL;
+	private ArtVonSport selectedArtVonSport = ArtVonSport.EGAL;
+	private double maximalPrice = 0.0;
 
 	public Map<String, Sportangebot> execute() {
 		Map<String, Sportangebot> sport = Queries.querySport();
@@ -20,6 +21,8 @@ public class QueryBuilder {
 		} else if(selectedArtVonSport == ArtVonSport.TEAMSPORT){
 			sport = Queries.queryTeamsport(sport);
 		}
+		
+		sport = Queries.queryPrice(sport, maximalPrice);
 		
 		return sport;
 		
@@ -35,6 +38,16 @@ public class QueryBuilder {
 	public void setSelectedArtVonSport(ArtVonSport selectedArtVonSport) {
 		this.selectedArtVonSport = selectedArtVonSport;
 	}
+
+	public double getMaximalPrice() {
+		return maximalPrice;
+	}
+
+	public void setMaximalPrice(double maximalPrice) {
+		this.maximalPrice = maximalPrice;
+	}
+
+
 	
 	
 
