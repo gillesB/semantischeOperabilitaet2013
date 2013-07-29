@@ -12,7 +12,7 @@ public class QueryBuilder {
 	}
 	
 	private ArtVonSport selectedArtVonSport = ArtVonSport.EGAL;
-	private double maximalPrice = 0.0;
+	private double maximalPrice = -1;
 	private KoerperlicheEinschraenkungen[] einschraenkungen = new KoerperlicheEinschraenkungen[0];
 
 	public Map<String, Sportangebot> execute() {
@@ -24,7 +24,9 @@ public class QueryBuilder {
 			sport = Queries.queryTeamsport(sport);
 		}
 		
+		if(maximalPrice >= 0 ){
 		sport = Queries.queryPrice(sport, maximalPrice);
+		}
 		
 		if(einschraenkungen.length > 0){
 			sport = Queries.queryFilterKörperlicheEinschraenkungen(sport, einschraenkungen);
@@ -51,6 +53,22 @@ public class QueryBuilder {
 		return maximalPrice;
 	}
 
+	
+	/**
+	 * Setzt den maximalen Preis. Ist ignorieren true, dann wird der Preis bei den Queries ignoriert
+	 * @see QueryBuilder.setMaximalPrice()
+	 * @param maximalPrice
+	 * @param ignorieren
+	 */
+	public void setMaximalPrice(double maximalPrice, boolean ignorieren) {
+		if(ignorieren){
+			this.maximalPrice = -1;
+		} else {
+			this.maximalPrice = maximalPrice;
+		}
+		
+	}
+	
 	public void setMaximalPrice(double maximalPrice) {
 		this.maximalPrice = maximalPrice;
 	}

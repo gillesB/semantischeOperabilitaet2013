@@ -58,6 +58,7 @@ public class MainFrame extends JFrame {
 	private JCheckBox chckbxBeineinschrnkung;
 	private JCheckBox chckbxHhenangst;
 	private JButton btnSearch;
+	private JCheckBox chckbxIgnorieren;
 
 	/**
 	 * Launch the application.
@@ -197,19 +198,32 @@ public class MainFrame extends JFrame {
 		panel.add(panel_6, gbc_panel_6);
 		GridBagLayout gbl_panel_6 = new GridBagLayout();
 		gbl_panel_6.columnWidths = new int[]{195, 0};
-		gbl_panel_6.rowHeights = new int[]{38, 0};
+		gbl_panel_6.rowHeights = new int[]{38, 0, 0};
 		gbl_panel_6.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_panel_6.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_panel_6.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		panel_6.setLayout(gbl_panel_6);
 		
 		DecimalFormat priceFormat = new DecimalFormat( "####,##" );
 		txtKosten = new JFormattedTextField(priceFormat);
 		txtKosten.setValue(0.0);
 		GridBagConstraints gbc_txtKosten = new GridBagConstraints();
+		gbc_txtKosten.insets = new Insets(0, 0, 5, 0);
 		gbc_txtKosten.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtKosten.gridx = 0;
 		gbc_txtKosten.gridy = 0;
 		panel_6.add(txtKosten, gbc_txtKosten);
+		
+		chckbxIgnorieren = new JCheckBox("ignorieren");
+		chckbxIgnorieren.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtKosten.setEnabled(!chckbxIgnorieren.isSelected());
+			}
+		});
+		GridBagConstraints gbc_chckbxIgnorieren = new GridBagConstraints();
+		gbc_chckbxIgnorieren.anchor = GridBagConstraints.WEST;
+		gbc_chckbxIgnorieren.gridx = 0;
+		gbc_chckbxIgnorieren.gridy = 1;
+		panel_6.add(chckbxIgnorieren, gbc_chckbxIgnorieren);
 		
 		JPanel panel_7 = new JPanel();
 		panel_7.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "geeignet bei", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -314,7 +328,7 @@ public class MainFrame extends JFrame {
 			
 		 	if(txtKosten.isEditValid()){
 		 		Number maxPrice = ( Number ) txtKosten.getValue();
-		 		builder.setMaximalPrice(maxPrice.doubleValue());
+		 		builder.setMaximalPrice(maxPrice.doubleValue(), chckbxIgnorieren.isSelected());
 		 	}
 			
 		 	ArrayList<KoerperlicheEinschraenkungen> einschraenkungen = new ArrayList<KoerperlicheEinschraenkungen>();
