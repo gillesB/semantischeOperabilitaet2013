@@ -2,8 +2,6 @@ package de.htw.datenbankverbindung;
 
 import java.sql.Connection;
 
-//import de.htw.datenbankverbindung.ConnectionJDBC;
-
 public abstract class DAO<T> {
 	
 	ConnectionJDBC factory = ConnectionJDBC.getInstance();
