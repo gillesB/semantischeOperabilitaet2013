@@ -10,4 +10,13 @@ public class Campus {
 	public String getName() {
 		return Name;
 	}
+	public String getName() {
+		return Name;
+	}
+	public void setIdCampus(int idCampus) {
+		this.idCampus = idCampus;
+	}
+	public void setName(String name) {
+		Name = name;
+	}
 }
