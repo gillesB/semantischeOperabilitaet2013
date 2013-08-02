@@ -1,5 +1,6 @@
 package de.htw.gui;
 
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
@@ -9,7 +10,6 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Map;
@@ -17,17 +17,25 @@ import java.util.Map;
 import javax.swing.AbstractButton;
 import javax.swing.AbstractListModel;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTextPane;
-import javax.swing.ListModel;
 import javax.swing.SwingWorker;
+import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 
 import business.model.Sportangebot;
 import business.model.ontology.KoerperlicheEinschraenkungen;
@@ -35,19 +43,6 @@ import business.model.ontology.Ziele;
 import de.htw.queries.QueryBuilder;
 import de.htw.queries.QueryBuilder.ArtVonSport;
 import de.htw.queries.QueryBuilder.InnenAussen;
-
-import javax.swing.JScrollPane;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.TitledBorder;
-import javax.swing.JFormattedTextField;
-
-import java.text.Format;
-
-import javax.swing.border.LineBorder;
-
-import java.awt.Color;
-
-import javax.swing.JCheckBox;
 
 public class MainFrame extends JFrame {
 
@@ -80,6 +75,10 @@ public class MainFrame extends JFrame {
 	private JCheckBox chckbxFreizeitvergnuegen;
 	private JCheckBox chckbxWettbewerb;
 	private JCheckBox chckbxSozialkontakte;
+	private JComboBox cboExotisch;
+	private JComboBox cboKampfsport;
+	private JComboBox cboKoerperkontakt;
+	private JComboBox cboWassersport;
 
 	/**
 	 * Launch the application.
@@ -103,7 +102,7 @@ public class MainFrame extends JFrame {
 	public MainFrame() {
 		setTitle("Hochschulsport");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 614, 621);
+		setBounds(100, 100, 614, 970);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -168,9 +167,9 @@ public class MainFrame extends JFrame {
 				null));
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[] { 180, 0 };
-		gbl_panel.rowHeights = new int[] { 23, 0, 0, 0, 0, 0 };
+		gbl_panel.rowHeights = new int[] { 23, 0, 0, 0, 0, 0, 0 };
 		gbl_panel.columnWeights = new double[] { 1.0, Double.MIN_VALUE };
-		gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 1.0,
+		gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
 				Double.MIN_VALUE };
 		panel.setLayout(gbl_panel);
 
@@ -348,6 +347,7 @@ public class MainFrame extends JFrame {
 		JPanel panel_9 = new JPanel();
 		panel_9.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Ziele", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		GridBagConstraints gbc_panel_9 = new GridBagConstraints();
+		gbc_panel_9.insets = new Insets(0, 0, 5, 0);
 		gbc_panel_9.fill = GridBagConstraints.BOTH;
 		gbc_panel_9.gridx = 0;
 		gbc_panel_9.gridy = 4;
@@ -398,6 +398,91 @@ public class MainFrame extends JFrame {
 		gbc_chckbxSozialkontakte.gridx = 0;
 		gbc_chckbxSozialkontakte.gridy = 4;
 		panel_9.add(chckbxSozialkontakte, gbc_chckbxSozialkontakte);
+		
+		JPanel panel_10 = new JPanel();
+		panel_10.setBorder(new TitledBorder(null, "Eigenschaften", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		GridBagConstraints gbc_panel_10 = new GridBagConstraints();
+		gbc_panel_10.fill = GridBagConstraints.BOTH;
+		gbc_panel_10.gridx = 0;
+		gbc_panel_10.gridy = 5;
+		panel.add(panel_10, gbc_panel_10);
+		GridBagLayout gbl_panel_10 = new GridBagLayout();
+		gbl_panel_10.columnWidths = new int[]{75, 59, 0};
+		gbl_panel_10.rowHeights = new int[]{15, 0, 0, 0, 0};
+		gbl_panel_10.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_10.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panel_10.setLayout(gbl_panel_10);
+		
+		JLabel lblExotisch = new JLabel("exotisch");
+		GridBagConstraints gbc_lblExotisch = new GridBagConstraints();
+		gbc_lblExotisch.insets = new Insets(0, 0, 5, 5);
+		gbc_lblExotisch.anchor = GridBagConstraints.NORTHEAST;
+		gbc_lblExotisch.gridx = 0;
+		gbc_lblExotisch.gridy = 0;
+		panel_10.add(lblExotisch, gbc_lblExotisch);
+		
+		cboExotisch = new JComboBox();
+		cboExotisch.setModel(new DefaultComboBoxModel(Choices.values()));
+		cboExotisch.setSelectedIndex(2);
+		GridBagConstraints gbc_cboExotisch = new GridBagConstraints();
+		gbc_cboExotisch.insets = new Insets(0, 0, 5, 0);
+		gbc_cboExotisch.fill = GridBagConstraints.HORIZONTAL;
+		gbc_cboExotisch.gridx = 1;
+		gbc_cboExotisch.gridy = 0;
+		panel_10.add(cboExotisch, gbc_cboExotisch);
+		
+		JLabel lblKampfsport = new JLabel("Kampfsport");
+		GridBagConstraints gbc_lblKampfsport = new GridBagConstraints();
+		gbc_lblKampfsport.anchor = GridBagConstraints.EAST;
+		gbc_lblKampfsport.insets = new Insets(0, 0, 5, 5);
+		gbc_lblKampfsport.gridx = 0;
+		gbc_lblKampfsport.gridy = 1;
+		panel_10.add(lblKampfsport, gbc_lblKampfsport);
+		
+		cboKampfsport = new JComboBox();
+		cboKampfsport.setModel(new DefaultComboBoxModel(Choices.values()));
+		cboKampfsport.setSelectedIndex(2);
+		GridBagConstraints gbc_cboKampfsport = new GridBagConstraints();
+		gbc_cboKampfsport.insets = new Insets(0, 0, 5, 0);
+		gbc_cboKampfsport.fill = GridBagConstraints.HORIZONTAL;
+		gbc_cboKampfsport.gridx = 1;
+		gbc_cboKampfsport.gridy = 1;
+		panel_10.add(cboKampfsport, gbc_cboKampfsport);
+		
+		JLabel lblKrperkontakt = new JLabel("Körperkontakt");
+		GridBagConstraints gbc_lblKrperkontakt = new GridBagConstraints();
+		gbc_lblKrperkontakt.insets = new Insets(0, 0, 5, 5);
+		gbc_lblKrperkontakt.anchor = GridBagConstraints.EAST;
+		gbc_lblKrperkontakt.gridx = 0;
+		gbc_lblKrperkontakt.gridy = 2;
+		panel_10.add(lblKrperkontakt, gbc_lblKrperkontakt);
+		
+		cboKoerperkontakt = new JComboBox();
+		cboKoerperkontakt.setModel(new DefaultComboBoxModel(Choices.values()));
+		cboKoerperkontakt.setSelectedIndex(2);
+		GridBagConstraints gbc_cboKoerperkontakt = new GridBagConstraints();
+		gbc_cboKoerperkontakt.insets = new Insets(0, 0, 5, 0);
+		gbc_cboKoerperkontakt.fill = GridBagConstraints.HORIZONTAL;
+		gbc_cboKoerperkontakt.gridx = 1;
+		gbc_cboKoerperkontakt.gridy = 2;
+		panel_10.add(cboKoerperkontakt, gbc_cboKoerperkontakt);
+		
+		JLabel lblWassersport = new JLabel("Wassersport");
+		GridBagConstraints gbc_lblWassersport = new GridBagConstraints();
+		gbc_lblWassersport.insets = new Insets(0, 0, 0, 5);
+		gbc_lblWassersport.anchor = GridBagConstraints.EAST;
+		gbc_lblWassersport.gridx = 0;
+		gbc_lblWassersport.gridy = 3;
+		panel_10.add(lblWassersport, gbc_lblWassersport);
+		
+		cboWassersport = new JComboBox();
+		cboWassersport.setModel(new DefaultComboBoxModel(Choices.values()));
+		cboWassersport.setSelectedIndex(2);
+		GridBagConstraints gbc_cboWassersport = new GridBagConstraints();
+		gbc_cboWassersport.fill = GridBagConstraints.HORIZONTAL;
+		gbc_cboWassersport.gridx = 1;
+		gbc_cboWassersport.gridy = 3;
+		panel_10.add(cboWassersport, gbc_cboWassersport);
 
 		JPanel panel_5 = new JPanel();
 		GridBagConstraints gbc_panel_5 = new GridBagConstraints();
@@ -478,6 +563,7 @@ public class MainFrame extends JFrame {
 			configKoerperlicheEinschraenkung();
 			configInnenAussen();
 			configZiele();
+			config4Attributes();
 
 			Map<String, Sportangebot> result = builder.execute();
 			for (Sportangebot sport : result.values()) {
@@ -557,6 +643,15 @@ public class MainFrame extends JFrame {
 			}
 
 			builder.setZiele(ziele.toArray(new Ziele[0]));
+		}
+		
+
+		private void config4Attributes() {
+			builder.setExotisch((Choices) cboExotisch.getSelectedItem());
+			builder.setKampfsport((Choices) cboKampfsport.getSelectedItem());
+			builder.setKoerperkontakt((Choices) cboKoerperkontakt.getSelectedItem());
+			builder.setWassersport((Choices) cboWassersport.getSelectedItem());
+			
 		}
 	}
 }

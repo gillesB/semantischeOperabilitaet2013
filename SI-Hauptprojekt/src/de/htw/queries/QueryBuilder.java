@@ -2,10 +2,10 @@ package de.htw.queries;
 
 import java.util.Map;
 
-import de.htw.queries.QueryBuilder.InnenAussen;
 import business.model.Sportangebot;
 import business.model.ontology.KoerperlicheEinschraenkungen;
 import business.model.ontology.Ziele;
+import de.htw.gui.Choices;
 
 /**
  * QueryBuilder erhält einige Attribute die gesetzt werden können. Wird ein
@@ -30,6 +30,7 @@ public class QueryBuilder {
 	private double maximalPrice = -1;
 	private KoerperlicheEinschraenkungen[] einschraenkungen = new KoerperlicheEinschraenkungen[0];
 	private Ziele[] ziele = new Ziele[0];
+	private Choices exotisch, kampfsport, koerperbetont, wassersport;
 
 	/**
 	 * führt die Query, bzw. die einzelnen Teilqueries aus. Die Methode gibt die
@@ -63,6 +64,8 @@ public class QueryBuilder {
 		if(ziele.length > 0){
 			sport = Queries.queryZiele(sport, ziele);
 		}
+		
+		sport = Queries.query4Attributes(sport, kampfsport, exotisch, koerperbetont, wassersport);
 		
 		return sport;
 
@@ -125,6 +128,40 @@ public class QueryBuilder {
 	public void setZiele(Ziele[] ziele) {
 		this.ziele = ziele;
 	}
+
+	public Choices getExotisch() {
+		return exotisch;
+	}
+
+	public void setExotisch(Choices exotisch) {
+		this.exotisch = exotisch;
+	}
+
+	public Choices getKampfsport() {
+		return kampfsport;
+	}
+
+	public void setKampfsport(Choices kampfsport) {
+		this.kampfsport = kampfsport;
+	}
+
+	public Choices getKoerperkontakt() {
+		return koerperbetont;
+	}
+
+	public void setKoerperkontakt(Choices koerperkontakt) {
+		this.koerperbetont = koerperkontakt;
+	}
+
+	public Choices getWassersport() {
+		return wassersport;
+	}
+
+	public void setWassersport(Choices wassersport) {
+		this.wassersport = wassersport;
+	}
+	
+	
 
 	
 	
