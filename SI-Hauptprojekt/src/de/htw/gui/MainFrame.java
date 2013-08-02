@@ -214,6 +214,7 @@ public class MainFrame extends JFrame {
 		gbl_panel_6.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		panel_6.setLayout(gbl_panel_6);
 		txtKosten = new JFormattedTextField(priceFormat);
+		txtKosten.setEnabled(false);
 		txtKosten.setValue(0.0);
 		GridBagConstraints gbc_txtKosten = new GridBagConstraints();
 		gbc_txtKosten.insets = new Insets(0, 0, 5, 0);
@@ -223,6 +224,7 @@ public class MainFrame extends JFrame {
 		panel_6.add(txtKosten, gbc_txtKosten);
 		
 		chckbxIgnorieren = new JCheckBox("ignorieren");
+		chckbxIgnorieren.setSelected(true);
 		chckbxIgnorieren.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txtKosten.setEnabled(!chckbxIgnorieren.isSelected());
@@ -409,7 +411,7 @@ public class MainFrame extends JFrame {
 			builder.setEinschraenkungen(einschraenkungen.toArray(new KoerperlicheEinschraenkungen[0]));
 			
 			String selectedInnenAussenButton = getSelectedButtonText(btngInnenAussen);
-			InnenAussen selectedInnenAussen = InnenAussen.INNEN;
+			InnenAussen selectedInnenAussen = InnenAussen.EGAL;
 			if(selectedInnenAussenButton.equals("Innen")){
 				selectedInnenAussen = InnenAussen.INNEN;
 			} else if(selectedInnenAussenButton.equals("Außen")){
