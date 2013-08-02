@@ -34,6 +34,7 @@ import business.model.ontology.KoerperlicheEinschraenkungen;
 import business.model.ontology.Ziele;
 import de.htw.queries.QueryBuilder;
 import de.htw.queries.QueryBuilder.ArtVonSport;
+import de.htw.queries.QueryBuilder.InnenAussen;
 
 import javax.swing.JScrollPane;
 import javax.swing.border.BevelBorder;
@@ -59,6 +60,11 @@ public class MainFrame extends JFrame {
 	private JCheckBox chckbxHhenangst;
 	private JButton btnSearch;
 	private JCheckBox chckbxIgnorieren;
+	private DecimalFormat priceFormat = new DecimalFormat( "####,##" );
+	private JRadioButton rdbtnInnen;
+	private JRadioButton rdbtnAussen;
+	private JRadioButton rdbtnEgal_Innen;
+	private final ButtonGroup btngInnenAussen = new ButtonGroup();
 
 	/**
 	 * Launch the application.
@@ -82,7 +88,7 @@ public class MainFrame extends JFrame {
 	public MainFrame() {
 		setTitle("Hochschulsport");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 614, 436);
+		setBounds(100, 100, 614, 550);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -130,18 +136,22 @@ public class MainFrame extends JFrame {
 		gbl_panel_4.rowWeights = new double[]{1.0, Double.MIN_VALUE};
 		panel_4.setLayout(gbl_panel_4);
 		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		GridBagConstraints gbc_scrollPane_1 = new GridBagConstraints();
+		gbc_scrollPane_1.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane_1.insets = new Insets(0, 0, 0, 5);
+		gbc_scrollPane_1.gridx = 0;
+		gbc_scrollPane_1.gridy = 0;
+		panel_4.add(scrollPane_1, gbc_scrollPane_1);
+		
 		JPanel panel = new JPanel();
+		scrollPane_1.setViewportView(panel);
 		panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		GridBagConstraints gbc_panel = new GridBagConstraints();
-		gbc_panel.fill = GridBagConstraints.BOTH;
-		gbc_panel.gridx = 0;
-		gbc_panel.gridy = 0;
-		panel_4.add(panel, gbc_panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{180, 0};
-		gbl_panel.rowHeights = new int[]{23, 0, 0, 0};
+		gbl_panel.rowHeights = new int[]{23, 0, 0, 0, 0};
 		gbl_panel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
 		JPanel panel_1 = new JPanel();
@@ -179,15 +189,15 @@ public class MainFrame extends JFrame {
 		panel_1.add(rdbtnTeamsport, gbc_rdbtnTeamsport);
 		btngArtVonSport.add(rdbtnTeamsport);
 		
-		JRadioButton rdbtnEgal = new JRadioButton("Egal");
-		GridBagConstraints gbc_rdbtnEgal = new GridBagConstraints();
-		gbc_rdbtnEgal.anchor = GridBagConstraints.NORTH;
-		gbc_rdbtnEgal.fill = GridBagConstraints.HORIZONTAL;
-		gbc_rdbtnEgal.gridx = 0;
-		gbc_rdbtnEgal.gridy = 2;
-		panel_1.add(rdbtnEgal, gbc_rdbtnEgal);
-		rdbtnEgal.setSelected(true);
-		btngArtVonSport.add(rdbtnEgal);
+		JRadioButton rdbtnEgal_Art = new JRadioButton("Egal");
+		GridBagConstraints gbc_rdbtnEgal_Art = new GridBagConstraints();
+		gbc_rdbtnEgal_Art.anchor = GridBagConstraints.NORTH;
+		gbc_rdbtnEgal_Art.fill = GridBagConstraints.HORIZONTAL;
+		gbc_rdbtnEgal_Art.gridx = 0;
+		gbc_rdbtnEgal_Art.gridy = 2;
+		panel_1.add(rdbtnEgal_Art, gbc_rdbtnEgal_Art);
+		rdbtnEgal_Art.setSelected(true);
+		btngArtVonSport.add(rdbtnEgal_Art);
 		
 		JPanel panel_6 = new JPanel();
 		panel_6.setBorder(new TitledBorder(null, "max. Kosten", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -203,8 +213,6 @@ public class MainFrame extends JFrame {
 		gbl_panel_6.columnWeights = new double[]{1.0, Double.MIN_VALUE};
 		gbl_panel_6.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		panel_6.setLayout(gbl_panel_6);
-		
-		DecimalFormat priceFormat = new DecimalFormat( "####,##" );
 		txtKosten = new JFormattedTextField(priceFormat);
 		txtKosten.setValue(0.0);
 		GridBagConstraints gbc_txtKosten = new GridBagConstraints();
@@ -229,6 +237,7 @@ public class MainFrame extends JFrame {
 		JPanel panel_7 = new JPanel();
 		panel_7.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "geeignet bei", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		GridBagConstraints gbc_panel_7 = new GridBagConstraints();
+		gbc_panel_7.insets = new Insets(0, 0, 5, 0);
 		gbc_panel_7.fill = GridBagConstraints.BOTH;
 		gbc_panel_7.gridx = 0;
 		gbc_panel_7.gridy = 2;
@@ -262,6 +271,50 @@ public class MainFrame extends JFrame {
 		gbc_chckbxHhenangst.gridx = 0;
 		gbc_chckbxHhenangst.gridy = 2;
 		panel_7.add(chckbxHhenangst, gbc_chckbxHhenangst);
+		
+		JPanel panel_8 = new JPanel();
+		panel_8.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Innen/Au\u00DFen", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		GridBagConstraints gbc_panel_8 = new GridBagConstraints();
+		gbc_panel_8.fill = GridBagConstraints.BOTH;
+		gbc_panel_8.gridx = 0;
+		gbc_panel_8.gridy = 3;
+		panel.add(panel_8, gbc_panel_8);
+		GridBagLayout gbl_panel_8 = new GridBagLayout();
+		gbl_panel_8.columnWidths = new int[]{149, 0};
+		gbl_panel_8.rowHeights = new int[]{23, 0, 0, 0};
+		gbl_panel_8.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_panel_8.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panel_8.setLayout(gbl_panel_8);
+		
+		rdbtnInnen = new JRadioButton("Innen");
+		btngInnenAussen.add(rdbtnInnen);
+		GridBagConstraints gbc_rdbtnInnen = new GridBagConstraints();
+		gbc_rdbtnInnen.fill = GridBagConstraints.HORIZONTAL;
+		gbc_rdbtnInnen.anchor = GridBagConstraints.NORTH;
+		gbc_rdbtnInnen.insets = new Insets(0, 0, 5, 0);
+		gbc_rdbtnInnen.gridx = 0;
+		gbc_rdbtnInnen.gridy = 0;
+		panel_8.add(rdbtnInnen, gbc_rdbtnInnen);
+		
+		rdbtnAussen = new JRadioButton("Außen");
+		btngInnenAussen.add(rdbtnAussen);
+		GridBagConstraints gbc_rdbtnAussen = new GridBagConstraints();
+		gbc_rdbtnAussen.fill = GridBagConstraints.HORIZONTAL;
+		gbc_rdbtnAussen.anchor = GridBagConstraints.NORTH;
+		gbc_rdbtnAussen.insets = new Insets(0, 0, 5, 0);
+		gbc_rdbtnAussen.gridx = 0;
+		gbc_rdbtnAussen.gridy = 1;
+		panel_8.add(rdbtnAussen, gbc_rdbtnAussen);
+		
+		rdbtnEgal_Innen = new JRadioButton("Egal");
+		btngInnenAussen.add(rdbtnEgal_Innen);
+		rdbtnEgal_Innen.setSelected(true);
+		GridBagConstraints gbc_rdbtnEgal_Innen = new GridBagConstraints();
+		gbc_rdbtnEgal_Innen.fill = GridBagConstraints.HORIZONTAL;
+		gbc_rdbtnEgal_Innen.anchor = GridBagConstraints.NORTH;
+		gbc_rdbtnEgal_Innen.gridx = 0;
+		gbc_rdbtnEgal_Innen.gridy = 2;
+		panel_8.add(rdbtnEgal_Innen, gbc_rdbtnEgal_Innen);
 		
 		JPanel panel_5 = new JPanel();
 		GridBagConstraints gbc_panel_5 = new GridBagConstraints();
@@ -354,6 +407,15 @@ public class MainFrame extends JFrame {
 				einschraenkungen.add(KoerperlicheEinschraenkungen.HOEHENANGST);
 			}
 			builder.setEinschraenkungen(einschraenkungen.toArray(new KoerperlicheEinschraenkungen[0]));
+			
+			String selectedInnenAussenButton = getSelectedButtonText(btngInnenAussen);
+			InnenAussen selectedInnenAussen = InnenAussen.INNEN;
+			if(selectedInnenAussenButton.equals("Innen")){
+				selectedInnenAussen = InnenAussen.INNEN;
+			} else if(selectedInnenAussenButton.equals("Außen")){
+				selectedInnenAussen = InnenAussen.AUSSEN;
+			}				
+			builder.setSelectedInnenAussen(selectedInnenAussen);
 		 	
 			Map<String, Sportangebot> result = builder.execute();
 			for(Sportangebot sport : result.values()){

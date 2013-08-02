@@ -2,6 +2,7 @@ package de.htw.queries;
 
 import java.util.Map;
 
+import de.htw.queries.QueryBuilder.InnenAussen;
 import business.model.Sportangebot;
 import business.model.ontology.KoerperlicheEinschraenkungen;
 
@@ -18,8 +19,13 @@ public class QueryBuilder {
 	public enum ArtVonSport {
 		EINZELSPORT, TEAMSPORT, EGAL;
 	}
+	
+	public enum InnenAussen {
+		INNEN, AUSSEN, EGAL;
+	}
 
 	private ArtVonSport selectedArtVonSport = ArtVonSport.EGAL;
+	private InnenAussen selectedInnenAussen = InnenAussen.EGAL;
 	private double maximalPrice = -1;
 	private KoerperlicheEinschraenkungen[] einschraenkungen = new KoerperlicheEinschraenkungen[0];
 
@@ -46,7 +52,12 @@ public class QueryBuilder {
 			sport = Queries.queryFilterKörperlicheEinschraenkungen(sport,
 					einschraenkungen);
 		}
-
+		
+		if(selectedInnenAussen != InnenAussen.EGAL){
+			boolean indoor = selectedInnenAussen == InnenAussen.INNEN ? true : false;
+			sport = Queries.queryIndoor(sport, indoor);
+		}
+		
 		return sport;
 
 	}
@@ -92,5 +103,15 @@ public class QueryBuilder {
 			KoerperlicheEinschraenkungen[] einschraenkungen) {
 		this.einschraenkungen = einschraenkungen;
 	}
+
+	public InnenAussen getSelectedInnenAussen() {
+		return selectedInnenAussen;
+	}
+
+	public void setSelectedInnenAussen(InnenAussen selectedInnenAussen) {
+		this.selectedInnenAussen = selectedInnenAussen;
+	}
+
+	
 
 }
