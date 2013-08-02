@@ -346,9 +346,7 @@ public class MainFrame extends JFrame {
 		panel_8.add(rdbtnEgal_Innen, gbc_rdbtnEgal_Innen);
 
 		JPanel panel_9 = new JPanel();
-		panel_9.setBorder(new TitledBorder(new LineBorder(new Color(184, 207,
-				229)), "geeignet bei", TitledBorder.LEADING, TitledBorder.TOP,
-				null, null));
+		panel_9.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Ziele", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		GridBagConstraints gbc_panel_9 = new GridBagConstraints();
 		gbc_panel_9.fill = GridBagConstraints.BOTH;
 		gbc_panel_9.gridx = 0;
@@ -416,6 +414,7 @@ public class MainFrame extends JFrame {
 		panel_5.setLayout(gbl_panel_5);
 
 		btnSearch = new JButton("Suche Sportarten");
+		btnSearch.setMnemonic('S');
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnSearch.setCursor(Cursor
@@ -431,6 +430,7 @@ public class MainFrame extends JFrame {
 		panel_5.add(btnSearch, gbc_btnSearch);
 
 		JButton btnZeit = new JButton("Zur Zeitangabe");
+		btnZeit.setMnemonic('Z');
 		btnZeit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// @Tobias: hier Code einfügen für die Zeitangabe
