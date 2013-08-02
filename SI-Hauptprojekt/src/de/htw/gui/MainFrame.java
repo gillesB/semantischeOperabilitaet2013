@@ -389,45 +389,16 @@ public class MainFrame extends JFrame {
     private class ExecuteQuery extends SwingWorker<Void, Void>{
 
     	private DefaultListModel<Sportangebot> model = new DefaultListModel<Sportangebot>();
+    	private QueryBuilder builder;
 		@Override
 		protected Void doInBackground() throws Exception {
-			QueryBuilder builder = new QueryBuilder();
+			builder = new QueryBuilder();
 			
-			String selectedArtVonSportButton = getSelectedButtonText(btngArtVonSport);
-			ArtVonSport selectedArtVonSport = ArtVonSport.EGAL;
-			if(selectedArtVonSportButton.equals(EINZELSPORT)){
-				selectedArtVonSport = ArtVonSport.EINZELSPORT;
-			} else if(selectedArtVonSportButton.equals(TEAMSPORT)){
-				selectedArtVonSport = ArtVonSport.TEAMSPORT;
-			}				
-			builder.setSelectedArtVonSport(selectedArtVonSport);
-			
-		 	if(txtKosten.isEditValid()){
-		 		Number maxPrice = ( Number ) txtKosten.getValue();
-		 		builder.setMaximalPrice(maxPrice.doubleValue(), chckbxIgnorieren.isSelected());
-		 	}
-			
-		 	ArrayList<KoerperlicheEinschraenkungen> einschraenkungen = new ArrayList<KoerperlicheEinschraenkungen>();
-			if(chckbxArmeinschraenkung.isSelected()){
-				einschraenkungen.add(KoerperlicheEinschraenkungen.ARMBEREICH);
-			}
-			if(chckbxBeineinschrnkung.isSelected()){
-				einschraenkungen.add(KoerperlicheEinschraenkungen.BEINBEREICH);
-			}
-			if(chckbxHhenangst.isSelected()){
-				einschraenkungen.add(KoerperlicheEinschraenkungen.HOEHENANGST);
-			}
-			builder.setEinschraenkungen(einschraenkungen.toArray(new KoerperlicheEinschraenkungen[0]));
-			
-			String selectedInnenAussenButton = getSelectedButtonText(btngInnenAussen);
-			InnenAussen selectedInnenAussen = InnenAussen.EGAL;
-			if(selectedInnenAussenButton.equals(INNEN)){
-				selectedInnenAussen = InnenAussen.INNEN;
-			} else if(selectedInnenAussenButton.equals(AUSSEN)){
-				selectedInnenAussen = InnenAussen.AUSSEN;
-			}				
-			builder.setSelectedInnenAussen(selectedInnenAussen);
-		 	
+			configArtVonSport();
+			configPrice();
+			configKoerperlicheEinschraenkung();
+			configInnenAussen();		
+					 	
 			Map<String, Sportangebot> result = builder.execute();
 			for(Sportangebot sport : result.values()){
 				model.addElement(sport);
@@ -440,6 +411,49 @@ public class MainFrame extends JFrame {
 		protected void done() {			
 			btnSearch.setCursor(Cursor.getDefaultCursor());			
 			lstSportarten.setModel(model);
+		}
+		
+		private void configArtVonSport(){
+			String selectedArtVonSportButton = getSelectedButtonText(btngArtVonSport);
+			ArtVonSport selectedArtVonSport = ArtVonSport.EGAL;
+			if(selectedArtVonSportButton.equals(EINZELSPORT)){
+				selectedArtVonSport = ArtVonSport.EINZELSPORT;
+			} else if(selectedArtVonSportButton.equals(TEAMSPORT)){
+				selectedArtVonSport = ArtVonSport.TEAMSPORT;
+			}				
+			builder.setSelectedArtVonSport(selectedArtVonSport);
+		}
+		
+		private void configPrice() {
+		 	if(txtKosten.isEditValid()){
+		 		Number maxPrice = ( Number ) txtKosten.getValue();
+		 		builder.setMaximalPrice(maxPrice.doubleValue(), chckbxIgnorieren.isSelected());
+		 	}
+		}
+		
+		private void configKoerperlicheEinschraenkung() {
+		 	ArrayList<KoerperlicheEinschraenkungen> einschraenkungen = new ArrayList<KoerperlicheEinschraenkungen>();
+			if(chckbxArmeinschraenkung.isSelected()){
+				einschraenkungen.add(KoerperlicheEinschraenkungen.ARMBEREICH);
+			}
+			if(chckbxBeineinschrnkung.isSelected()){
+				einschraenkungen.add(KoerperlicheEinschraenkungen.BEINBEREICH);
+			}
+			if(chckbxHhenangst.isSelected()){
+				einschraenkungen.add(KoerperlicheEinschraenkungen.HOEHENANGST);
+			}
+			builder.setEinschraenkungen(einschraenkungen.toArray(new KoerperlicheEinschraenkungen[0]));
+		}
+		
+		private void configInnenAussen() {
+			String selectedInnenAussenButton = getSelectedButtonText(btngInnenAussen);
+			InnenAussen selectedInnenAussen = InnenAussen.EGAL;
+			if(selectedInnenAussenButton.equals(INNEN)){
+				selectedInnenAussen = InnenAussen.INNEN;
+			} else if(selectedInnenAussenButton.equals(AUSSEN)){
+				selectedInnenAussen = InnenAussen.AUSSEN;
+			}				
+			builder.setSelectedInnenAussen(selectedInnenAussen);
 		}
     }
 }
