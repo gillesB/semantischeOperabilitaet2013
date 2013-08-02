@@ -80,6 +80,7 @@ public class MainFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public MainFrame() {
+		setTitle("Hochschulsport");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 614, 436);
 		contentPane = new JPanel();
@@ -291,6 +292,11 @@ public class MainFrame extends JFrame {
 		panel_5.add(btnSearch, gbc_btnSearch);
 		
 		JButton btnZeit = new JButton("Zur Zeitangabe");
+		btnZeit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//@Tobias: hier Code einfügen für die Zeitangabe
+			}
+		});
 		GridBagConstraints gbc_btnZeit = new GridBagConstraints();
 		gbc_btnZeit.fill = GridBagConstraints.BOTH;
 		gbc_btnZeit.gridx = 0;
@@ -310,6 +316,12 @@ public class MainFrame extends JFrame {
         return null;
     }
     
+    /**
+     * Die Klasse ExecuteQuery setzt die richtigen Attribute in der Klasse QueryBuilder und führt diesen dann aus.
+     * Die Resultate die ExecuteQuery vom QueryBuilder erhält, werden in der Liste angezeigt.
+     * @author Gilles
+     *
+     */
     private class ExecuteQuery extends SwingWorker<Void, Void>{
 
     	private DefaultListModel<Sportangebot> model = new DefaultListModel<Sportangebot>();
