@@ -5,6 +5,7 @@ import java.util.Map;
 import de.htw.queries.QueryBuilder.InnenAussen;
 import business.model.Sportangebot;
 import business.model.ontology.KoerperlicheEinschraenkungen;
+import business.model.ontology.Ziele;
 
 /**
  * QueryBuilder erhält einige Attribute die gesetzt werden können. Wird ein
@@ -28,6 +29,7 @@ public class QueryBuilder {
 	private InnenAussen selectedInnenAussen = InnenAussen.EGAL;
 	private double maximalPrice = -1;
 	private KoerperlicheEinschraenkungen[] einschraenkungen = new KoerperlicheEinschraenkungen[0];
+	private Ziele[] ziele = new Ziele[0];
 
 	/**
 	 * führt die Query, bzw. die einzelnen Teilqueries aus. Die Methode gibt die
@@ -56,6 +58,10 @@ public class QueryBuilder {
 		if(selectedInnenAussen != InnenAussen.EGAL){
 			boolean indoor = selectedInnenAussen == InnenAussen.INNEN ? true : false;
 			sport = Queries.queryIndoor(sport, indoor);
+		}
+		
+		if(ziele.length > 0){
+			sport = Queries.queryZiele(sport, ziele);
 		}
 		
 		return sport;
@@ -112,6 +118,15 @@ public class QueryBuilder {
 		this.selectedInnenAussen = selectedInnenAussen;
 	}
 
+	public Ziele[] getZiele() {
+		return ziele;
+	}
+
+	public void setZiele(Ziele[] ziele) {
+		this.ziele = ziele;
+	}
+
+	
 	
 
 }
