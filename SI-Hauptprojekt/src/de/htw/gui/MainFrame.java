@@ -65,7 +65,16 @@ public class MainFrame extends JFrame {
 	private JRadioButton rdbtnAussen;
 	private JRadioButton rdbtnEgal_Innen;
 	private final ButtonGroup btngInnenAussen = new ButtonGroup();
-
+	public static final String EINZELSPORT = "Einzelsport";
+	public static final String TEAMSPORT = "Teamsport";
+	public static final String EGAL = "Egal";
+	public static final String ARMEINSCHRAENKUNG = "Armeinschränkung";
+	public static final String BEINEINSCHRAENKUNG = "Beineinschränkung";
+	public static final String HOEHENANGST = "Höhenangst";
+	public static final String INNEN = "INNEN";
+	public static final String AUSSEN = "Außen";	
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -169,7 +178,7 @@ public class MainFrame extends JFrame {
 		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
 		
-		JRadioButton rdbtnEinzelsport = new JRadioButton("Einzelsport");
+		JRadioButton rdbtnEinzelsport = new JRadioButton(EINZELSPORT);
 		GridBagConstraints gbc_rdbtnEinzelsport = new GridBagConstraints();
 		gbc_rdbtnEinzelsport.anchor = GridBagConstraints.NORTH;
 		gbc_rdbtnEinzelsport.fill = GridBagConstraints.HORIZONTAL;
@@ -179,7 +188,7 @@ public class MainFrame extends JFrame {
 		panel_1.add(rdbtnEinzelsport, gbc_rdbtnEinzelsport);
 		btngArtVonSport.add(rdbtnEinzelsport);
 		
-		JRadioButton rdbtnTeamsport = new JRadioButton("Teamsport");
+		JRadioButton rdbtnTeamsport = new JRadioButton(TEAMSPORT);
 		GridBagConstraints gbc_rdbtnTeamsport = new GridBagConstraints();
 		gbc_rdbtnTeamsport.anchor = GridBagConstraints.NORTH;
 		gbc_rdbtnTeamsport.fill = GridBagConstraints.HORIZONTAL;
@@ -189,7 +198,7 @@ public class MainFrame extends JFrame {
 		panel_1.add(rdbtnTeamsport, gbc_rdbtnTeamsport);
 		btngArtVonSport.add(rdbtnTeamsport);
 		
-		JRadioButton rdbtnEgal_Art = new JRadioButton("Egal");
+		JRadioButton rdbtnEgal_Art = new JRadioButton(EGAL);
 		GridBagConstraints gbc_rdbtnEgal_Art = new GridBagConstraints();
 		gbc_rdbtnEgal_Art.anchor = GridBagConstraints.NORTH;
 		gbc_rdbtnEgal_Art.fill = GridBagConstraints.HORIZONTAL;
@@ -251,14 +260,14 @@ public class MainFrame extends JFrame {
 		gbl_panel_7.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel_7.setLayout(gbl_panel_7);
 		
-		chckbxArmeinschraenkung = new JCheckBox("Armeinschränkung");
+		chckbxArmeinschraenkung = new JCheckBox(ARMEINSCHRAENKUNG);
 		GridBagConstraints gbc_chckbxArmeinschraenkung = new GridBagConstraints();
 		gbc_chckbxArmeinschraenkung.anchor = GridBagConstraints.WEST;
 		gbc_chckbxArmeinschraenkung.gridx = 0;
 		gbc_chckbxArmeinschraenkung.gridy = 0;
 		panel_7.add(chckbxArmeinschraenkung, gbc_chckbxArmeinschraenkung);
 		
-		chckbxBeineinschrnkung = new JCheckBox("Beineinschränkung");
+		chckbxBeineinschrnkung = new JCheckBox(BEINEINSCHRAENKUNG);
 		GridBagConstraints gbc_chckbxBeineinschrnkung = new GridBagConstraints();
 		gbc_chckbxBeineinschrnkung.insets = new Insets(5, 0, 0, 0);
 		gbc_chckbxBeineinschrnkung.anchor = GridBagConstraints.WEST;
@@ -266,7 +275,7 @@ public class MainFrame extends JFrame {
 		gbc_chckbxBeineinschrnkung.gridy = 1;
 		panel_7.add(chckbxBeineinschrnkung, gbc_chckbxBeineinschrnkung);
 		
-		chckbxHhenangst = new JCheckBox("Höhenangst");
+		chckbxHhenangst = new JCheckBox(HOEHENANGST);
 		GridBagConstraints gbc_chckbxHhenangst = new GridBagConstraints();
 		gbc_chckbxHhenangst.insets = new Insets(5, 0, 0, 0);
 		gbc_chckbxHhenangst.anchor = GridBagConstraints.WEST;
@@ -288,7 +297,7 @@ public class MainFrame extends JFrame {
 		gbl_panel_8.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel_8.setLayout(gbl_panel_8);
 		
-		rdbtnInnen = new JRadioButton("Innen");
+		rdbtnInnen = new JRadioButton(INNEN);
 		btngInnenAussen.add(rdbtnInnen);
 		GridBagConstraints gbc_rdbtnInnen = new GridBagConstraints();
 		gbc_rdbtnInnen.fill = GridBagConstraints.HORIZONTAL;
@@ -298,7 +307,7 @@ public class MainFrame extends JFrame {
 		gbc_rdbtnInnen.gridy = 0;
 		panel_8.add(rdbtnInnen, gbc_rdbtnInnen);
 		
-		rdbtnAussen = new JRadioButton("Außen");
+		rdbtnAussen = new JRadioButton(AUSSEN);
 		btngInnenAussen.add(rdbtnAussen);
 		GridBagConstraints gbc_rdbtnAussen = new GridBagConstraints();
 		gbc_rdbtnAussen.fill = GridBagConstraints.HORIZONTAL;
@@ -308,7 +317,7 @@ public class MainFrame extends JFrame {
 		gbc_rdbtnAussen.gridy = 1;
 		panel_8.add(rdbtnAussen, gbc_rdbtnAussen);
 		
-		rdbtnEgal_Innen = new JRadioButton("Egal");
+		rdbtnEgal_Innen = new JRadioButton(EGAL);
 		btngInnenAussen.add(rdbtnEgal_Innen);
 		rdbtnEgal_Innen.setSelected(true);
 		GridBagConstraints gbc_rdbtnEgal_Innen = new GridBagConstraints();
@@ -386,9 +395,9 @@ public class MainFrame extends JFrame {
 			
 			String selectedArtVonSportButton = getSelectedButtonText(btngArtVonSport);
 			ArtVonSport selectedArtVonSport = ArtVonSport.EGAL;
-			if(selectedArtVonSportButton.equals("Einzelsport")){
+			if(selectedArtVonSportButton.equals(EINZELSPORT)){
 				selectedArtVonSport = ArtVonSport.EINZELSPORT;
-			} else if(selectedArtVonSportButton.equals("Teamsport")){
+			} else if(selectedArtVonSportButton.equals(TEAMSPORT)){
 				selectedArtVonSport = ArtVonSport.TEAMSPORT;
 			}				
 			builder.setSelectedArtVonSport(selectedArtVonSport);
@@ -412,9 +421,9 @@ public class MainFrame extends JFrame {
 			
 			String selectedInnenAussenButton = getSelectedButtonText(btngInnenAussen);
 			InnenAussen selectedInnenAussen = InnenAussen.EGAL;
-			if(selectedInnenAussenButton.equals("Innen")){
+			if(selectedInnenAussenButton.equals(INNEN)){
 				selectedInnenAussen = InnenAussen.INNEN;
-			} else if(selectedInnenAussenButton.equals("Außen")){
+			} else if(selectedInnenAussenButton.equals(AUSSEN)){
 				selectedInnenAussen = InnenAussen.AUSSEN;
 			}				
 			builder.setSelectedInnenAussen(selectedInnenAussen);
