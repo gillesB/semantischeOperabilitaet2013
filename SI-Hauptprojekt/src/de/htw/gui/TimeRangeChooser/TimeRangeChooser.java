@@ -49,7 +49,9 @@ public class TimeRangeChooser extends JFrame {
 
             @Override
             public void windowClosing(WindowEvent e) {
-                listener.receiveData(((TimeRangeTableModel) table.getModel()).getData());
+                if (listener != null) {
+                    listener.receiveData(((TimeRangeTableModel) table.getModel()).getData());
+                }
             }
         });
     }
