@@ -35,5 +35,38 @@ public class Kurs {
 	public int getIdCampus() {
 		return idCampus;
 	}
+	public void setIdKurs(int idKurs) {
+		this.idKurs = idKurs;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void setIdSportangebot(int idSportangebot) {
+		this.idSportangebot = idSportangebot;
+	}
+	public void setIdOrt(int idOrt) {
+		this.idOrt = idOrt;
+	}
+	public void setIdZielgruppe(int idZielgruppe) {
+		this.idZielgruppe = idZielgruppe;
+	}
+	public void setKosten(int kosten) {
+		this.kosten = kosten;
+	}
+	public void setIdNiveau(int idNiveau) {
+		this.idNiveau = idNiveau;
+	}
+	public void setIdCampus(int idCampus) {
+		this.idCampus = idCampus;
+	}
+	
+	@Override
+	public String toString() {
+		return "Kurs [idKurs=" + idKurs + ", name=" + name
+				+ ", idSportangebot=" + idSportangebot + ", idOrt=" + idOrt
+				+ ", idZielgruppe=" + idZielgruppe + ", kosten=" + kosten
+				+ ", idNiveau=" + idNiveau + ", idCampus=" + idCampus + "]";
+	}
+	
 
 }

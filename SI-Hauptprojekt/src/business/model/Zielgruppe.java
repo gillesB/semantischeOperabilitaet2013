@@ -8,9 +8,14 @@ public class Zielgruppe {
 	public int getIdZielgruppe() {
 		return idZielgruppe;
 	}
+	public void setIdZielgruppe(int idZielgruppe) {
+		this.idZielgruppe = idZielgruppe;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public String getName() {
 		return name;
 	}
-	
 
 }
