@@ -51,23 +51,25 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
     private JButton             btnSearch;
     private JCheckBox           chckbxIgnorieren;
     private DecimalFormat priceFormat = new DecimalFormat("####,##");
-    private JRadioButton rdbtnInnen;
-    private JRadioButton rdbtnAussen;
-    private JRadioButton rdbtnEgal_Innen;
-    private JCheckBox    chckbxFitness;
-    private JCheckBox    chckbxSelfDefense;
-    private JCheckBox    chckbxFreizeitvergnuegen;
-    private JCheckBox    chckbxWettbewerb;
-    private JCheckBox    chckbxSozialkontakte;
-    private JComboBox    cboExotisch;
-    private JComboBox    cboKampfsport;
-    private JComboBox    cboKoerperkontakt;
-    private JComboBox    cboWassersport;
+    private JRadioButton    rdbtnInnen;
+    private JRadioButton    rdbtnAussen;
+    private JRadioButton    rdbtnEgal_Innen;
+    private JCheckBox       chckbxFitness;
+    private JCheckBox       chckbxSelfDefense;
+    private JCheckBox       chckbxFreizeitvergnuegen;
+    private JCheckBox       chckbxWettbewerb;
+    private JCheckBox       chckbxSozialkontakte;
+    private JComboBox       cboExotisch;
+    private JComboBox       cboKampfsport;
+    private JComboBox       cboKoerperkontakt;
+    private JComboBox       cboWassersport;
+    private List<TimeFrame> timeFrames;
 
     /**
      * Create the frame.
      */
     public MainFrame() {
+        timeFrames = new ArrayList<TimeFrame>();
         setTitle("Hochschulsport");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 614, 970);
@@ -525,6 +527,7 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
                 }
                 try {
                     MainFrame frame = new MainFrame();
+                    frame.setLocationRelativeTo(null);
                     frame.setVisible(true);
                 }
                 catch (Exception e) {
@@ -550,6 +553,7 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
     @Override
     public void receiveData(List<TimeFrame> timeFrames) {
         RootLogger.getInstance(LoggerNames.MAIN_LOGGER).log("Received TimeFrames", Level.INFO);
+        this.timeFrames = timeFrames;
         for (TimeFrame tf : timeFrames) {
             RootLogger.getInstance(LoggerNames.MAIN_LOGGER).log(
                     "Frame: day-> " + tf.getDay().getName() + " start-> " + tf.getStartTime() + " end-> " + tf.getEndTime(),
@@ -579,6 +583,7 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
             configInnenAussen();
             configZiele();
             config4Attributes();
+            configTimeFrames();
 
             Map<String, Sportangebot> result = builder.execute();
             for (Sportangebot sport : result.values()) {
@@ -586,6 +591,10 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
             }
 
             return null;
+        }
+
+        private void configTimeFrames() {
+            builder.setSelectedTimeFames(timeFrames);
         }
 
         @Override

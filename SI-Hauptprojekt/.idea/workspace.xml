@@ -3,14 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="9f517409-4403-4c2f-b8ae-097a2cbd2b64" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/htw/gui/MainFrame.java" afterPath="$PROJECT_DIR$/src/de/htw/gui/MainFrame.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/htw/queries/Queries.java" afterPath="$PROJECT_DIR$/src/de/htw/queries/Queries.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/htw/queries/QueryBuilder.java" afterPath="$PROJECT_DIR$/src/de/htw/queries/QueryBuilder.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SI-Hauptprojekt.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="logging/" />
-    <file path="/Dummy.txt" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1376571257716" ignored="false" />
+    <file path="/Dummy.txt" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1376571910443" ignored="false" />
     <file path="/OntolgyConnection.java" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1374598950649" ignored="false" />
-    <file path="/Queries.java" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1374598966892" ignored="false" />
+    <file path="/Queries.java" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1376574040870" ignored="false" />
     <file path="/DLQuery.java" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1374601953279" ignored="false" />
     <file path="/DLQueryParser.java" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1374600332689" ignored="false" />
     <file path="/DLQueryPrinter.java" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1374603722340" ignored="false" />
@@ -22,14 +24,15 @@
     <file path="/TableHeaderCellRenderer.java" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1376388937678" ignored="false" />
     <file path="/ITimeRangeChooserListener.java" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1376557051322" ignored="false" />
     <file path="/LoggerNames.java" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1376390002218" ignored="false" />
-    <file path="/fragment.java" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1376556569631" ignored="false" />
+    <file path="/fragment.java" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1376572110256" ignored="false" />
     <file path="/TimeFrame.java" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1376569883626" ignored="false" />
     <file path="/TimeFrameChooser.java" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1376570725949" ignored="false" />
-    <file path="/TimeFrameChooserFrame.java" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1376571686909" ignored="false" />
+    <file path="/TimeFrameChooserFrame.java" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1376571970101" ignored="false" />
     <file path="/TimeFrameChooserTest.java" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1376570910955" ignored="false" />
     <file path="/TimeFramePanel.java" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1376571779933" ignored="false" />
     <file path="/Day.java" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1376569728316" ignored="false" />
-    <file path="/MainFrame.java" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1376571514132" ignored="false" />
+    <file path="/MainFrame.java" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1376573628294" ignored="false" />
+    <file path="/QueryBuilder.java" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1376574950619" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,34 +97,58 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MainFrame.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="MainFrame.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/de/htw/gui/MainFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="524" column="17" selection-start="24890" selection-end="24890" vertical-scroll-proportion="1.4423409">
+            <state line="596" column="36" selection-start="27321" selection-end="27321" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#9632#9805#0" expanded="true" />
-                <element signature="e#9794#9795#0" expanded="true" />
-                <element signature="e#22619#22898#0" expanded="true" />
-                <element signature="e#22887#22888#0" expanded="true" />
-                <element signature="e#23318#23685#0" expanded="true" />
-                <element signature="e#23674#23675#0" expanded="true" />
-                <element signature="e#24042#25150#0" expanded="true" />
-                <element signature="e#25139#25140#0" expanded="true" />
-                <element signature="e#26399#26413#0" expanded="true" />
-                <element signature="e#28148#28178#0" expanded="true" />
-                <element signature="e#29398#29405#0" expanded="true" />
+                <element signature="e#9757#9930#0" expanded="true" />
+                <element signature="e#9919#9920#0" expanded="true" />
+                <element signature="e#22744#23023#0" expanded="true" />
+                <element signature="e#23012#23013#0" expanded="true" />
+                <element signature="e#23443#23810#0" expanded="true" />
+                <element signature="e#23799#23800#0" expanded="true" />
+                <element signature="e#24167#25330#0" expanded="true" />
+                <element signature="e#25319#25320#0" expanded="true" />
+                <element signature="e#26617#26631#0" expanded="true" />
+                <element signature="e#28505#28535#0" expanded="true" />
+                <element signature="e#29755#29762#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TimeFramePanel.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/de/htw/gui/TimeFrameChooser/TimeFramePanel.java">
+      <file leaf-file-name="QueryBuilder.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/de/htw/queries/QueryBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="36" selection-start="971" selection-end="971" vertical-scroll-proportion="0.0">
+            <state line="94" column="0" selection-start="3270" selection-end="3270" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Queries.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/de/htw/queries/Queries.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="227" column="137" selection-start="8493" selection-end="8493" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1626#1648#0" expanded="true" />
+                <element signature="e#10414#10436#0" expanded="true" />
+                <element signature="e#11430#11452#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OntolgyConnection.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/de/htw/ontologieverbindung/OntolgyConnection.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="334" column="0" selection-start="12289" selection-end="12289" vertical-scroll-proportion="1.1790017">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#4357#4367#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -145,9 +172,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/de/htw/logging/LoggingFormatter.java" />
-        <option value="$PROJECT_DIR$/src/de/htw/logging/LoggerNames.java" />
-        <option value="$PROJECT_DIR$/src/de/htw/logging/RootLogger.java" />
         <option value="$PROJECT_DIR$/src/de/htw/gui/TimeRangeChooser/TimeRangeTableModel.java" />
         <option value="$PROJECT_DIR$/src/de/htw/gui/TimeRangeChooser/TimeRangeChooser.java" />
         <option value="$PROJECT_DIR$/src/de/htw/gui/TimeRangeChooser/TimeRangeChooserTest.java" />
@@ -158,9 +182,12 @@
         <option value="$PROJECT_DIR$/src/de/htw/gui/TimeFrameChooser/TimeFrameChooserTest.java" />
         <option value="$PROJECT_DIR$/src/de/htw/gui/TimeFrameChooser/Day.java" />
         <option value="$PROJECT_DIR$/src/de/htw/gui/TimeFrameChooser/TimeFrameChooser.java" />
-        <option value="$PROJECT_DIR$/src/de/htw/gui/TimeFrameChooser/TimeFrameChooserFrame.java" />
         <option value="$PROJECT_DIR$/src/de/htw/gui/TimeFrameChooser/TimeFramePanel.java" />
+        <option value="$PROJECT_DIR$/src/de/htw/gui/TimeFrameChooser/TimeFrameChooserFrame.java" />
+        <option value="$PROJECT_DIR$/src/de/htw/gui/ExecuteQuery.java" />
         <option value="$PROJECT_DIR$/src/de/htw/gui/MainFrame.java" />
+        <option value="$PROJECT_DIR$/src/de/htw/queries/QueryBuilder.java" />
+        <option value="$PROJECT_DIR$/src/de/htw/queries/Queries.java" />
       </list>
     </option>
   </component>
@@ -619,7 +646,11 @@
       <created>1376571264249</created>
       <updated>1376571264249</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="-added TimeFrameChooser to MainFrame(just the frame, no functions yet)&#10;-set Defaul Look&amp;Feel to Nimbus(if available)">
+      <created>1376571919654</created>
+      <updated>1376571919654</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -643,7 +674,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15048026" sideWeight="0.67594653" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31403118" sideWeight="0.6180401" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33296213" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.66703784" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
@@ -691,7 +722,7 @@
     <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="overhaul for TimeFrameChooser(no more JTable nonsense)" />
+    <option name="LAST_COMMIT_MESSAGE" value="-added TimeFrameChooser to MainFrame(just the frame, no functions yet)&#10;-set Defaul Look&amp;Feel to Nimbus(if available)" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -708,6 +739,7 @@
     <MESSAGE value="added TestClasses for DLQuery with Hermit(might not be needed later)" />
     <MESSAGE value="-added TimeRangeChooser (basic Version, no time range calculation yet)&#10;-added Logging Class" />
     <MESSAGE value="overhaul for TimeFrameChooser(no more JTable nonsense)" />
+    <MESSAGE value="-added TimeFrameChooser to MainFrame(just the frame, no functions yet)&#10;-set Defaul Look&amp;Feel to Nimbus(if available)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -717,13 +749,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/de/htw/logging/LoggerNames.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="51" selection-start="237" selection-end="237" vertical-scroll-proportion="0.19495413">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/de/htw/logging/LoggingFormatter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="13" selection-start="218" selection-end="218" vertical-scroll-proportion="0.17545871">
@@ -786,13 +811,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/htw/gui/TimeFrameChooser/TimeFrameChooserFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="13" selection-start="1264" selection-end="1264" vertical-scroll-proportion="0.7213303">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/de/htw/gui/TimeFrameChooser/TimeFrameChooserTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="8" selection-start="508" selection-end="1179" vertical-scroll-proportion="0.22018349">
@@ -804,29 +822,72 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/de/htw/gui/TimeFrameChooser/TimeFramePanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="36" selection-start="971" selection-end="971" vertical-scroll-proportion="0.0">
+        <state line="32" column="36" selection-start="971" selection-end="971" vertical-scroll-proportion="0.6200378">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/htw/gui/TimeFrameChooser/TimeFrameChooserFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="36" selection-start="575" selection-end="575" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/de/htw/gui/MainFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="524" column="17" selection-start="24890" selection-end="24890" vertical-scroll-proportion="1.4423409">
+        <state line="596" column="36" selection-start="27321" selection-end="27321" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#9632#9805#0" expanded="true" />
-            <element signature="e#9794#9795#0" expanded="true" />
-            <element signature="e#22619#22898#0" expanded="true" />
-            <element signature="e#22887#22888#0" expanded="true" />
-            <element signature="e#23318#23685#0" expanded="true" />
-            <element signature="e#23674#23675#0" expanded="true" />
-            <element signature="e#24042#25150#0" expanded="true" />
-            <element signature="e#25139#25140#0" expanded="true" />
-            <element signature="e#26399#26413#0" expanded="true" />
-            <element signature="e#28148#28178#0" expanded="true" />
-            <element signature="e#29398#29405#0" expanded="true" />
+            <element signature="e#9757#9930#0" expanded="true" />
+            <element signature="e#9919#9920#0" expanded="true" />
+            <element signature="e#22744#23023#0" expanded="true" />
+            <element signature="e#23012#23013#0" expanded="true" />
+            <element signature="e#23443#23810#0" expanded="true" />
+            <element signature="e#23799#23800#0" expanded="true" />
+            <element signature="e#24167#25330#0" expanded="true" />
+            <element signature="e#25319#25320#0" expanded="true" />
+            <element signature="e#26617#26631#0" expanded="true" />
+            <element signature="e#28505#28535#0" expanded="true" />
+            <element signature="e#29755#29762#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/htw/queries/QueryBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="94" column="0" selection-start="3270" selection-end="3270" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_17/jre/lib/rt.jar!/sun/misc/Unsafe.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="319" column="23" selection-start="10057" selection-end="10057" vertical-scroll-proportion="0.8245413">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/htw/queries/Queries.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="227" column="137" selection-start="8493" selection-end="8493" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1626#1648#0" expanded="true" />
+            <element signature="e#10414#10436#0" expanded="true" />
+            <element signature="e#11430#11452#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/htw/ontologieverbindung/OntolgyConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="334" column="0" selection-start="12289" selection-end="12289" vertical-scroll-proportion="1.1790017">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4357#4367#0" expanded="true" />
           </folding>
         </state>
       </provider>
