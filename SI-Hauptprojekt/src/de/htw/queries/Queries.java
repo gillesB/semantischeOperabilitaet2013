@@ -238,7 +238,7 @@ public class Queries {
             query += "((t.anfangszeit >= Time(\"" + sdf.format(tf.getStartTime()) + "\") and t.endzeit <= TIME(\"" +
                     sdf.format(tf.getEndTime()) + "\") and idWochentag = " + tf.getDay().getId() + "))";
         }
-        query += ")";
+        query += ")" + createAccepableClassesCondition_DB(inputClasses);
         return queryDB(inputClasses, query);
     }
 
@@ -358,8 +358,8 @@ public class Queries {
             Map<String, Sportangebot> inputClasses) {
         StringBuilder condition = new StringBuilder(" and (");
         int i = 0;
-        for (String sportangebotName : inputClasses.keySet()) {
-            condition.append(" " + sportangebotName);
+        for (String sportangebot : inputClasses.keySet()) {
+            condition.append(" " + sportangebot);
             if (i < inputClasses.size() - 1) {
                 condition.append(" or ");
             }

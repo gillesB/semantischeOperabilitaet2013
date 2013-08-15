@@ -2,17 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9f517409-4403-4c2f-b8ae-097a2cbd2b64" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/htw/gui/MainFrame.java" afterPath="$PROJECT_DIR$/src/de/htw/gui/MainFrame.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/htw/queries/Queries.java" afterPath="$PROJECT_DIR$/src/de/htw/queries/Queries.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/htw/queries/QueryBuilder.java" afterPath="$PROJECT_DIR$/src/de/htw/queries/QueryBuilder.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SI-Hauptprojekt.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="logging/" />
-    <file path="/Dummy.txt" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1376571910443" ignored="false" />
+    <file path="/Dummy.txt" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1376575514007" ignored="false" />
     <file path="/OntolgyConnection.java" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1374598950649" ignored="false" />
-    <file path="/Queries.java" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1376574040870" ignored="false" />
+    <file path="/Queries.java" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1376604054933" ignored="false" />
     <file path="/DLQuery.java" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1374601953279" ignored="false" />
     <file path="/DLQueryParser.java" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1374600332689" ignored="false" />
     <file path="/DLQueryPrinter.java" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1374603722340" ignored="false" />
@@ -122,34 +120,29 @@
       <file leaf-file-name="QueryBuilder.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/de/htw/queries/QueryBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="94" column="0" selection-start="3270" selection-end="3270" vertical-scroll-proportion="0.0">
+            <state line="70" column="0" selection-start="2513" selection-end="2513" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Queries.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/de/htw/queries/Queries.java">
+      <file leaf-file-name="OntolgyConnection.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/de/htw/ontologieverbindung/OntolgyConnection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="227" column="137" selection-start="8493" selection-end="8493" vertical-scroll-proportion="0.0">
+            <state line="115" column="0" selection-start="4293" selection-end="4293" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1626#1648#0" expanded="true" />
-                <element signature="e#10414#10436#0" expanded="true" />
-                <element signature="e#11430#11452#0" expanded="true" />
+                <element signature="e#4357#4367#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OntolgyConnection.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/de/htw/ontologieverbindung/OntolgyConnection.java">
+      <file leaf-file-name="Queries.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/de/htw/queries/Queries.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="334" column="0" selection-start="12289" selection-end="12289" vertical-scroll-proportion="1.1790017">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#4357#4367#0" expanded="true" />
-              </folding>
+            <state line="360" column="56" selection-start="13293" selection-end="13293" vertical-scroll-proportion="0.9741824">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -162,6 +155,7 @@
     </FindUsagesManager>
   </component>
   <component name="Git.Settings">
+    <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="GitLogSettings">
@@ -201,7 +195,7 @@
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
-    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="false" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
     <ConfirmationsSetting value="0" id="Add" />
@@ -293,32 +287,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="gui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SI-Hauptprojekt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SI-Hauptprojekt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="htw" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TimeFrameChooser" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -650,7 +618,11 @@
       <created>1376571919654</created>
       <updated>1376571919654</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="-added TimeFrameChooser Functions">
+      <created>1376575525528</created>
+      <updated>1376575525528</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -660,6 +632,7 @@
       <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32405347" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962137" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38195992" sideWeight="0.9991955" order="3" side_tool="false" content_ui="tabs" />
@@ -674,13 +647,12 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31403118" sideWeight="0.6180401" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13127" sideWeight="0.67594653" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33296213" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.66703784" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -722,7 +694,7 @@
     <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="-added TimeFrameChooser to MainFrame(just the frame, no functions yet)&#10;-set Defaul Look&amp;Feel to Nimbus(if available)" />
+    <option name="LAST_COMMIT_MESSAGE" value="-added TimeFrameChooser Functions" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -740,6 +712,7 @@
     <MESSAGE value="-added TimeRangeChooser (basic Version, no time range calculation yet)&#10;-added Logging Class" />
     <MESSAGE value="overhaul for TimeFrameChooser(no more JTable nonsense)" />
     <MESSAGE value="-added TimeFrameChooser to MainFrame(just the frame, no functions yet)&#10;-set Defaul Look&amp;Feel to Nimbus(if available)" />
+    <MESSAGE value="-added TimeFrameChooser Functions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -856,13 +829,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/htw/queries/QueryBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="94" column="0" selection-start="3270" selection-end="3270" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_17/jre/lib/rt.jar!/sun/misc/Unsafe.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="319" column="23" selection-start="10057" selection-end="10057" vertical-scroll-proportion="0.8245413">
@@ -870,25 +836,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/htw/queries/Queries.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="227" column="137" selection-start="8493" selection-end="8493" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1626#1648#0" expanded="true" />
-            <element signature="e#10414#10436#0" expanded="true" />
-            <element signature="e#11430#11452#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/de/htw/ontologieverbindung/OntolgyConnection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="334" column="0" selection-start="12289" selection-end="12289" vertical-scroll-proportion="1.1790017">
+        <state line="115" column="0" selection-start="4293" selection-end="4293" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#4357#4367#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/htw/queries/QueryBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="70" column="0" selection-start="2513" selection-end="2513" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/htw/queries/Queries.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="360" column="56" selection-start="13293" selection-end="13293" vertical-scroll-proportion="0.9741824">
+          <folding />
         </state>
       </provider>
     </entry>
