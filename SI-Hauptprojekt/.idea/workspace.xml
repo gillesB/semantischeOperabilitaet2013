@@ -2,12 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9f517409-4403-4c2f-b8ae-097a2cbd2b64" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/de/htw/gui/TimeFrameChooser/ITimeFrameChooserListener.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/de/htw/gui/TimeFrameChooser/TimeFrameChooser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/de/htw/gui/TimeFrameChooser/TimeFrameChooserFrame.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/de/htw/gui/TimeFrameChooser/TimeFrameChooserTest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/de/htw/gui/TimeFrameChooser/TimeFramePanel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SI-Hauptprojekt.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="logging/" />
-    <file path="/Dummy.txt" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1376604134741" ignored="false" />
+    <file path="/Dummy.txt" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1376604824453" ignored="false" />
     <file path="/OntolgyConnection.java" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1374598950649" ignored="false" />
     <file path="/Queries.java" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1376604054933" ignored="false" />
     <file path="/DLQuery.java" changelist="9f517409-4403-4c2f-b8ae-097a2cbd2b64" time="1374601953279" ignored="false" />
@@ -651,7 +656,11 @@
       <created>1376604139984</created>
       <updated>1376604139984</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="added missing Classes for TimeFrameChooser">
+      <created>1376604769932</created>
+      <updated>1376604769932</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -723,7 +732,7 @@
     <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed issue 14" />
+    <option name="LAST_COMMIT_MESSAGE" value="added missing Classes for TimeFrameChooser" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -743,6 +752,7 @@
     <MESSAGE value="-added TimeFrameChooser to MainFrame(just the frame, no functions yet)&#10;-set Defaul Look&amp;Feel to Nimbus(if available)" />
     <MESSAGE value="-added TimeFrameChooser Functions" />
     <MESSAGE value="fixed issue 14" />
+    <MESSAGE value="added missing Classes for TimeFrameChooser" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
