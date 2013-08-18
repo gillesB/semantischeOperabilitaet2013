@@ -16,7 +16,6 @@ import de.htw.queries.QueryBuilder.InnenAussen;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -75,7 +74,8 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
         timeFrames = new ArrayList<TimeFrame>();
         setTitle("Hochschulsport");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 614, 970);
+        //setBounds(100, 100, 614, 970);
+        //setLocationRelativeTo(null);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
@@ -98,8 +98,7 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
         lstSportarten = new JList();
         scrollPane.setViewportView(lstSportarten);
         lstSportarten.setModel(new AbstractListModel() {
-            String[] values = new String[]{"foo", "foo", "foo", "foo", "foo",
-                                           "foo", "foo"};
+            String[] values = new String[]{};
 
             public int getSize() {
                 return values.length;
@@ -114,7 +113,7 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (!lstSportarten.getValueIsAdjusting()) {
-                    Sportangebot sport_angebot = (Sportangebot) lstSportarten.getSelectedValue();
+                    Sportangebot sport_angebot = lstSportarten.getSelectedValue();
                     String sport_with_details = Queries.getDetailString(sport_angebot);
                     txtDetail.setText(sport_with_details);
                 }
@@ -156,6 +155,7 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
         gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
                                             Double.MIN_VALUE};
         panel.setLayout(gbl_panel);
+
 
         JPanel panel_1 = new JPanel();
         panel_1.setBorder(new TitledBorder(null, "Art des Sportes",
@@ -242,8 +242,7 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
         panel_6.add(chckbxIgnorieren, gbc_chckbxIgnorieren);
 
         JPanel panel_7 = new JPanel();
-        panel_7.setBorder(new TitledBorder(new LineBorder(new Color(184, 207,
-                                                                    229)), "geeignet bei", TitledBorder.LEADING,
+        panel_7.setBorder(new TitledBorder(null, "geeignet bei", TitledBorder.LEADING,
                                            TitledBorder.TOP,
                                            null, null));
         GridBagConstraints gbc_panel_7 = new GridBagConstraints();
@@ -283,8 +282,7 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
         panel_7.add(chckbxHhenangst, gbc_chckbxHhenangst);
 
         JPanel panel_8 = new JPanel();
-        panel_8.setBorder(new TitledBorder(new LineBorder(new Color(184, 207,
-                                                                    229)), "Innen/Au\u00DFen", TitledBorder.LEADING,
+        panel_8.setBorder(new TitledBorder(null, "Innen/Au\u00DFen", TitledBorder.LEADING,
                                            TitledBorder.TOP, null, null));
         GridBagConstraints gbc_panel_8 = new GridBagConstraints();
         gbc_panel_8.insets = new Insets(0, 0, 5, 0);
@@ -330,7 +328,7 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
         panel_8.add(rdbtnEgal_Innen, gbc_rdbtnEgal_Innen);
 
         JPanel panel_9 = new JPanel();
-        panel_9.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Ziele", TitledBorder.LEADING,
+        panel_9.setBorder(new TitledBorder(null, "Ziele", TitledBorder.LEADING,
                                            TitledBorder.TOP, null, null));
         GridBagConstraints gbc_panel_9 = new GridBagConstraints();
         gbc_panel_9.insets = new Insets(0, 0, 5, 0);
@@ -544,6 +542,8 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
                 }
                 try {
                     MainFrame frame = new MainFrame();
+                    frame.setSize(800, 800);
+                    frame.setResizable(false);
                     frame.setLocationRelativeTo(null);
                     frame.setVisible(true);
                 }
