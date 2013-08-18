@@ -110,7 +110,7 @@ public class Queries {
      * @param koerperlicheEinschraenkungen
      * @return
      */
-    public static Map<String, Sportangebot> queryFilterKörperlicheEinschraenkungen(
+    public static Map<String, Sportangebot> queryFilterKoerperlicheEinschraenkungen(
             Map<String, Sportangebot> inputClasses,
             KoerperlicheEinschraenkungen... koerperlicheEinschraenkungen) {
         StringBuilder query = new StringBuilder("Sport ");
