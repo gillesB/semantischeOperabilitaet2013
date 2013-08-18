@@ -56,4 +56,9 @@ public class TimeFramePanel extends JPanel {
     public Day getDay() {
         return day;
     }
+
+    public void select() {
+        selected = true;
+        setBackground(chooseBGColor());
+    }
 }

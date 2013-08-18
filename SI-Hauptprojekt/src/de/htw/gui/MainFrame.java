@@ -67,7 +67,7 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
     private JComboBox       cboKoerperkontakt;
     private JComboBox       cboWassersport;
     private List<TimeFrame> timeFrames;
-    private JTextPane txtDetail;
+    private JTextPane       txtDetail;
 
     /**
      * Create the frame.
@@ -110,15 +110,15 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
                 return values[index];
             }
         });
-        
+
         lstSportarten.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-            	if (!lstSportarten.getValueIsAdjusting()) {
-            		Sportangebot sport_angebot = (Sportangebot) lstSportarten.getSelectedValue();
-            		String sport_with_details = Queries.getDetailString(sport_angebot);
-            		txtDetail.setText(sport_with_details);
-            	}
+                if (!lstSportarten.getValueIsAdjusting()) {
+                    Sportangebot sport_angebot = (Sportangebot) lstSportarten.getSelectedValue();
+                    String sport_with_details = Queries.getDetailString(sport_angebot);
+                    txtDetail.setText(sport_with_details);
+                }
             }
         });
 
@@ -506,8 +506,9 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
         btnZeit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 TimeFrameChooserFrame timeFrameChooserFrame = new TimeFrameChooserFrame(MainFrame.this,
-                                                                                        Dialog.ModalityType.APPLICATION_MODAL ,
-                                                                                        MainFrame.this);
+                                                                                        Dialog.ModalityType.APPLICATION_MODAL,
+                                                                                        MainFrame.this,
+                                                                                        MainFrame.this.timeFrames);
                 timeFrameChooserFrame.setSize(600, 400);
                 timeFrameChooserFrame.pack();
                 timeFrameChooserFrame.setVisible(true);

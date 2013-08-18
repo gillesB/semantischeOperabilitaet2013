@@ -21,7 +21,7 @@ import java.util.logging.Level;
  */
 public class TimeFrameChooser extends JPanel {
     private static final long ONE_HOUR = 60 * 60 * 1000;
-    private List<TimeFramePanel>      timeFrames;
+    private List<TimeFramePanel>      timeFramePanels;
     private List<JLabel>              timeLabels;
     private ITimeFrameChooserListener listener;
     private JPanel                    calendarBaseLayer;
@@ -32,7 +32,7 @@ public class TimeFrameChooser extends JPanel {
 
     public TimeFrameChooser(ITimeFrameChooserListener listener) {
         this.listener = listener;
-        timeFrames = new ArrayList<TimeFramePanel>();
+        timeFramePanels = new ArrayList<TimeFramePanel>();
         timeLabels = new ArrayList<JLabel>();
         initCalendarDisplay();
 
@@ -116,7 +116,7 @@ public class TimeFrameChooser extends JPanel {
                     String[] tArray = timeLabels.get(j).getText().split("-");
                     TimeFramePanel temp = new TimeFramePanel(sdf.parse(tArray[0]), sdf.parse(tArray[1]),
                                                              Day.getByID(i + 1));
-                    timeFrames.add(temp);
+                    timeFramePanels.add(temp);
                     calendarBaseLayer.add(temp, constraints);
                     constraints.gridy += 2;
                 }
@@ -134,11 +134,11 @@ public class TimeFrameChooser extends JPanel {
         this.listener = listener;
     }
 
-    private List<TimeFrame> getTimeFrames() {
+    private List<TimeFrame> getTimeFramePanels() {
         //gather time frames
         List<TimeFrame> frames = new ArrayList<TimeFrame>();
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-        for (TimeFramePanel tfp : timeFrames) {
+        for (TimeFramePanel tfp : timeFramePanels) {
             if (tfp.getSelected()) {
                 frames.add(new TimeFrame(tfp.getStartTime(), tfp.getEndTime(), tfp.getDay()));
             }
@@ -148,7 +148,23 @@ public class TimeFrameChooser extends JPanel {
 
     public void tellListener() {
         if (listener != null) {
-            listener.receiveData(getTimeFrames());
+            listener.receiveData(getTimeFramePanels());
+        }
+    }
+
+    public void load(List<TimeFrame> timeFrames) {
+        int panelPos = 0;
+        for (TimeFrame tf : timeFrames) {
+            while (panelPos < timeFramePanels.size()) {
+                TimeFramePanel tempPanel = timeFramePanels.get(panelPos);
+                if (tempPanel.getDay() == tf.getDay() && tempPanel.getStartTime().equals(tf.getStartTime()) && tempPanel
+                        .getEndTime().equals(tf.getEndTime())) {
+                    tempPanel.select();
+                    break;
+                } else {
+                    ++panelPos;
+                }
+            }
         }
     }
 }

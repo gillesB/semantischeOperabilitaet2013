@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -46,5 +47,11 @@ public class TimeFrameChooserFrame extends JDialog {
                 timeFrameChooser.tellListener();
             }
         });
+    }
+
+    public TimeFrameChooserFrame(Frame owner, ModalityType modal, ITimeFrameChooserListener listener,
+                                 List<TimeFrame> timeFrames) {
+        this(owner, modal, listener);
+        timeFrameChooser.load(timeFrames);
     }
 }
