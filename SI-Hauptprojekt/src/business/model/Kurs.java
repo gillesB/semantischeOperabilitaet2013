@@ -2,6 +2,8 @@ package business.model;
 
 public class Kurs {
 	
+	public  static final String TABLE = "Kurs";
+	
 	private int idKurs;
 	private String name;
 	private int idSportangebot;

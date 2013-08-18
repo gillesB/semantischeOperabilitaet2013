@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import business.model.Kurs;
+import business.model.KursMitDetails;
 
 public class KursDAO extends DAO<Kurs>{
 
@@ -54,24 +55,7 @@ public class KursDAO extends DAO<Kurs>{
                                     								);
             
             while (results.next()){
-            	
-    			SportangebotDAO daoSport = new SportangebotDAO();
-    			OrtDAO daoOrt = new OrtDAO();
-    			ZielgruppeDAO daoZiel = new ZielgruppeDAO();
-    			NiveauDAO daoNiveau = new NiveauDAO();
-    			
-    			String SportangebotName = daoSport.findById(results.getInt("idSportangebot")).getName();
-    			String ort = daoOrt.findById(results.getInt("idOrt")).getName();
-    			String zielgruppe = daoZiel.findById(results.getInt("idZielgruppe")).getName();
-    			String niveau = daoNiveau.findById(results.getInt("idNiveau")).getName();
-    			
-    			//print Sportangebote
-    			System.out.println("idKurs = " + results.getInt("idKurs") + ", Kursname =" + results.getString("name") + 
-				", Sportangebotsname= " + SportangebotName + ", Ort =" + ort + " Zielgruppe =" + zielgruppe +
-				", Niveau =" + niveau + " Kosten =" + results.getInt("kosten") 
-				);
-    			System.out.println("-----------------------------------------------------");
-    			
+            		
     			Kurs kurs = new Kurs();
     			kurs.setIdKurs(results.getInt("idKurs"));
     			kurs.setIdCampus(results.getInt("idCampus"));
@@ -118,18 +102,63 @@ public class KursDAO extends DAO<Kurs>{
 		
 	}
 	
+	
+	/*
+	 * @param idSportangebot ist der uebergebene id des Sportangebotes
+	 * @return list: Liste aller Kurse
+	 * Diese Methode liefert alle Kurse eines gegebenen Sportangebotes zurueck.
+	 */
+	public List<KursMitDetails> findAllKurseByIdSportangebot(int idSportangebot){
+		List<KursMitDetails> list = new ArrayList<KursMitDetails>();
+		try {
+			ResultSet results = this .connect
+                                    .createStatement().executeQuery(commonDetailsSQLStatment() + "WHERE Kurs.idSportangebot = " + idSportangebot);
+            
+            while (results.next()){
+            	KursMitDetails kurs = new KursMitDetails();
+            	
+            	kurs.setIdKurs(results.getInt("idKurs"));
+    			kurs.setIdCampus(results.getInt("idCampus"));
+    			kurs.setIdSportangebot(results.getInt("idSportangebot"));
+    			kurs.setIdOrt(results.getInt("idOrt"));
+    			kurs.setIdZielgruppe(results.getInt("idZielgruppe"));
+    			kurs.setIdNiveau(results.getInt("idNiveau"));
+    			
+    			kurs.setKursname(results.getString("kursname"));
+    			kurs.setOrt(results.getString("ort"));
+    			kurs.setCampus(results.getString("campus"));
+    			kurs.setZielgruppe(results.getString("zielgruppe"));
+    			kurs.setNiveau(results.getString("niveau"));
+    			kurs.setKosten(results.getInt("kosten"));
+    			    			
+            	list.add(kurs); 
+    		}
+            
+		    } catch (SQLException e) {
+		            e.printStackTrace();
+		    }
+		return list;
+		
+	}
+	
 	private String commonSQLStatment(){
 		return "SELECT *" +
 				" FROM Kurs " +
 	    		"INNER JOIN Sportangebot as spa ON  Kurs.idSportangebot = spa.idSportangebot " +
+	    		"INNER JOIN Ort as o ON  Kurs.idOrt= o.idOrt " +
+	            "INNER JOIN Zielgruppe ON Kurs.idZielgruppe= Zielgruppe.idZielgruppe " +
+	    		"INNER JOIN Niveau ON  Kurs.idNiveau= Niveau.idNiveau " +
+	            "INNER JOIN Campus ON  Kurs.idCampus= Campus.idCampus ";
+	}
+	
+	private String commonDetailsSQLStatment(){
+		return "SELECT Kurs.idKurs, Kurs.idSportangebot, Kurs.idCampus, Kurs.idOrt, Kurs.idZielgruppe, Kurs.idNiveau, Kurs.name as kursname, o.name as ort, Zielgruppe.name as zielgruppe, Niveau.name as niveau, Campus.name as campus, kosten" +
+				" FROM Kurs " +
+	    		"INNER JOIN Sportangebot as spa ON Kurs.idSportangebot = spa.idSportangebot " +
 	    		"INNER JOIN Ort as o ON  Kurs.idOrt= o.idOrt " +
 	            "INNER JOIN Zielgruppe ON  Kurs.idZielgruppe= Zielgruppe.idZielgruppe " +
 	    		"INNER JOIN Niveau ON  Kurs.idNiveau= Niveau.idNiveau " +
 	            "INNER JOIN Campus ON  Kurs.idCampus= Campus.idCampus ";
 	}
 	
-	
-	private void printAllSportangebote(Kurs kurs){
-
-	}
 }

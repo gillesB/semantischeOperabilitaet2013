@@ -4,7 +4,7 @@ import java.sql.Time;
 
 public class Termin {
 
-	public static final String TABLE = "Termin";
+	public static final String TABLE = "Termine";
 	public static final String ID_KURS = "idKurs";
 	public static final String ID_WOCHENTAG = "idWochentag";
 	public static final String ANFANGSZEIT = "anfangszeit";
