@@ -12,10 +12,15 @@ import java.awt.event.WindowEvent;
  * Time: 11:12
  * To change this template use File | Settings | File Templates.
  */
-public class TimeFrameChooserFrame extends JFrame {
+public class TimeFrameChooserFrame extends JDialog {
     private TimeFrameChooser timeFrameChooser;
 
-    public TimeFrameChooserFrame(ITimeFrameChooserListener listener) {
+    private TimeFrameChooserFrame(Frame owner, ModalityType modal) {
+        super(owner, modal);
+    }
+
+    public TimeFrameChooserFrame(Frame owner, ModalityType modal, ITimeFrameChooserListener listener) {
+        this(owner, modal);
         //default size
         setLayout(new GridBagLayout());
         setLocationRelativeTo(null);

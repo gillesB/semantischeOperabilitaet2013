@@ -505,7 +505,9 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
         btnZeit.setMnemonic('Z');
         btnZeit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                TimeFrameChooserFrame timeFrameChooserFrame = new TimeFrameChooserFrame(MainFrame.this);
+                TimeFrameChooserFrame timeFrameChooserFrame = new TimeFrameChooserFrame(MainFrame.this,
+                                                                                        Dialog.ModalityType.APPLICATION_MODAL ,
+                                                                                        MainFrame.this);
                 timeFrameChooserFrame.setSize(600, 400);
                 timeFrameChooserFrame.pack();
                 timeFrameChooserFrame.setVisible(true);
