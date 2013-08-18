@@ -24,7 +24,6 @@ import javax.swing.plaf.InsetsUIResource;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -47,27 +46,27 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
     private final       ButtonGroup btngInnenAussen    = new ButtonGroup();
     private JPanel              contentPane;
     private JList<Sportangebot> lstSportarten;
-    private JFormattedTextField txtKosten;
+    private JSpinner            txtKosten;
     private JCheckBox           chckbxArmeinschraenkung;
     private JCheckBox           chckbxBeineinschrnkung;
     private JCheckBox           chckbxHhenangst;
     private JButton             btnSearch;
     private JCheckBox           chckbxIgnorieren;
-    private DecimalFormat priceFormat = new DecimalFormat("####,##");
-    private JRadioButton    rdbtnInnen;
-    private JRadioButton    rdbtnAussen;
-    private JRadioButton    rdbtnEgal_Innen;
-    private JCheckBox       chckbxFitness;
-    private JCheckBox       chckbxSelfDefense;
-    private JCheckBox       chckbxFreizeitvergnuegen;
-    private JCheckBox       chckbxWettbewerb;
-    private JCheckBox       chckbxSozialkontakte;
-    private JComboBox       cboExotisch;
-    private JComboBox       cboKampfsport;
-    private JComboBox       cboKoerperkontakt;
-    private JComboBox       cboWassersport;
-    private List<TimeFrame> timeFrames;
-    private JTextPane       txtDetail;
+    //private DecimalFormat priceFormat = new DecimalFormat("####,##");
+    private JRadioButton        rdbtnInnen;
+    private JRadioButton        rdbtnAussen;
+    private JRadioButton        rdbtnEgal_Innen;
+    private JCheckBox           chckbxFitness;
+    private JCheckBox           chckbxSelfDefense;
+    private JCheckBox           chckbxFreizeitvergnuegen;
+    private JCheckBox           chckbxWettbewerb;
+    private JCheckBox           chckbxSozialkontakte;
+    private JComboBox           cboExotisch;
+    private JComboBox           cboKampfsport;
+    private JComboBox           cboKoerperkontakt;
+    private JComboBox           cboWassersport;
+    private List<TimeFrame>     timeFrames;
+    private JTextPane           txtDetail;
 
     /**
      * Create the frame.
@@ -219,7 +218,7 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
         gbl_panel_6.columnWeights = new double[]{1.0, Double.MIN_VALUE};
         gbl_panel_6.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
         panel_6.setLayout(gbl_panel_6);
-        txtKosten = new JFormattedTextField(priceFormat);
+        txtKosten = new JSpinner();
         txtKosten.setEnabled(false);
         txtKosten.setValue(0.0);
         GridBagConstraints gbc_txtKosten = new GridBagConstraints();
@@ -633,11 +632,11 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
         }
 
         private void configPrice() {
-            if (txtKosten.isEditValid()) {
-                Number maxPrice = (Number) txtKosten.getValue();
-                builder.setMaximalPrice(maxPrice.doubleValue(),
-                                        chckbxIgnorieren.isSelected());
-            }
+            //if (txtKosten.isEditValid()) {
+            Number maxPrice = (Number) txtKosten.getValue();
+            builder.setMaximalPrice(maxPrice.doubleValue(),
+                                    chckbxIgnorieren.isSelected());
+            //}
         }
 
         private void configKoerperlicheEinschraenkung() {
