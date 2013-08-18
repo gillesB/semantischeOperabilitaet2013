@@ -8,6 +8,7 @@ import de.htw.gui.TimeFrameChooser.TimeFrame;
 import de.htw.gui.TimeFrameChooser.TimeFrameChooserFrame;
 import de.htw.logging.LoggerNames;
 import de.htw.logging.RootLogger;
+import de.htw.queries.Queries;
 import de.htw.queries.QueryBuilder;
 import de.htw.queries.QueryBuilder.ArtVonSport;
 import de.htw.queries.QueryBuilder.InnenAussen;
@@ -17,7 +18,10 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.plaf.InsetsUIResource;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -104,6 +108,17 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 
             public Object getElementAt(int index) {
                 return values[index];
+            }
+        });
+        
+        lstSportarten.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+            	if (!lstSportarten.getValueIsAdjusting()) {
+            		Sportangebot sport_angebot = (Sportangebot) lstSportarten.getSelectedValue();
+            		String sport_with_details = Queries.getDetailString(sport_angebot);
+            		System.out.println(sport_with_details);
+            	}
             }
         });
 

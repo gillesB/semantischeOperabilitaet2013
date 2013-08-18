@@ -51,7 +51,7 @@ public class QueryBuilder {
         }
 
         if (einschraenkungen.length > 0) {
-            sport = Queries.queryFilterKÃ¶rperlicheEinschraenkungen(sport,
+            sport = Queries.queryFilterKörperlicheEinschraenkungen(sport,
                                                                    einschraenkungen);
         }
 
