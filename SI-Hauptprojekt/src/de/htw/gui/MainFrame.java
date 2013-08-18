@@ -68,6 +68,7 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
     private JComboBox       cboKoerperkontakt;
     private JComboBox       cboWassersport;
     private List<TimeFrame> timeFrames;
+    private JTextPane txtDetail;
 
     /**
      * Create the frame.
@@ -117,7 +118,7 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
             	if (!lstSportarten.getValueIsAdjusting()) {
             		Sportangebot sport_angebot = (Sportangebot) lstSportarten.getSelectedValue();
             		String sport_with_details = Queries.getDetailString(sport_angebot);
-            		System.out.println(sport_with_details);
+            		txtDetail.setText(sport_with_details);
             	}
             }
         });
@@ -126,8 +127,8 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
         splitPane_1.setRightComponent(panel_3);
         panel_3.setLayout(new GridLayout(0, 1, 0, 0));
 
-        JTextPane textPane = new JTextPane();
-        panel_3.add(textPane);
+        txtDetail = new JTextPane();
+        panel_3.add(txtDetail);
 
         JPanel panel_4 = new JPanel();
         splitPane.setLeftComponent(panel_4);
