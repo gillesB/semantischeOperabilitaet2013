@@ -5,6 +5,8 @@ import de.htw.logging.RootLogger;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,16 +27,20 @@ public class TimeFrameChooser extends JPanel {
     private List<JLabel>              timeLabels;
     private ITimeFrameChooserListener listener;
     private JPanel                    calendarBaseLayer;
+    private JPanel                    controlsPanel;
+    private DayState[]                dayStates;
 
     public TimeFrameChooser() {
         this(null);
     }
 
     public TimeFrameChooser(ITimeFrameChooserListener listener) {
+        initDayStates();
         this.listener = listener;
         timeFramePanels = new ArrayList<TimeFramePanel>();
         timeLabels = new ArrayList<JLabel>();
         initCalendarDisplay();
+        initControlsPanel();
 
         //place Components
         setLayout(new GridBagLayout());
@@ -51,6 +57,50 @@ public class TimeFrameChooser extends JPanel {
         constraints.weightx = 999;
         constraints.weighty = 999;
         add(calendarBaseLayer, constraints);
+
+        constraints.weightx = 1;
+        constraints.weighty = 1;
+        constraints.gridy++;
+        add(controlsPanel, constraints);
+    }
+
+    private void initDayStates() {
+        dayStates = new DayState[7];
+        for (int i = 0; i < 7; ++i) {
+            dayStates[i] = DayState.UNKNOWN;
+        }
+    }
+
+    private void initControlsPanel() {
+        controlsPanel = new JPanel();
+        controlsPanel.setLayout(new GridBagLayout());
+
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.anchor = GridBagConstraints.CENTER;
+        constraints.insets = new Insets(1, 1, 1, 1);
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        constraints.gridheight = 1;
+        constraints.gridwidth = 1;
+        constraints.weightx = 1;
+        constraints.weighty = 1;
+
+        JButton clearButton = new JButton("Alle Abwählen");
+        clearButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clearTimeFramePanels();
+            }
+        });
+        controlsPanel.add(clearButton, constraints);
+        constraints.gridx++;
+    }
+
+    private void clearTimeFramePanels() {
+        for (TimeFramePanel tfp : timeFramePanels) {
+            tfp.deselect();
+        }
     }
 
     private void initCalendarDisplay() {
@@ -72,7 +122,14 @@ public class TimeFrameChooser extends JPanel {
 
         //add labels for weekdays
         for (int i = 0; i < 7; ++i) {
-            JLabel temp = new JLabel(String.valueOf(Day.getByID(i + 1)));
+            JButton temp = new JButton(String.valueOf(Day.getByID(i + 1)));
+            final int finalI = i;
+            temp.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    toggleByDayID(finalI);
+                }
+            });
             calendarBaseLayer.add(temp, constraints);
             constraints.gridx += 2;
         }
@@ -130,6 +187,35 @@ public class TimeFrameChooser extends JPanel {
 
     }
 
+    private void toggleByDayID(int dayID) {
+        if (dayStates[dayID] == DayState.MIXED || dayStates[dayID] == DayState.DESELECTED || dayStates[dayID]
+                == DayState.UNKNOWN) {
+            selectByDayID(dayID + 1);
+            dayStates[dayID] = DayState.SELECTED;
+        } else {
+            deselectByDayID(dayID + 1);
+            dayStates[dayID] = DayState.DESELECTED;
+        }
+    }
+
+    private void deselectByDayID(int dayID) {
+        for (TimeFramePanel tfp : timeFramePanels) {
+            if (tfp.getDay().getId() == dayID) {
+                tfp.deselect();
+            }
+        }
+        RootLogger.getInstance(LoggerNames.MAIN_LOGGER).log("Deselected Day: " + Day.getByID(dayID), Level.INFO);
+    }
+
+    private void selectByDayID(int dayID) {
+        for (TimeFramePanel tfp : timeFramePanels) {
+            if (tfp.getDay().getId() == dayID) {
+                tfp.select();
+            }
+        }
+        RootLogger.getInstance(LoggerNames.MAIN_LOGGER).log("Selected Day: " + Day.getByID(dayID), Level.INFO);
+    }
+
     public void setListener(ITimeFrameChooserListener listener) {
         this.listener = listener;
     }
@@ -166,5 +252,9 @@ public class TimeFrameChooser extends JPanel {
                 }
             }
         }
+    }
+
+    private enum DayState {
+        UNKNOWN, MIXED, SELECTED, DESELECTED;
     }
 }

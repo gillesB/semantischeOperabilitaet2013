@@ -61,4 +61,9 @@ public class TimeFramePanel extends JPanel {
         selected = true;
         setBackground(chooseBGColor());
     }
+
+    public void deselect() {
+        selected = false;
+        setBackground(chooseBGColor());
+    }
 }
