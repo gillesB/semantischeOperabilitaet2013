@@ -12,26 +12,21 @@ import de.htw.gui.Choices;
 import de.htw.gui.TimeFrameChooser.TimeFrame;
 import de.htw.ontologieverbindung.OntoUtil;
 import de.htw.ontologieverbindung.OntolgyConnection;
-
 import org.semanticweb.owlapi.model.OWLClass;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Queries {
 
-    private static OntolgyConnection ontolgy  = OntolgyConnection.getInstance();
-    private static Connection        database = DAOFactory.getInstance()
+    private static OntolgyConnection ontolgy   = OntolgyConnection.getInstance();
+    private static Connection        database  = DAOFactory.getInstance()
             .getConnection();
-    private static KursDAO kursDao = new KursDAO();
-    private static TerminDAO terminDAO = new TerminDAO();
+    private static KursDAO           kursDao   = new KursDAO();
+    private static TerminDAO         terminDAO = new TerminDAO();
 
     /**
      * Gibt die Menge der Sportarten zurück, die sowohl in der Onto als auch in
@@ -364,6 +359,10 @@ public class Queries {
      */
     private static String createAccepableClassesCondition_Ontology(
             Map<String, Sportangebot> inputClasses) {
+        //in case inputClasses is empty
+        if (inputClasses.size() == 0) {
+            return " and not Sport";
+        }
         StringBuilder condition = new StringBuilder(" and (");
         int i = 0;
         for (String sportangebot : inputClasses.keySet()) {
@@ -376,33 +375,34 @@ public class Queries {
         condition.append(")");
         return condition.toString();
     }
-    
-    public static String getDetailString(Sportangebot sport){
-    	List<KursMitDetails> kurse = new ArrayList<KursMitDetails>();
-    	kurse = kursDao.findAllKurseByIdSportangebot(sport.getIdSportangebot());
-    	System.out.println("Die Kurse von " + sport.getName() + " finden statt:");
-    	return printKursMitDetails(kurse);
+
+    public static String getDetailString(Sportangebot sport) {
+        List<KursMitDetails> kurse = new ArrayList<KursMitDetails>();
+        kurse = kursDao.findAllKurseByIdSportangebot(sport.getIdSportangebot());
+        System.out.println("Die Kurse von " + sport.getName() + " finden statt:");
+        return printKursMitDetails(kurse);
     }
-    
-    private static String printKursMitDetails(List<KursMitDetails> kurse){
-    	String ausgaben = "";
-    	List<TerminDetails> termine = new ArrayList<TerminDetails>();
-    	String termine_details = "";
-    	
-    	for(KursMitDetails kurs : kurse) {
-    		termine = terminDAO.findAllTerminByIdKurs(kurs.getIdKurs());
-    		termine_details = printTermineMitDetails(termine);
-    		ausgaben += kurs.toString() + "\n" + termine_details + "\n";
-    	}
-    	ausgaben += "\n";
-    	return ausgaben;
+
+    private static String printKursMitDetails(List<KursMitDetails> kurse) {
+        String ausgaben = "";
+        List<TerminDetails> termine = new ArrayList<TerminDetails>();
+        String termine_details = "";
+
+        for (KursMitDetails kurs : kurse) {
+            termine = terminDAO.findAllTerminByIdKurs(kurs.getIdKurs());
+            termine_details = printTermineMitDetails(termine);
+            ausgaben += kurs.toString() + "\n" + termine_details + "\n";
+        }
+        ausgaben += "\n";
+        return ausgaben;
     }
-    private static String printTermineMitDetails(List<TerminDetails> termine){
-    	String ausgaben = "";
-    	for(TerminDetails termin : termine){
-    		ausgaben += termin.toString() + "\n";
-    	}
-    	return ausgaben;
+
+    private static String printTermineMitDetails(List<TerminDetails> termine) {
+        String ausgaben = "";
+        for (TerminDetails termin : termine) {
+            ausgaben += termin.toString() + "\n";
+        }
+        return ausgaben;
     }
 
 }
