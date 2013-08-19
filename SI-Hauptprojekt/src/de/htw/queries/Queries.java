@@ -379,7 +379,7 @@ public class Queries {
     public static String getDetailString(Sportangebot sport) {
         List<KursMitDetails> kurse = new ArrayList<KursMitDetails>();
         kurse = kursDao.findAllKurseByIdSportangebot(sport.getIdSportangebot());
-        System.out.println("Die Kurse von " + sport.getName() + " finden statt:");
+//        System.out.println("Die Kurse von " + sport.getName() + " finden statt:");
         return printKursMitDetails(kurse);
     }
 
