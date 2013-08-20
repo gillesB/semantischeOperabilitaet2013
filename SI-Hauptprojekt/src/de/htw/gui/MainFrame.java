@@ -489,8 +489,9 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 		btnSearch.setMnemonic('S');
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				btnSearch.setCursor(Cursor
+				MainFrame.this.setCursor(Cursor
 						.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				btnSearch.setEnabled(false);
 				new ExecuteQuery().execute();
 			}
 		});
@@ -608,7 +609,8 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 
 		@Override
 		protected void done() {
-			btnSearch.setCursor(Cursor.getDefaultCursor());
+			MainFrame.this.setCursor(Cursor.getDefaultCursor());
+			btnSearch.setEnabled(true);
 			lstSportarten.setModel(model);
 		}
 
