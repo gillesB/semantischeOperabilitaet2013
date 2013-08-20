@@ -41,6 +41,8 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 	public static final String HOEHENANGST = "Höhenangst";
 	public static final String INNEN = "Innen";
 	public static final String AUSSEN = "Außen";
+	private static final int MAINFRAME_WIDHT = 800;
+	private static final int MAINFRAME_HEIGHT = 450;
 	private final ButtonGroup btngArtVonSport = new ButtonGroup();
 	private final ButtonGroup btngInnenAussen = new ButtonGroup();
 	private JPanel contentPane;
@@ -86,6 +88,7 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 
 		JSplitPane splitPane_1 = new JSplitPane();
 		splitPane_1.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		splitPane_1.setDividerLocation(MAINFRAME_HEIGHT / 2);
 		splitPane.setRightComponent(splitPane_1);
 
 		JPanel panel_2 = new JPanel();
@@ -96,6 +99,7 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 		panel_2.add(scrollPane);
 
 		lstSportarten = new JList();
+		lstSportarten.setVisibleRowCount(0);
 		scrollPane.setViewportView(lstSportarten);
 		lstSportarten.setModel(new AbstractListModel() {
 			String[] values = new String[] {};
@@ -504,7 +508,7 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 				timeFrameChooserFrame.pack();
 				timeFrameChooserFrame.setVisible(true);
 			}
-		});
+		});		
 	}
 
 	/**
@@ -534,7 +538,7 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 				}
 				try {
 					MainFrame frame = new MainFrame();
-					frame.setSize(800, 450);
+					frame.setSize(MAINFRAME_WIDHT, MAINFRAME_HEIGHT);
 					frame.setResizable(false);
 					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
