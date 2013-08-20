@@ -114,8 +114,12 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
             public void valueChanged(ListSelectionEvent e) {
                 if (!lstSportarten.getValueIsAdjusting()) {
                     Sportangebot sport_angebot = lstSportarten.getSelectedValue();
-                    String sport_with_details = Queries.getDetailString(sport_angebot);
-                    txtDetail.setText(sport_with_details);
+                    if(sport_angebot != null){
+                    	String sport_with_details = Queries.getDetailString(sport_angebot);
+                    	txtDetail.setText(sport_with_details);
+                    } else {
+                    	txtDetail.setText("");
+                    }
                 }
             }
         });
@@ -123,9 +127,12 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
         JPanel panel_3 = new JPanel();
         splitPane_1.setRightComponent(panel_3);
         panel_3.setLayout(new GridLayout(0, 1, 0, 0));
+        
+        JScrollPane scrollPane_2 = new JScrollPane();
+        panel_3.add(scrollPane_2);
 
         txtDetail = new JTextPane();
-        panel_3.add(txtDetail);
+        scrollPane_2.setViewportView(txtDetail);
 
         JPanel panel_4 = new JPanel();
         splitPane.setLeftComponent(panel_4);
