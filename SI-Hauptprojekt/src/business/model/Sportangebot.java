@@ -1,6 +1,6 @@
 package business.model;
 
-public class Sportangebot {
+public class Sportangebot implements Comparable<Sportangebot>{
 	
 	public final static String TABLE = "Sportangebot";
 	public final static String ONTO_CLASS = "Sport";
@@ -50,6 +50,10 @@ public class Sportangebot {
 	@Override
 	public String toString() {
 		return name;
+	}
+	@Override
+	public int compareTo(Sportangebot o) {
+		return name.compareTo(o.getName());
 	}
 	
 	
