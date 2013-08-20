@@ -312,6 +312,7 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 		panel_7.setLayout(gbl_panel_7);
 
 		chckbxArmeinschraenkung = new JCheckBox(ARMEINSCHRAENKUNG);
+		chckbxArmeinschraenkung.addActionListener(new EinschraenkungListener());
 		GridBagConstraints gbc_chckbxArmeinschraenkung = new GridBagConstraints();
 		gbc_chckbxArmeinschraenkung.insets = new Insets(0, 0, 5, 0);
 		gbc_chckbxArmeinschraenkung.anchor = GridBagConstraints.WEST;
@@ -320,6 +321,7 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 		panel_7.add(chckbxArmeinschraenkung, gbc_chckbxArmeinschraenkung);
 
 		chckbxBeineinschrnkung = new JCheckBox(BEINEINSCHRAENKUNG);
+		chckbxBeineinschrnkung.addActionListener(new EinschraenkungListener());
 		GridBagConstraints gbc_chckbxBeineinschrnkung = new GridBagConstraints();
 		gbc_chckbxBeineinschrnkung.insets = new Insets(5, 0, 5, 0);
 		gbc_chckbxBeineinschrnkung.anchor = GridBagConstraints.WEST;
@@ -328,6 +330,7 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 		panel_7.add(chckbxBeineinschrnkung, gbc_chckbxBeineinschrnkung);
 
 		chckbxHhenangst = new JCheckBox(HOEHENANGST);
+		chckbxHhenangst.addActionListener(new EinschraenkungListener());
 		GridBagConstraints gbc_chckbxHhenangst = new GridBagConstraints();
 		gbc_chckbxHhenangst.insets = new Insets(5, 0, 5, 0);
 		gbc_chckbxHhenangst.anchor = GridBagConstraints.WEST;
@@ -575,6 +578,27 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 							+ tf.getStartTime() + " end-> " + tf.getEndTime(),
 					Level.INFO);
 		}
+	}
+	
+	private class EinschraenkungListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(Choices.JA.equals(cboKoerperkontakt.getSelectedItem())){
+				JOptionPane.showMessageDialog(MainFrame.this,
+					    "Körperkontakt und Einschränkungen dürfen nicht gleichzeitig ausgewählt sein.\nKörperkontakt wird auf NEIN gesetzt");
+			}
+			
+			if(chckbxArmeinschraenkung.isSelected() || chckbxBeineinschrnkung.isSelected() || chckbxHhenangst.isSelected()){
+				cboKoerperkontakt.setEnabled(false);
+			    cboKoerperkontakt.setSelectedItem(Choices.NEIN);
+			} else {
+				cboKoerperkontakt.setEnabled(true);
+			    cboKoerperkontakt.setSelectedItem(Choices.EGAL);
+			}
+			
+		}
+		
 	}
 
 	/**
