@@ -14,16 +14,18 @@ import de.htw.queries.QueryBuilder.ArtVonSport;
 import de.htw.queries.QueryBuilder.InnenAussen;
 
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.plaf.InsetsUIResource;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
@@ -508,7 +510,7 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 				timeFrameChooserFrame.pack();
 				timeFrameChooserFrame.setVisible(true);
 			}
-		});		
+		});
 	}
 
 	/**
@@ -600,7 +602,10 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 			configTimeFrames();
 
 			Map<String, Sportangebot> result = builder.execute();
-			for (Sportangebot sport : result.values()) {
+			List<Sportangebot> result_sportangebote = new ArrayList<Sportangebot>(
+					result.values());
+			Collections.sort(result_sportangebote);
+			for (Sportangebot sport : result_sportangebote) {
 				model.addElement(sport);
 			}
 
