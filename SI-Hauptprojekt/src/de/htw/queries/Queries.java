@@ -174,7 +174,7 @@ public class Queries {
 
         if (wassersport != Choices.EGAL) {
             query.append(" and istWassersport only "
-                                 + wassersport.getOntoEquivalent() + " ) ");
+                                 + wassersport.getOntoEquivalent());
         }
 
         if (query.equals(queryBegin)) {
