@@ -1,10 +1,10 @@
 \chapter{Zielsetzung}
 
-Bei dem Projekt "`Sportangebot der HTW"' ging es darum, einen Beratungsassistenten zu erstellen. Hierbei handelt es sich um ein Softwareprodukt, das auf Fragestellungen Sportinteressierten nach Beantwortung eine geeignete Sportart vorschl"agt.
+Bei dem Projekt "`Sportangebot der HTW"' ging es darum, einen Beratungsassistenten zu erstellen. Hierbei handelt es sich um ein Softwareprodukt, das auf Fragestellungen Sportinteressierten nach Beantwortung eine geeignete Sportart vorschlägt.
 
 \section{Szenarien}
 
-Als Testfallwurden zwei Szenarien aufgestellt. Bei den Szenarien wurden bereits "Uberlegungen getroffen, ob die Fragen durch die Ontologie oder durch die Datenbank gefiltert werden nach der Natur der Sache. Bei der Umsetzung wurden allerdings teilweise ver"'anderungen vorgenommen. Dazu sp"ater mehr.
+Als Testfall wurden zwei Szenarien aufgestellt. Bei den Szenarien wurden bereits Überlegungen getroffen, ob die Fragen durch die Ontologie oder durch die Datenbank gefiltert werden nach der Natur der Sache. Bei der Umsetzung wurden allerdings teilweise veränderungen vorgenommen. Dazu später mehr.
 
 Die Folgenden Tabellen stellen die Szenarien dar, wie sie das Team zum Zeitpunkt des ersten Meilensteins ausgearbeitet hat.
 
@@ -13,10 +13,10 @@ Die Folgenden Tabellen stellen die Szenarien dar, wie sie das Team zum Zeitpunkt
 		\begin{tabular}{|r|l|l|}
 \hline
 			
-1 &	Berater &	m"ochten Sie lieber ein Einzel-, Teamsport, usw. treiben? \\
+1 &	Berater &	möchten Sie lieber ein Einzel-, Teamsport, usw. treiben? \\
 &	Student	& Teamsport, Einzelsport ->2 Egal ->5 \\
 \hline
-2	& Berater	& Berater "uberlegt, was Team- oder Einzelsport ist -> Ontologie \\
+2	& Berater	& Berater überlegt, was Team- oder Einzelsport ist -> Ontologie \\
 \hline
 5 &	Berater &	darf es was kosten? \\
 \hline
@@ -27,15 +27,15 @@ Die Folgenden Tabellen stellen die Szenarien dar, wie sie das Team zum Zeitpunkt
 \hline
 7	& DB &	 liefert eine Sport-Liste im Budget\\
 	& Berater &	Mehr im Freien oder in der Halle?\\
-	& Student &	m"ogliche Antworten: ja (->egal), im Freien, in der Halle\\
-	& Onto & Berater "uberlegt, was dazu passend ist\\
+	& Student &	mögliche Antworten: ja (->egal), im Freien, in der Halle\\
+	& Onto & Berater überlegt, was dazu passend ist\\
 \hline
-8	& Berater &	Haben Sie k"orperliche Einschr"ankungen?\\
-	& Student &	m"ogliche Antworten: Nein, Ja im Beinbereich,\\
-	& & Ja im Armbereich, Ja psychische (z. B. H"ohenangst)) \\ 
-	&&(Doppenennnungen m"oglich, wenn sinnvoll)\\
+8	& Berater &	Haben Sie körperliche Einschränkungen?\\
+	& Student &	mögliche Antworten: Nein, Ja im Beinbereich,\\
+	& & Ja im Armbereich, Ja psychische (z. B. Höhenangst)) \\ 
+	&&(Doppenennnungen möglich, wenn sinnvoll)\\
 \hline
--	& Onto & Nein -> 10, Ja -> 13, Berater "merkt sich" Einschr"ankungen \\
+-	& Onto & Nein -> 10, Ja -> 13, Berater "merkt sich" Einschränkungen \\
 \hline
 10 & Berater & Soll es bei diesem Sport Köperkontakt bestehen?\\
 \hline
@@ -52,12 +52,12 @@ Die Folgenden Tabellen stellen die Szenarien dar, wie sie das Team zum Zeitpunkt
 \hline
 15 & Berater & Welche Ziele möchen Sie mit dem Sport erreichen?\\
 \hline
-16 & Student & m"ogliche Antworten: Freizeitvergn"ugen, Wettbewerb,\\
+16 & Student & mögliche Antworten: Freizeitvergnügen, Wettbewerb,\\
 && Sozialkontakte, Fithalten\\
 \hline
 17 & Onto &	filtert entsprechend \\
 \hline
--	& Berater &	schl"agt dem Student die Sports vor, die ihm passen.\\
+-	& Berater &	schlägt dem Student die Sports vor, die ihm passen.\\
 \hline
 		\end{tabular}
 		
@@ -73,8 +73,8 @@ Die Folgenden Tabellen stellen die Szenarien dar, wie sie das Team zum Zeitpunkt
 && oder ein Tanz oder Entspannungsangebot wahrnehmen?\\
 	& Student	& Einzel\\
 \hline
-	& Onto &	Gibt gefilterte Liste zur"uck\\
-2	& Berater	& D"urfen die Angebote etwas kosten?\\
+	& Onto &	Gibt gefilterte Liste zurück\\
+2	& Berater	& Dürfen die Angebote etwas kosten?\\
 \hline
 	& Student	& Nein\\ 
 \hline
@@ -86,7 +86,7 @@ Die Folgenden Tabellen stellen die Szenarien dar, wie sie das Team zum Zeitpunkt
 \hline
 	& Onto & Entsprechendes Filtern der vorherigen Liste.\\
 \hline
-4	& Berater	& Haben Sie H"ohenangst?\\
+4	& Berater	& Haben Sie Höhenangst?\\
 \hline
 	& Student	& Ja\\
 \hline
@@ -100,7 +100,7 @@ Die Folgenden Tabellen stellen die Szenarien dar, wie sie das Team zum Zeitpunkt
 \hline
 	& DB & Innen, Aussen: entsprechend filtern.\\
 \hline
-	& &Egal: "ubernehmen\\
+	& &Egal: übernehmen\\
 \hline
 6	&Berater&	Soll das Angebot ein Wettbewerb sein.\\
 \hline
