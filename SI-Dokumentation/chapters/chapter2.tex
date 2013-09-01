@@ -15,106 +15,14 @@ Als Plattform für die Datenbank war aufgrund der Tatsache, dass es viele lesend
 In der Datenbank wurden als wichtigste Tabelle "`Sport"' erstellt. Das Design ist in Abbildung \ref{dbd} zu finden
 
 
-\begin{figure}%
-\includegraphics[width=150mm]{images/db_design}
-\caption{Datenbank-Design}%
-\label{dbd}%
-\end{figure}
+\begin{capfigure}[Datenbank-Design]
+	\includegraphics[width=150mm]{images/db_design}
+\end{capfigure}
 
 TODO etwas mehr
 
 \section{Ontologie}
-Die Ontologie ist das Herzstück des Projektes und hat uns einige Probleme bereitet. Zum Erstellen und Bearbeiten der Ontologie im OWL-Format haben wir das Werkzeug Protege eingesetzt.
-
-Entsprehend der Merkmale, die die Ontologie gemäß des Szenarions die Ergebnisse Einschränken soll, haben sich folgende Gruppen ergeben:
-
-\begin{itemize}
-	\item Körperliche Einschränkungen
-	Arme, Beine, Psychische - hierfür Höhenangst
-	\item Einzel- oder Mannschaftssport
-	\item Motivation (Ziele)
-\end{itemize}
-
-Als erster Ansatz wurden die Klassen
-
-\begin{itemize}
-	\item Koerperliche\_Einschraenkungen
-	\item Ziele
-	\item Sport
-\end{itemize}
-
-sowie die passenden Unterklassen erstellt. 
-
-Objektproperties
-TODO
-
-\section{aufgetretene Probleme}
-TODO 
-
-\section{Lösung}
-
-\subsection{Klassen in der Ontologie}
-
-\begin{itemize}
-	\item Boolean
-	\subitem Ttrue
-	\subitem False
-	\item Koerperliche\_Einschränkungen	
-	\subitem Armbereich
-	\subitem Beinbereich
-	\subitem Höhenangst
-	\subitem Keine
-	\item Sport
-	\subitem Teamsport
-	\subitem Einzelsport
-
-	\item Ziele
-	\subitem Fitness
-	\subitem Freizeitvergnuegen
-	\subitem SelfDefense
-	\subitem Sozialkontakte
-	\subitem Wettbewerb
-\end{itemize}
-Die Boolean-Klassen wurden eingerichtet für die Properties istExotisch, istKampfsport, istWassersport. 
-
-Objectproperties
-\begin{itemize}
-	\item hatZiel
-	\item istExotisch
-	\item istKampfsport
-	\item istWassersport
-	\item ungeeignetBei
-\end{itemize}
-
-Für alle Object-Properties wurden Äqivalenzklassen angelegt. Die Übersicht über Äquivalenzklassen, welche alle als Schnittmenge der Klasse Sport (Unterklasse) definiert wurden sind in der untenstehenden Tabelle \ref{aqclsport} zu finden.
-
-\begin{table}%
-\begin{tabular}{ll}
-ExotischeSportarten & istExotisch only True\\
-FitnessZiel & hatZiel some Fitness\\
-FreizeitvergnuegenZiel & hatZiel some  Freizeitvergnuegen)\\
-GeeignetBeiArmbereichKE & Sport and (not (ungeeignetBei Armbereich))\\
-GeeignetBeiBeinbereichKE & Sport and (not (ungeeignetBei some Beinbereich)) \\
-GeeignetBeiHoehenangst & Sport and (not (ungeeignetBei some Hoehenangst))\\
-Kampfsportarten & Sport and (istKampfsport only True)\\
-Koerperkontaktsportarten & Sport and (istKoerperkontakt only True)\\
-NichtexotischeSportarten & Sport and (istExotisch only False)\\
-Nichtkampfsportarten & Sport and (istKampfsport only False)\\
-NichtkoerperkontaktSportarten & Sport and (istKoerperkontakt only False)\\
-Nichtwassersportarten & Sport and (istWassersport only False)\\
-SelfDefenseZiel & hatZiel some SelfDefense\\
-SozialkontakteZiel & hatZiel some Sozialkontakte\\
-Wassersportarten & Sport and (istWassersport only True)\\
-WettbewerbZiel & hatZiel some Wettbewerb\\
-\end{tabular}
-\caption{Äquivalenzklassen in Sport}
-\label{aqclsport}
-\end{table}
-
-Für KoerperlicheEinschraenkungen
-(Armbereich or Beinbereich or Hoehenangst)
-
-TODO
+\TODO{[PRIO:SOFORT] Komplett neu machen}
 
 \section{Programm}
 Das Programm wurde mit Java geschreiben und beinhaltet eine Swing-basierte GUI. Funktional ist sie angebunden an eine SQL-Datenbank und eine OWL-Datei, die die Ontologie repräsentiert. Das Optische Erscheinungsbild ist in zwei Fenster gegliedert: Dem Hauptfenster besehend aus den sechs Auswahlgruppen Art des Sports (Einzel- oder Team), Einem Eingabefenster für maximale Kosten, ein Zielefenster, Innen-Außen-Formular geeignet, Ziele Eigenschaften (Abbildung \ref{GUI1}). Das zweite Fenster ist ein "`Stundenplan"', bei dem durch Auswahl ganzer Tage oder einzelner Stunden im Gitter bei dem die ausgewählten möglichen Zeiträume grün dargestellt werden (Abbildung \ref{GUI2})
@@ -139,7 +47,7 @@ Die Datenbankverbindung wird durch einen JDBC-Treiber realisiert. Unsere gefüll
 Das folgende Listing wird nach Auslösen des "`Suche Sportarten"'-Knopfes ausgeführt (präziser: Die doInBackground-Methode):
 
 
-\begin{lstlisting}
+\begin{lstlisting}[language=JAVA]
 	private class ExecuteQuery extends SwingWorker<Void, Void> {
 
 		private DefaultListModel<Sportangebot> model = new DefaultListModel<Sportangebot>();
