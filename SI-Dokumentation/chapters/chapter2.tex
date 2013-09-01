@@ -12,7 +12,7 @@ Umgesetzt wurde die Aufgabe im wesentlichen aus drei Teilen:
 
 Als Plattform für die Datenbank war aufgrund der Tatsache, dass es viele lesende Zugriffe gibt und der leichteren Portierbarkeit SQLite im Gespräch. Letztendlich haben wir uns aus Gründen der Skalierbarkeit und der Erfahrungen dann doch für MySQL entschieden.
 
-In der Datenbank wurden als wichtigste Tabelle "`Sport"' erstellt. Das Design ist in Abbildung \ref{dbd} zu finden
+In der Datenbank wurden als wichtigste Tabelle "`Sport"' erstellt. Das Design ist in Abbildung \ref{Datenbank-Design} zu finden
 
 
 \begin{capfigure}[Datenbank-Design]
@@ -23,6 +23,74 @@ TODO etwas mehr
 
 \section{Ontologie}
 \TODO{[PRIO:SOFORT] Komplett neu machen}
+Die Erstellung der Ontology wird mit \gls{protege} durchgef\"uhrt. \gls{protege} erm\"oglichst nur die Verwendung von OWL-DL. OWL-Full wird nicht unterst\"utzt, daher m\"ussen gewisse Einschr\"ankungen ber\"ucksichtigt werden. Beispielsweise kann man keine Komplementklassen erstellen. 
+
+Desweiteren sollte man immer bedenken, dass eine Ontology ein Open-World-Szenario darstellt. Im speziellen kann man nur nach dem Vorhandensein eines Kriteriums abfragen.
+
+Im Laufe dieses Abschnitts wird erl\"autert, wie die Ontology erstellt wurde. Im Besonderen werden unsere Entscheidungen bei der Umsetzung begr\"undet und deren Folgen erkl\"art.
+
+\subsection{Grobe Unterteilung der Ontology}
+Zuerst wird die Klasse \textit{Sport} erstellt. Diese Klasse erh\"alt die beiden Unterklassen \textit{Einzelsport} und \textit{Teamsport}. Da wir uns bei den Sportarten daf\"ur entschieden haben, dass eine Sportart entweder Einzelsport oder Teamsport ist macht diese Unterteilung am meisten Sinn. Nat\"urlich erm\"oglicht diese L\"osung nicht, dass eine Sportart zugleich Einzelsport als auch Teamsport ist. Dies ist aber kein Problem, da es in unserem Szenario nicht vorkommt.
+
+Bei der Darstellung der Ontology lassen wir die Ebene \textit{Thing} aus Gr\"unden der \"Ubersicht weg.
+Die Ontology sieht jetzt wie folgt aus:
+\begin{capitemize}[Ontology - Grober Unterteilung der Ontology - 1]
+		\item Sport
+			\begin{itemize}
+				\item Einzelsport
+				\item Teamsport
+			\end{itemize}
+\end{capitemize}
+
+Als n\"achstes legen wir die Klassen \textit{Ziele} und \textit{Koerperliche\_Einschraenkungen} an. Diese beiden Klassen dienen dazu die Eigenschaften \textit{Ziele} und \textit{K\"oerperliche Einschr\"ankungen} abzubilden. Beide Klassen werden noch mit den jeweiligen Unterklassen, die die m\"oglichen Optionen darstellen erg\"anzt.
+
+Danach sieht die Ontology wie folgt aus:
+\begin{capitemize}[Ontology - Grober Unterteilung der Ontology - 2]
+	\item Koerperliche\_Einschraenkungen
+		\begin{itemize}
+				\item Armbereich
+				\item Beinbereich
+				\item Hoehenangst
+		\end{itemize}
+	\item Sport
+		\begin{itemize}
+			\item Einzelsport
+			\item Teamsport
+		\end{itemize}
+	\item Ziele
+		\begin{itemize}
+				\item Fitness
+				\item Freizeitvergnuegen
+				\item SelfDefense
+				\item Sozialkontakte
+				\item Wettbewerb
+		\end{itemize}
+\end{capitemize}
+
+Damit sind die Klassen soweit fertig. Beide Klassen wurden in dieser Art angelegt, da sie optional sind. Ein Sport muss keine Verkn\"upfung zu diesen Klassen haben. Jetzt werden noch die Object Properties dazu angelegt. Diese werden wie folgt angelegt:
+
+\begin{capitemize}[Properties - hatZiel und ungeeignetBei]
+	\item hatZiel
+		\begin{itemize}
+			\item Domains: \textit{Sport}
+			\item Ranges: \textit{Ziele}
+		\end{itemize}
+	\item ungeeignetBei
+		\begin{itemize}
+			\item Domains: \textit{Sport}
+			\item Ranges: \textit{Koerperliche\_Einschraenkungen}
+		\end{itemize}
+\end{capitemize}
+
+Nun lassen sich die Ziele und Einschr\"ankungen mit den Sportarten verbinden. Ein Problem ergibt sich mit dieser Variante allerdings noch, man kann nicht nach Sportarten suchen die keine Einschr\"ankungen haben. Bei den Zielen gibt es die gleiche Einschr\"ankung, allerdings ist sie dort egal, da eine Suche nach Sportarten, die explizit kine Ziele haben keinen Sinn ergibt. Bei den Einschr\"ankungen muss allerdings eine L\"osung her. Da in einem Open-World-Szenario nur nach dem Vorhandensein gefragt werden kann, haben wir uns dazu entschieden noch die Unterklasse \textit{Keine} bei den K\"oerplichen Einschr\"ankungen zu erg\"anzen. Jetzt hat man die M\"oglichkeit auch Sportarten zu suchen, die bei keiner Einschr\"ankung ungeeignet sind.
+
+Bei den Sportarten muss jetzt jede Sportart die Object Property \textit{ungeeignetBei} verwenden. F\"ur die Object Property \textit{hatZiel} gilt das nicht.
+
+\TODO{istExotisch, istKampfsport, istKoerperkontakt, istWassersport - Problem erw\"ahnen, dass man nicht nach Boolean abfragen kann}
+
+\TODO{Klasse Boolean als L\"osung f\"ur das Problem}
+
+\TODO{\"Aquivalenzklassen, Aufbau einer Sportart, etc.}
 
 \section{Programm}
 Das Programm wurde mit Java geschreiben und beinhaltet eine Swing-basierte GUI. Funktional ist sie angebunden an eine SQL-Datenbank und eine OWL-Datei, die die Ontologie repräsentiert. Das Optische Erscheinungsbild ist in zwei Fenster gegliedert: Dem Hauptfenster besehend aus den sechs Auswahlgruppen Art des Sports (Einzel- oder Team), Einem Eingabefenster für maximale Kosten, ein Zielefenster, Innen-Außen-Formular geeignet, Ziele Eigenschaften (Abbildung \ref{GUI1}). Das zweite Fenster ist ein "`Stundenplan"', bei dem durch Auswahl ganzer Tage oder einzelner Stunden im Gitter bei dem die ausgewählten möglichen Zeiträume grün dargestellt werden (Abbildung \ref{GUI2})
@@ -86,7 +154,7 @@ Im folgenden
 		
 
 
-begin{lstlisting}
+\begin{lstlisting}
     public Map<String, Sportangebot> execute() {
         Map<String, Sportangebot> sport = Queries.querySport();
 
@@ -124,6 +192,6 @@ begin{lstlisting}
 
     }
 
-end{lstlisting}
+\end{lstlisting}
 
 
