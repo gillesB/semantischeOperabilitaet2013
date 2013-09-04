@@ -132,98 +132,24 @@ Bei \ref{GUI2} handelt es sich um einen "`Stundenplan"', in dem der Benutzer die
 \end{figure}
 
 \subsection{Technische Umsetzung}
-\TODO{Der Abschnitt ist viel zu detailliert. Das will so niemand lesen. Die prinzipielle Funktionsweise ist wichtig.
-Z.B. query (DB, oder Onto) hat immer folgenden Aufbau, Liste query(Liste). Dadurch wird es möglich eine query nach der anderen auszuführen und die Reihenfolge ist auch egal etc... Außerdem viel weniger Code copieren und nicht jedes Detail beschreiben, dies gilt auch für die Screenshots.  }
+Das Programm wurde mit Java geschrieben und benutzt die Semantic Web OWL API \autocite{semweb:owlapi} als Verbindung zur Ontologie. Beim benutzten Reasoner handelt es sich um HermIT\autocite{krr:hermit}. Die Verbindung zur Datenbank wird durch einen JDBC-Treiber\autocite{oracle:jdbc} realisiert.
 
-Das Programm wurde mit Java geschrieben und beinhaltet eine Swing-basierte GUI. Funktional ist sie angebunden an eine SQL-Datenbank und eine OWL-Datei, die die Ontologie repräsentiert. Das Optische Erscheinungsbild ist in zwei Fenster gegliedert: Dem Hauptfenster besehend aus den sechs Auswahlgruppen Art des Sports (Einzel- oder Team), Einem Eingabefenster für maximale Kosten, ein Zielefenster, Innen-Außen-Formular geeignet, Ziele Eigenschaften (Abbildung \ref{GUI1}). Das zweite Fenster ist ein "`Stundenplan"', bei dem durch Auswahl ganzer Tage oder einzelner Stunden im Gitter bei dem die ausgewählten möglichen Zeiträume grün dargestellt werden (Abbildung \ref{GUI2})
+Beim Ausführen der Suche wird zunächst eine Menge mit sämtlichen verfügbaren Sportarten erstellt, die daraufhin nach Bedarf gefiltert wird. Einfachheitshalber wird für jedes Auswahlkriterium, falls dieses nicht ignoriert werden soll, eine Querie ausgeführt, die die Menge mit den Sportarten weiter filtert. Jede Querie hat folgenden, gleichen Aufbau\footnote{UML angelehnte Schreibweise \lstinline"  operation(arg list) : return type" \autocite{kow:umlclass}} \lstinline"query(Sportarten) : gefilterte_Sportarten". Dies bedeutet, dass eine Query eine Menge von Sportarten erhält und nach einem bestimmten Auswahlkriterium filtert, um dann die gefilterte Menge zurückzugeben. Durch den jeweils gleichen Aufbau ergibt sich der Vorteil, dass die Reihenfolge der Queries keine Rolle spielt, und sie demnach auch bei Bedarf übersprungen werden können. Das Überspringen von Queries wird benötigt, da jedes Auswahlkriterium vom Benutzer ignoriert werden kann und somit keinen Einfluss auf den Auswahlprozess nimmt.
 
+Das Listing \ref{lst:filtern} zeigt das Filtern an einem konkreten Beispiel. In einem ersten Schritt werden die Sportarten abgefragt. Danach werden die einzelnen Queries durchlaufen, wobei immer abgefragt wird, ob das entsprechende Auswahlkriterium nicht ignoriert werden soll. Im Beispiel wird der nach dem maximalen Preis und den Zielen gefiltert. Es sei noch darauf hingewiesen, dass es an dieser Stelle im Code keinen Unterschied macht, ob die Query über die Datenbank (für den Preis) oder die Ontologie (für die Ziele) ausgeführt wird. 
 
-
-Durch den Knopf "`Suche Sportarten"' wird eine Recherche ausgelöst. Hierfür wird eine Ontologie- und Datenbankverbindung geöffnet.
-Die Ontologieverbindung ist durch einen Shortform-Provider aus der OWL-API und einem HermIt-Reasoner realisiert. Letzterem wird über einen Stream unsere OWL-Datei übergeben. Hierfür gibt es die Klasse OntologyConnection, welche als Singleton-Klasse realisiert ist.
-
-Die Datenbankverbindung wird durch einen JDBC-Treiber realisiert. Unsere gefüllte Datenbank liegt auf einem SQL-Server im Internet.
-
-Das folgende Listing wird nach Auslösen des "`Suche Sportarten"'-Knopfes ausgeführt (präziser: Die doInBackground-Methode):
-
-
-\begin{lstlisting}[language=JAVA]
-	private class ExecuteQuery extends SwingWorker<Void, Void> {
-
-		private DefaultListModel<Sportangebot> model = new DefaultListModel<Sportangebot>();
-		private QueryBuilder builder;
-
-		@Override
-		protected Void doInBackground() throws Exception {
-			builder = new QueryBuilder();
-
-			configArtVonSport();
-			configPrice();
-			configKoerperlicheEinschraenkung();
-			configInnenAussen();
-			configZiele();
-			config4Attributes();
-			configTimeFrames();
-
-			Map<String, Sportangebot> result = builder.execute();
-			List<Sportangebot> result_sportangebote = new ArrayList<Sportangebot>(
-					result.values());
-			Collections.sort(result_sportangebote);
-			for (Sportangebot sport : result_sportangebote) {
-				model.addElement(sport);
-			}
-
-			return null;
-		}
-\end{lstlisting}
-
-Die config-Methoden lesen zunächst die gewählten Optionen aus und bereiten diese für den QueryBuilder derart auf, dass einfach lesbare Datentypen entstehen. Der QueryBuilder gibt eine Menge von Key-Value-Paaren zurück, das aus den gematchten Sportbezeichnungen und der jeweils dazugehörigen Instanz besteht.
-
-Der QueryBuilder führt nun sukzessiv bis zu 8 Queries aus, je nach dem, welche notwendig ist. Als erste die querySport, die alle Sportarten liefert, die sowohl in der Ontologie, als auch in der Datenbank sind. Die zweite Einschränkung käme, wenn Einzel oder Teamsport ausgewählt sind. Bei jeder Ontologie-Einschränkung wird die Query in der Form zusammengebaut: <NEUE QUERY> AND ( jeder Schlüsselwert in sport, getrennt durch OR ). Bei der Datenbank analog mit AND ( Sportangebot.name = 'Sport1' OR Sportangebot.name = 'Sport2' ... ) in der WHERE-Klausel.
-
-Im folgenden 
-
-		
-
-
-\begin{lstlisting}
-    public Map<String, Sportangebot> execute() {
-        Map<String, Sportangebot> sport = Queries.querySport();
-
-        if (selectedArtVonSport == ArtVonSport.EINZELSPORT) {
-            sport = Queries.queryEinzelsport(sport);
-        } else if (selectedArtVonSport == ArtVonSport.TEAMSPORT) {
-            sport = Queries.queryTeamsport(sport);
-        }
-
-        if (maximalPrice >= 0) {
-            sport = Queries.queryPrice(sport, maximalPrice);
-        }
-
-        if (einschraenkungen.length > 0) {
-            sport = Queries.queryFilterKoerperlicheEinschraenkungen(sport,
-                                                                   einschraenkungen);
-        }
-
-        if (selectedInnenAussen != InnenAussen.EGAL) {
-            boolean indoor = selectedInnenAussen == InnenAussen.INNEN;
-            sport = Queries.queryIndoor(sport, indoor);
-        }
-
-        if (ziele.length > 0) {
-            sport = Queries.queryZiele(sport, ziele);
-        }
-
-        if (timeFrames.size() > 0) {
-            sport = Queries.queryTimeFrames(sport, getCompactTimeFrames());
-        }
-
-        sport = Queries.query4Attributes(sport, kampfsport, exotisch, koerperbetont, wassersport);
-
-        return sport;
-
-    }
-
+\begin{lstlisting}[caption=Filtern von Sportarten, label=lst:filtern]
+Set<Sportangebot> sport = Queries.querySport();
+...        
+if (!ignorePrice) {
+	sport = Queries.queryPrice(sport, maximalPrice);
+}
+...
+if (ziele.length > 0) {
+	//der Benutzer hat Ziele ausgewaehlt
+	sport = Queries.queryZiele(sport, ziele);
+}
+...                
 \end{lstlisting}
 
 \section{Realisierung der Sprünge}
