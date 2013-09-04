@@ -23,7 +23,7 @@ Die Datenbank enthält im wesentlichen Informationen die ein Hochschulsportberat
 Das genaue Datenbankmodell kann der Abbildung \ref{fig:Datenbank-Design} entnommen werden.
 
 \begin{capfigure}[Datenbank-Design]
-	\includegraphics[width=150mm]{images/db_design}
+	\includegraphics[width=\textwidth]{images/db_design}
 \end{capfigure}
 
 \section{Ontologie}
@@ -102,11 +102,34 @@ Bei den Sportarten muss jetzt jede Sportart die Object Property \textit{ungeeign
 Dieser Abschnitt geht zuerst auf die Entscheidung zum Aufbau der graphischen Oberfläche ein, behandelt danach die technischen Aspekte des Programms und im letzten Teil des Abschnittes wird die Realisierung der Sprünge aus den Szenarien betrachtet. 
 
 \subsection{Entscheidung zum Aufbau der graphischen Oberfläche}
+
 Bei der Gestaltung der GUI, wurde sich dafür entschieden, dass der Benutzer zu jedem Zeitpunkt möglichst alle Auswahlmöglichkeiten vor Augen hat und dass er, ebenfalls zu jedem Zeitpunkt, eine Liste mit den Sportarten erhalten kann, die zu seinen Auswahlkriterien passen.
 
-Die Gründe für diese Entscheidungen sind zum einen die Benutzerfreundlichkeit. Durch diesen Aufbau soll der Benutzer aufgefordert werden, möglichst viele Auswahlkriterien auszuprobieren, da er sofort testen kann, welche Auswirkungen diese auf die Auswahl der Sportarten hat. Dies hat den Vorteil, dass der Benutzer die Kriterien mit, einer für ihn, hohen Priorität setzen kann und unangerührt lässt, währendem er die Kriterien mit einer, für ihn, niedrigen Priorität schnell und einfach ändern kann. Ein konkretes Beispiel hierfür wäre z.B. die Sportart Klettern. Für einige Benutzer ist die Höhenangst nur ein leichtes Problem, für einige andere ist sie unüberwindlich. Somit haben die Benutzer mit leichter Höhenangst, die Möglichkeit die angebotenen Sportarten mit oder ohne Höhenangst zu vergleichen, während jene mit starker Höhenangst das Kriterium auswählen und nicht mehr deaktivieren.
+Die Gründe für diese Entscheidungen sind zum einen die Benutzerfreundlichkeit. Durch diesen Aufbau soll der Benutzer aufgefordert werden, möglichst viele Auswahlkriterien auszuprobieren, da er sofort testen kann, welche Auswirkungen diese auf die Auswahl der Sportarten hat. Dies hat den Vorteil, dass der Benutzer die Kriterien mit, einer für ihn, hohen Priorität setzen kann und unangerührt lässt, währendem er die Kriterien mit einer, für ihn, niedrigen Priorität schnell und einfach ändern kann. Ein konkretes Beispiel hierfür wäre z.B. die Sportart Klettern. Für einige Benutzer ist die Höhenangst nur ein leichtes Problem, für einige andere ist sie unüberwindlich. Somit haben die Benutzer mit leichter Höhenangst, die Möglichkeit die angebotenen Sportarten mit oder ohne Höhenangst zu vergleichen, während jene mit starker Höhenangst das Kriterium auswählen und nicht mehr abschalten.
 
-Ein anderer Grund für diese Entscheidung war die Tatsache, dass unsere Szenarien wenige Sprünge von einem Schritt zu einem anderen beinhalten. Deshalb haben wir uns dagegen entschieden eine Frage nach der anderen abzuhandeln, wie die Szenarien dies eigentlich vorsehen und bei mehreren Sprüngen wohl auch einfacher umzusetzen gewesen wäre. Nichtsdestotrotz wird am Ende dieses Abschnittes erläutert wie mehrere dieser Sprünge dargestellt werden könnten, obwohl der Benutzer nach wie vor sämtliche Optionen vor Augen hat und möglichst wenig an Flexibilität einbüßt.
+Ein anderer Grund für diese Entscheidung war die Tatsache, dass unsere Szenarien wenige Sprünge von einem Schritt zu einem anderen beinhalten. Deshalb haben wir uns dagegen entschieden eine Frage nach der anderen abzuhandeln, wie die Szenarien dies eigentlich vorsehen. Nichtsdestotrotz wird im letzten Teil dieses Abschnittes erläutert wie mehrere dieser Sprünge realisiert werden könnten, obwohl der Benutzer nach wie vor sämtliche Optionen vor Augen hat und möglichst wenig an Flexibilität einbüßt.
+
+\subsection{Aufbau der graphischen Oberfläche}
+
+Der, durch die oben beschriebenen Entscheidungen beeinflusste, Aufbau der GUI kann in den beiden Abbildungen \ref{GUI1} und \ref{GUI2} betrachtet werden.
+
+Bei \ref{GUI1} handelt es sich um das Hauptfenster, in dem der Benutzer die Möglichkeit hat seine Auswahlkriterien festzulegen, die Suche zu starten sowie die vorgeschlagen Sportarten einzusehen und Informationen über diese zu erhalten. Bei den Auswahlkriterien handelt es sich um jene, die benötigt werden, um die Fragen aus den Szenarien zu beantworten.
+
+Bei \ref{GUI2} handelt es sich um einen "`Stundenplan"', in dem der Benutzer die Zeiträume festlegen kann, in denen er wöchentlich Sport treiben will. 
+
+\begin{figure}[htbp]%
+\centering
+\includegraphics[width=\textwidth]{images/gui.png}%
+\caption{Hauptfenster}%
+\label{GUI1}%
+\end{figure}
+
+\begin{figure}[htbp]%
+\centering
+\includegraphics[width=\textwidth]{images/guizeit.png}%
+\caption{Auswahl der Zeiten}%
+\label{GUI2}%
+\end{figure}
 
 \subsection{Technische Umsetzung}
 \TODO{Der Abschnitt ist viel zu detailliert. Das will so niemand lesen. Die prinzipielle Funktionsweise ist wichtig.
@@ -114,17 +137,7 @@ Z.B. query (DB, oder Onto) hat immer folgenden Aufbau, Liste query(Liste). Dadur
 
 Das Programm wurde mit Java geschrieben und beinhaltet eine Swing-basierte GUI. Funktional ist sie angebunden an eine SQL-Datenbank und eine OWL-Datei, die die Ontologie repräsentiert. Das Optische Erscheinungsbild ist in zwei Fenster gegliedert: Dem Hauptfenster besehend aus den sechs Auswahlgruppen Art des Sports (Einzel- oder Team), Einem Eingabefenster für maximale Kosten, ein Zielefenster, Innen-Außen-Formular geeignet, Ziele Eigenschaften (Abbildung \ref{GUI1}). Das zweite Fenster ist ein "`Stundenplan"', bei dem durch Auswahl ganzer Tage oder einzelner Stunden im Gitter bei dem die ausgewählten möglichen Zeiträume grün dargestellt werden (Abbildung \ref{GUI2})
 
-\begin{figure}%
-\includegraphics[width=150mm]{images/gui.png}%
-\caption{Startpunkt: Die GUI nach Programmaufruf}%
-\label{GUI1}%
-\end{figure}
 
-\begin{figure}%
-\includegraphics[width=150mm]{images/guizeit.png}%
-\caption{Auswahl der Zeiten}%
-\label{GUI2}%
-\end{figure}
 
 Durch den Knopf "`Suche Sportarten"' wird eine Recherche ausgelöst. Hierfür wird eine Ontologie- und Datenbankverbindung geöffnet.
 Die Ontologieverbindung ist durch einen Shortform-Provider aus der OWL-API und einem HermIt-Reasoner realisiert. Letzterem wird über einen Stream unsere OWL-Datei übergeben. Hierfür gibt es die Klasse OntologyConnection, welche als Singleton-Klasse realisiert ist.
