@@ -10,16 +10,21 @@ Umgesetzt wurde die Aufgabe im wesentlichen aus drei Teilen:
 
 \section{Datenbank}
 
-Als Plattform für die Datenbank war aufgrund der Tatsache, dass es viele lesende Zugriffe gibt und der leichteren Portierbarkeit SQLite im Gespräch. Letztendlich haben wir uns aus Gründen der Skalierbarkeit und der Erfahrungen dann doch für MySQL entschieden.
+Bei der Datenbank wurde auf eine gewöhnliche relationale Datenbank zurückgegriffen, da im wesentlichen nur die gängigsten SQL-Befehle benutzt werden. Da es bereits gute Erfahrungen im Team mit MySQL gab, wurde diese Datenbank verwendet. 
 
-In der Datenbank wurden als wichtigste Tabelle "`Sport"' erstellt. Das Design ist in Abbildung \ref{Datenbank-Design} zu finden
+Die Datenbank enthält im wesentlichen Informationen die ein Hochschulsportberater ebenfalls nachschlagen würde. Die wichtigsten Informationen sind:
+\begin{itemize}
+\item angebotene Sportarten
+\item Trainingszeiten
+\item Veranstaltungsort
+\item Höhe der Teilnehmergebühr
+\end{itemize} 
 
+Das genaue Datenbankmodell kann der Abbildung \ref{fig:Datenbank-Design} entnommen werden.
 
 \begin{capfigure}[Datenbank-Design]
 	\includegraphics[width=150mm]{images/db_design}
 \end{capfigure}
-
-TODO etwas mehr
 
 \section{Ontologie}
 \TODO{[PRIO:SOFORT] Komplett neu machen}
@@ -94,7 +99,7 @@ Bei den Sportarten muss jetzt jede Sportart die Object Property \textit{ungeeign
 
 \section{Programm}
 
-Dieser Abschnitt geht zuerst auf die Entscheidung zum Aufbau der graphischen Oberfläche ein und behandelt danach die technischen Aspekte des Programms. 
+Dieser Abschnitt geht zuerst auf die Entscheidung zum Aufbau der graphischen Oberfläche ein, behandelt danach die technischen Aspekte des Programms und im letzten Teil des Abschnittes wird die Realisierung der Sprünge aus den Szenarien betrachtet. 
 
 \subsection{Entscheidung zum Aufbau der graphischen Oberfläche}
 Bei der Gestaltung der GUI, wurde sich dafür entschieden, dass der Benutzer zu jedem Zeitpunkt möglichst alle Auswahlmöglichkeiten vor Augen hat und dass er, ebenfalls zu jedem Zeitpunkt, eine Liste mit den Sportarten erhalten kann, die zu seinen Auswahlkriterien passen.
