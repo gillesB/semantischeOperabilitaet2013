@@ -170,6 +170,8 @@ Als Beispiel könnte man eine Personenart \lstinline"eingeschraenkte_Person" in 
 Das Beispiel kann man wie folgt erweitert werden, führt man eine weitere Personenart \lstinline"zahlende_Person" mit der Property \lstinline"will_zahlen only True", wobei es sich bei dem True um einen von uns eingeführten Boolean Wert handelt. Dies ermöglicht es folgende Query abzusetzen: \lstinline"Person and (hat_Einschraenkung some Beinbereich or will_zahlen only True)". Das Ergebnis sind folgende Personenarten: \lstinline"eingeschraenkte_Person, zahlende_Person". Die GUI kann daraufhin auf die einzelnen Personenarten reagieren und wie oben beschrieben ihr Aussehen ändern. Ein Vorteil dieser Methode ist, dass man die Query beliebig mit der Veroderung erweitern kann, so dass man bei Bedarf weitere Kriterien aufnehmen kann.
 
 In diesem Beispiel müssen zwei unabhängige Teile der GUI verändert werden, es ist jedoch vorstellbar, dass es Personenarten gibt, die gleichzeitig auftreten können, allerdings widersprüchliche Effekte in der GUI auslösen sollen. So könnte z.B. ein bestimmtes Feld für die eine Personenart aus- und für die andere Personenart angeschaltet werden. Wie solche Konflikte zu lösen sind, wir wahrscheinlich von den konkreten Fällen abhängen. Ein möglicher Lösungsansatz wäre aber ein Priorisieren der verschiedenen Personenarten. Dies bedeutet, dass sich die Personenart mit der höheren Priorität durchsetzt und die GUI deren Effekte übernimmt. Die Prioritäten könnten auch vom Benutzer mitbestimmt werden, indem er festlegen kann, wie wichtig ihm verschiedene Auswahlkriterien sind.
+
+\TODO{[PRIO:NORMAL]fÜr Gilles: beschreibe einzelne Fragen mit CardLayout}
  
 
 
