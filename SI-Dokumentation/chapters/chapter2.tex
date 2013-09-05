@@ -12,112 +12,102 @@ Umgesetzt wurde die Aufgabe im wesentlichen aus drei Teilen:
 
 Als Plattform für die Datenbank war aufgrund der Tatsache, dass es viele lesende Zugriffe gibt und der leichteren Portierbarkeit SQLite im Gespräch. Letztendlich haben wir uns aus Gründen der Skalierbarkeit und der Erfahrungen dann doch für MySQL entschieden.
 
-In der Datenbank wurden als wichtigste Tabelle "`Sport"' erstellt. Das Design ist in Abbildung \ref{dbd} zu finden
+In der Datenbank wurden als wichtigste Tabelle "`Sport"' erstellt. Das Design ist in Abbildung \ref{fig:Datenbank-Design} zu finden
 
 
-\begin{figure}%
-\includegraphics[width=150mm]{images/db_design}
-\caption{Datenbank-Design}%
-\label{dbd}%
-\end{figure}
+\begin{capfigure}[Datenbank-Design]
+	\includegraphics[width=150mm]{images/db_design}
+\end{capfigure}
 
 TODO etwas mehr
 
 \section{Ontologie}
-Die Ontologie ist das Herzstück des Projektes und hat uns einige Probleme bereitet. Zum Erstellen und Bearbeiten der Ontologie im OWL-Format haben wir das Werkzeug Protege eingesetzt.
+\TODO{[PRIO:SOFORT] Komplett neu machen}
+Die Erstellung der Ontology wird mit \gls{protege} durchgef\"uhrt. \gls{protege} erm\"oglichst nur die Verwendung von OWL-DL. OWL-Full wird nicht unterst\"utzt, daher m\"ussen gewisse Einschr\"ankungen ber\"ucksichtigt werden. Beispielsweise kann man keine Komplementklassen erstellen. 
 
-Entsprehend der Merkmale, die die Ontologie gemäß des Szenarions die Ergebnisse Einschränken soll, haben sich folgende Gruppen ergeben:
+Desweiteren sollte man immer bedenken, dass eine Ontology ein Open-World-Szenario darstellt. Im speziellen kann man nur nach dem Vorhandensein eines Kriteriums abfragen.
 
-\begin{itemize}
-	\item Körperliche Einschränkungen
-	Arme, Beine, Psychische - hierfür Höhenangst
-	\item Einzel- oder Mannschaftssport
-	\item Motivation (Ziele)
-\end{itemize}
+Im Laufe dieses Abschnitts wird erl\"autert, wie die Ontology erstellt wurde. Im Besonderen werden unsere Entscheidungen bei der Umsetzung begr\"undet und deren Folgen erkl\"art.
 
-Als erster Ansatz wurden die Klassen
+\subsection{Grobe Unterteilung der Ontology}
+Zuerst wird die Klasse \textit{Sport} erstellt. Diese Klasse erh\"alt die beiden Unterklassen \textit{Einzelsport} und \textit{Teamsport}. Da wir uns bei den Sportarten daf\"ur entschieden haben, dass eine Sportart entweder Einzelsport oder Teamsport ist macht diese Unterteilung am meisten Sinn. Nat\"urlich erm\"oglicht diese L\"osung nicht, dass eine Sportart zugleich Einzelsport als auch Teamsport ist. Dies ist aber kein Problem, da es in unserem Szenario nicht vorkommt.
 
-\begin{itemize}
+Bei der Darstellung der Ontology lassen wir die Ebene \textit{Thing} aus Gr\"unden der \"Ubersicht weg.
+Die Ontology sieht jetzt wie folgt aus:
+\begin{capitemize}[Ontology - Grober Unterteilung der Ontology - 1]
+		\item Sport
+			\begin{itemize}
+				\item Einzelsport
+				\item Teamsport
+			\end{itemize}
+\end{capitemize}
+
+Als n\"achstes legen wir die Klassen \textit{Ziele} und \textit{Koerperliche\_Einschraenkungen} an. Diese beiden Klassen dienen dazu die Eigenschaften \textit{Ziele} und \textit{K\"oerperliche Einschr\"ankungen} abzubilden. Beide Klassen werden noch mit den jeweiligen Unterklassen, die die m\"oglichen Optionen darstellen erg\"anzt.
+
+Danach sieht die Ontology wie folgt aus:
+\begin{capitemize}[Ontology - Grober Unterteilung der Ontology - 2]
 	\item Koerperliche\_Einschraenkungen
-	\item Ziele
+		\begin{itemize}
+				\item Armbereich
+				\item Beinbereich
+				\item Hoehenangst
+		\end{itemize}
 	\item Sport
-\end{itemize}
-
-sowie die passenden Unterklassen erstellt. 
-
-Objektproperties
-TODO
-
-\section{aufgetretene Probleme}
-TODO 
-
-\section{Lösung}
-
-\subsection{Klassen in der Ontologie}
-
-\begin{itemize}
-	\item Boolean
-	\subitem Ttrue
-	\subitem False
-	\item Koerperliche\_Einschränkungen	
-	\subitem Armbereich
-	\subitem Beinbereich
-	\subitem Höhenangst
-	\subitem Keine
-	\item Sport
-	\subitem Teamsport
-	\subitem Einzelsport
-
+		\begin{itemize}
+			\item Einzelsport
+			\item Teamsport
+		\end{itemize}
 	\item Ziele
-	\subitem Fitness
-	\subitem Freizeitvergnuegen
-	\subitem SelfDefense
-	\subitem Sozialkontakte
-	\subitem Wettbewerb
-\end{itemize}
-Die Boolean-Klassen wurden eingerichtet für die Properties istExotisch, istKampfsport, istWassersport. 
+		\begin{itemize}
+				\item Fitness
+				\item Freizeitvergnuegen
+				\item SelfDefense
+				\item Sozialkontakte
+				\item Wettbewerb
+		\end{itemize}
+\end{capitemize}
 
-Objectproperties
-\begin{itemize}
+Damit sind die Klassen soweit fertig. Beide Klassen wurden in dieser Art angelegt, da sie optional sind. Ein Sport muss keine Verkn\"upfung zu diesen Klassen haben. Jetzt werden noch die Object Properties dazu angelegt. Diese werden wie folgt angelegt:
+
+\begin{capitemize}[Properties - hatZiel und ungeeignetBei]
 	\item hatZiel
-	\item istExotisch
-	\item istKampfsport
-	\item istWassersport
+		\begin{itemize}
+			\item Domains: \textit{Sport}
+			\item Ranges: \textit{Ziele}
+		\end{itemize}
 	\item ungeeignetBei
-\end{itemize}
+		\begin{itemize}
+			\item Domains: \textit{Sport}
+			\item Ranges: \textit{Koerperliche\_Einschraenkungen}
+		\end{itemize}
+\end{capitemize}
 
-Für alle Object-Properties wurden Äqivalenzklassen angelegt. Die Übersicht über Äquivalenzklassen, welche alle als Schnittmenge der Klasse Sport (Unterklasse) definiert wurden sind in der untenstehenden Tabelle \ref{aqclsport} zu finden.
+Nun lassen sich die Ziele und Einschr\"ankungen mit den Sportarten verbinden. Ein Problem ergibt sich mit dieser Variante allerdings noch, man kann nicht nach Sportarten suchen die keine Einschr\"ankungen haben. Bei den Zielen gibt es die gleiche Einschr\"ankung, allerdings ist sie dort egal, da eine Suche nach Sportarten, die explizit kine Ziele haben keinen Sinn ergibt. Bei den Einschr\"ankungen muss allerdings eine L\"osung her. Da in einem Open-World-Szenario nur nach dem Vorhandensein gefragt werden kann, haben wir uns dazu entschieden noch die Unterklasse \textit{Keine} bei den K\"oerplichen Einschr\"ankungen zu erg\"anzen. Jetzt hat man die M\"oglichkeit auch Sportarten zu suchen, die bei keiner Einschr\"ankung ungeeignet sind.
 
-\begin{table}%
-\begin{tabular}{ll}
-ExotischeSportarten & istExotisch only True\\
-FitnessZiel & hatZiel some Fitness\\
-FreizeitvergnuegenZiel & hatZiel some  Freizeitvergnuegen)\\
-GeeignetBeiArmbereichKE & Sport and (not (ungeeignetBei Armbereich))\\
-GeeignetBeiBeinbereichKE & Sport and (not (ungeeignetBei some Beinbereich)) \\
-GeeignetBeiHoehenangst & Sport and (not (ungeeignetBei some Hoehenangst))\\
-Kampfsportarten & Sport and (istKampfsport only True)\\
-Koerperkontaktsportarten & Sport and (istKoerperkontakt only True)\\
-NichtexotischeSportarten & Sport and (istExotisch only False)\\
-Nichtkampfsportarten & Sport and (istKampfsport only False)\\
-NichtkoerperkontaktSportarten & Sport and (istKoerperkontakt only False)\\
-Nichtwassersportarten & Sport and (istWassersport only False)\\
-SelfDefenseZiel & hatZiel some SelfDefense\\
-SozialkontakteZiel & hatZiel some Sozialkontakte\\
-Wassersportarten & Sport and (istWassersport only True)\\
-WettbewerbZiel & hatZiel some Wettbewerb\\
-\end{tabular}
-\caption{Äquivalenzklassen in Sport}
-\label{aqclsport}
-\end{table}
+Bei den Sportarten muss jetzt jede Sportart die Object Property \textit{ungeeignetBei} verwenden. F\"ur die Object Property \textit{hatZiel} gilt das nicht.
 
-Für KoerperlicheEinschraenkungen
-(Armbereich or Beinbereich or Hoehenangst)
+\TODO{istExotisch, istKampfsport, istKoerperkontakt, istWassersport - Problem erw\"ahnen, dass man nicht nach Boolean abfragen kann}
 
-TODO
+\TODO{Klasse Boolean als L\"osung f\"ur das Problem}
+
+\TODO{\"Aquivalenzklassen, Aufbau einer Sportart, etc.}
 
 \section{Programm}
-Das Programm wurde mit Java geschreiben und beinhaltet eine Swing-basierte GUI. Funktional ist sie angebunden an eine SQL-Datenbank und eine OWL-Datei, die die Ontologie repräsentiert. Das Optische Erscheinungsbild ist in zwei Fenster gegliedert: Dem Hauptfenster besehend aus den sechs Auswahlgruppen Art des Sports (Einzel- oder Team), Einem Eingabefenster für maximale Kosten, ein Zielefenster, Innen-Außen-Formular geeignet, Ziele Eigenschaften (Abbildung \ref{GUI1}). Das zweite Fenster ist ein "`Stundenplan"', bei dem durch Auswahl ganzer Tage oder einzelner Stunden im Gitter bei dem die ausgewählten möglichen Zeiträume grün dargestellt werden (Abbildung \ref{GUI2})
+
+Dieser Abschnitt geht zuerst auf die Entscheidung zum Aufbau der graphischen Oberfläche ein und behandelt danach die technischen Aspekte des Programms. 
+
+\subsection{Entscheidung zum Aufbau der graphischen Oberfläche}
+Bei der Gestaltung der GUI, wurde sich dafür entschieden, dass der Benutzer zu jedem Zeitpunkt möglichst alle Auswahlmöglichkeiten vor Augen hat und dass er, ebenfalls zu jedem Zeitpunkt, eine Liste mit den Sportarten erhalten kann, die zu seinen Auswahlkriterien passen.
+
+Die Gründe für diese Entscheidungen sind zum einen die Benutzerfreundlichkeit. Durch diesen Aufbau soll der Benutzer aufgefordert werden, möglichst viele Auswahlkriterien auszuprobieren, da er sofort testen kann, welche Auswirkungen diese auf die Auswahl der Sportarten hat. Dies hat den Vorteil, dass der Benutzer die Kriterien mit, einer für ihn, hohen Priorität setzen kann und unangerührt lässt, währendem er die Kriterien mit einer, für ihn, niedrigen Priorität schnell und einfach ändern kann. Ein konkretes Beispiel hierfür wäre z.B. die Sportart Klettern. Für einige Benutzer ist die Höhenangst nur ein leichtes Problem, für einige andere ist sie unüberwindlich. Somit haben die Benutzer mit leichter Höhenangst, die Möglichkeit die angebotenen Sportarten mit oder ohne Höhenangst zu vergleichen, während jene mit starker Höhenangst das Kriterium auswählen und nicht mehr deaktivieren.
+
+Ein anderer Grund für diese Entscheidung war die Tatsache, dass unsere Szenarien wenige Sprünge von einem Schritt zu einem anderen beinhalten. Deshalb haben wir uns dagegen entschieden eine Frage nach der anderen abzuhandeln, wie die Szenarien dies eigentlich vorsehen und bei mehreren Sprüngen wohl auch einfacher umzusetzen gewesen wäre. Nichtsdestotrotz wird am Ende dieses Abschnittes erläutert wie mehrere dieser Sprünge dargestellt werden könnten, obwohl der Benutzer nach wie vor sämtliche Optionen vor Augen hat und möglichst wenig an Flexibilität einbüßt.
+
+\subsection{Technische Umsetzung}
+\TODO{Der Abschnitt ist viel zu detailliert. Das will so niemand lesen. Die prinzipielle Funktionsweise ist wichtig.
+Z.B. query (DB, oder Onto) hat immer folgenden Aufbau, Liste query(Liste). Dadurch wird es möglich eine query nach der anderen auszuführen und die Reihenfolge ist auch egal etc... Außerdem viel weniger Code copieren und nicht jedes Detail beschreiben, dies gilt auch für die Screenshots.  }
+
+Das Programm wurde mit Java geschrieben und beinhaltet eine Swing-basierte GUI. Funktional ist sie angebunden an eine SQL-Datenbank und eine OWL-Datei, die die Ontologie repräsentiert. Das Optische Erscheinungsbild ist in zwei Fenster gegliedert: Dem Hauptfenster besehend aus den sechs Auswahlgruppen Art des Sports (Einzel- oder Team), Einem Eingabefenster für maximale Kosten, ein Zielefenster, Innen-Außen-Formular geeignet, Ziele Eigenschaften (Abbildung \ref{GUI1}). Das zweite Fenster ist ein "`Stundenplan"', bei dem durch Auswahl ganzer Tage oder einzelner Stunden im Gitter bei dem die ausgewählten möglichen Zeiträume grün dargestellt werden (Abbildung \ref{GUI2})
 
 \begin{figure}%
 \includegraphics[width=150mm]{images/gui.png}%
@@ -139,7 +129,7 @@ Die Datenbankverbindung wird durch einen JDBC-Treiber realisiert. Unsere gefüll
 Das folgende Listing wird nach Auslösen des "`Suche Sportarten"'-Knopfes ausgeführt (präziser: Die doInBackground-Methode):
 
 
-\begin{lstlisting}
+\begin{lstlisting}[language=JAVA]
 	private class ExecuteQuery extends SwingWorker<Void, Void> {
 
 		private DefaultListModel<Sportangebot> model = new DefaultListModel<Sportangebot>();
@@ -178,7 +168,7 @@ Im folgenden
 		
 
 
-begin{lstlisting}
+\begin{lstlisting}
     public Map<String, Sportangebot> execute() {
         Map<String, Sportangebot> sport = Queries.querySport();
 
@@ -216,6 +206,38 @@ begin{lstlisting}
 
     }
 
-end{lstlisting}
+\end{lstlisting}
+
+\section{Realisierung der Sprünge}
+Da es in unseren Szenarien nur wenige Sprünge gibt, wurde deren Logik fest in die GUI hinein programmiert. Die einzelnen Sprünge sind im folgenden aufgelistet und es wird beschrieben, wie diese umgesetzt wurden.
+
+\subparagraph{Überspringen der Frage ob Einzel- oder Teamsportart.} Der Benutzer kann in der GUI bei dieser Frage "`Egal"' auswählen, so dass sie nicht in Betracht gezogen wird.
+\subparagraph{Die Frage ob das Sportangebot etwas kosten darf.} Der Benutzer hat hier die Möglichkeit, die Frage zu ignorieren, oder einen maximal Preis anzugeben.
+\subparagraph{Hat der Benutzer eine Einschränkung, so darf beim Sportangebot kein Körperkontakt bestehen.} Wählt der Benutzer eine Einschränkung, so wird die Auswahlmöglichkeit zum Körperkontakt automatisch auf "`Nein"' gestellt und er kann diese Auswahl nicht mehr ändern. Es sei denn er wählt sämtliche Einschränkungen wieder ab.
+\subparagraph{Sprung zu einer beliebigen Frage.} Da der Benutzer sämtliche Auswahlkriterien zu jedem Zeitpunkt sehen kann ist dieser Sprung nicht relevant.
+
+\subsection{Realisierung von mehreren Sprüngen}
+Diese Vorgehensweise ist recht gut geeignet, falls die Szenarien nur wenige Sprüngen enthalten. Im Falle dass es in diesen mehrere solcher Sprünge gibt, braucht man eine andere Vorgehensweise, bei der diese nicht mehr hartcodiert sind, sondern möglichst dynamisch verändert werden können.
+
+Eine Idee wäre es verschiedene Personenarten in die Ontology einzuführen. Je nach dem welche Angaben der Benutzer ausgewählt hat, ermittelt die Ontology um welche Art von Person es sich beim Benutzer handelt. Die GUI erhält die Personenart und kann entsprechend darauf reagieren, indem sie z.B. verschiedene Felder automatisch auswählt, hervorhebt oder versteckt.
+
+Als Beispiel könnte man eine Personenart \lstinline"eingeschraenkte_Person" in der Ontology einführen, die eine Unterklasse von \lstinline"Person" ist und als Property \lstinline"hat_Einschraenkung some koerperliche_Einschraenkung" besitzt. Wählt der Benutzer nun als körperliche Einschränkung den Beinbreich aus, so wird eine Query an die Ontologie abgesetzt, die wie folgt aussieht \lstinline"Person and hat_Einschraenkung some Beinbereich", das Ergebnis dieser Query wäre die Klasse \lstinline"eingeschraenkte_Person". Da die GUI nun weiß, dass es sich beim Benutzer um eine \lstinline"eingeschraenkte_Person" handelt, kann die Auswahloption der Kampfsportart, wie im Szenario beschrieben, auf \lstinline"Nein" gesetzt werden.
+
+Das Beispiel kann man wie folgt erweitert werden, führt man eine weitere Personenart \lstinline"zahlende_Person" mit der Property \lstinline"will_zahlen only True", wobei es sich bei dem True um einen von uns eingeführten Boolean Wert handelt. Dies ermöglicht es folgende Query abzusetzen: \lstinline"Person and (hat_Einschraenkung some Beinbereich or will_zahlen only True)". Das Ergebnis sind folgende Personenarten: \lstinline"eingeschraenkte_Person, zahlende_Person". Die GUI kann daraufhin auf die einzelnen Personenarten reagieren und wie oben beschrieben ihr Aussehen ändern. Ein Vorteil dieser Methode ist, dass man die Query beliebig mit der Veroderung erweitern kann, so dass man bei Bedarf weitere Kriterien aufnehmen kann.
+
+In diesem Beispiel müssen zwei unabhängige Teile der GUI verändert werden, es ist jedoch vorstellbar, dass es Personenarten gibt, die gleichzeitig auftreten können, allerdings widersprüchliche Effekte in der GUI auslösen sollen. So könnte z.B. ein bestimmtes Feld für die eine Personenart aus- und für die andere Personenart angeschaltet werden. Wie solche Konflikte zu lösen sind, wir wahrscheinlich von den konkreten Fällen abhängen. Ein möglicher Lösungsansatz wäre aber ein Priorisieren der verschiedenen Personenarten. Dies bedeutet, dass sich die Personenart mit der höheren Priorität durchsetzt und die GUI deren Effekte übernimmt. Die Prioritäten könnten auch vom Benutzer mitbestimmt werden, indem er festlegen kann, wie wichtig ihm verschiedene Auswahlkriterien sind.
+ 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
