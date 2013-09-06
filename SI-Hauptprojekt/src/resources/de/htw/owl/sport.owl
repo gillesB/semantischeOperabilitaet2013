@@ -1098,7 +1098,7 @@
         <Class IRI="#Kanu_und_Kajak"/>
         <ObjectAllValuesFrom>
             <ObjectProperty IRI="#istWassersport"/>
-            <Class IRI="#False"/>
+            <Class IRI="#True"/>
         </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
