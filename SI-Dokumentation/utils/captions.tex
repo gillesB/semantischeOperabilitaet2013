@@ -64,7 +64,7 @@
 \newenvironment{captabular}[2][\currentcaption]
 {%BEGIN%
 	\renewcommand*{\currentcaption}{#1}
-	\begin{table}[H]
+	\begin{table}[htbp]
 		\captionsetup{type=table}
 		\begin{center}
 		\begin{tabular}{#2}
@@ -79,7 +79,7 @@
 \newenvironment{captabular*}[3][\currentcaption]
 {%BEGIN%
 	\renewcommand*{\currentcaption}{#1}
-	\begin{table}[H]
+	\begin{table}[htbp]
 		\captionsetup{type=table}
 		\begin{center}
 		\begin{tabular*}{#2}{#3}
@@ -95,7 +95,7 @@
 \newenvironment{captabularx}[3][\currentcaption]
 {%BEGIN%
 	\renewcommand*{\currentcaption}{#1}
-	\begin{table}[H]
+	\begin{table}[htbp]
 		\captionsetup{type=table}
 		\tabularx{#2}{#3}
 }{%END%
@@ -108,7 +108,7 @@
 \newenvironment{capfigure}[1][\currentcaption]
 {%BEGIN%
 	\renewcommand*{\currentcaption}{#1}	
-		\begin{figure}[H]
+		\begin{figure}[htbp]
 			\captionsetup{type=figure}
 				\begin{center}
 }{%END%
