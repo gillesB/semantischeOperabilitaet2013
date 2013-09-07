@@ -19,7 +19,6 @@ Die Datenbank enthält im wesentlichen Informationen die ein Hochschulsportberat
 \item Veranstaltungsort
 \item Höhe der Teilnehmergebühr
 \end{itemize} 
-
 Das genaue Datenbankmodell kann der Abbildung \ref{fig:Datenbank-Design} entnommen werden.
 
 \begin{capfigure}[Datenbank-Design]
@@ -107,23 +106,35 @@ Bei der Gestaltung der GUI, wurde sich dafür entschieden, dass der Benutzer zu 
 Die Gründe für diese Entscheidungen sind zum einen die Benutzerfreundlichkeit. Durch diesen Aufbau soll der Benutzer aufgefordert werden, möglichst viele Auswahlkriterien auszuprobieren, da er sofort testen kann, welche Auswirkungen diese auf die Auswahl der Sportarten hat. Dies hat den Vorteil, dass der Benutzer die Kriterien mit, einer für ihn, hohen Priorität setzen kann und unangerührt lässt, währendem er die Kriterien mit einer, für ihn, niedrigen Priorität schnell und einfach ändern kann. Ein konkretes Beispiel hierfür wäre z.B. die Sportart Klettern. Für einige Benutzer ist die Höhenangst nur ein leichtes Problem, für einige andere ist sie unüberwindlich. Somit haben die Benutzer mit leichter Höhenangst, die Möglichkeit die angebotenen Sportarten mit oder ohne Höhenangst zu vergleichen, während jene mit starker Höhenangst das Kriterium auswählen und nicht mehr deaktivieren.
 
 Ein anderer Grund für diese Entscheidung war die Tatsache, dass unsere Szenarien wenige Sprünge von einem Schritt zu einem anderen beinhalten. Deshalb haben wir uns dagegen entschieden eine Frage nach der anderen abzuhandeln, wie die Szenarien dies eigentlich vorsehen und bei mehreren Sprüngen wohl auch einfacher umzusetzen gewesen wäre. Nichtsdestotrotz wird am Ende dieses Abschnittes erläutert wie mehrere dieser Sprünge dargestellt werden könnten, obwohl der Benutzer nach wie vor sämtliche Optionen vor Augen hat und möglichst wenig an Flexibilität einbüßt.
-
+\TODO{richtige referenz setzen}
 
 \subsection{Aufbau der graphischen Oberfläche}
 
-Bei \ref{fig:Hauptfenster} handelt es sich um das Hauptfenster, in dem der Benutzer die Möglichkeit hat seine Auswahlkriterien festzulegen, die Suche zu starten sowie die vorgeschlagen Sportarten einzusehen und Informationen über diese zu erhalten. Bei den Auswahlkriterien handelt es sich um jene, die benötigt werden, um die Fragen aus den Szenarien zu beantworten.
+Bei der Abbildung \ref{fig:Hauptfenster} handelt es sich um das Hauptfenster, in dem der Benutzer die Möglichkeit hat seine Auswahlkriterien festzulegen, die Suche zu starten sowie die vorgeschlagen Sportarten einzusehen und Informationen über diese zu erhalten. Bei den Auswahlkriterien handelt es sich um jene, die benötigt werden, um die Fragen aus den Szenarien zu beantworten.
 
-Bei \ref{fig:Auswahl der Zeiten} handelt es sich um einen "`Stundenplan"', in dem der Benutzer die Zeiträume festlegen kann, in denen er wöchentlich Sport treiben will. 
+Bei der Abbildung \ref{fig:Auswahl der Zeiten} handelt es sich um einen "`Stundenplan"', in dem der Benutzer die Zeiträume festlegen kann, in denen er wöchentlich Sport treiben will. 
 
-\begin{capfigure}[Hauptfenster]%
+%\begin{capfigure}[Hauptfenster]%
+%\includegraphics[width=\textwidth]{images/gui.png}%
+%\end{capfigure}
+
+%\begin{capfigure}[Auswahl der Zeiten]%
+%\includegraphics[width=\textwidth]{images/guizeit.png}%
+%\end{capfigure}
+
+\begin{figure}[p]
 \centering
 \includegraphics[width=\textwidth]{images/gui.png}%
-\end{capfigure}
+\caption{Hauptfenster}
+\label{fig:Hauptfenster}
+\end{figure}
 
-\begin{capfigure}[Auswahl der Zeiten]%
+\begin{figure}[p]
 \centering
 \includegraphics[width=\textwidth]{images/guizeit.png}%
-\end{capfigure}
+\caption{Auswahl der Zeiten}
+\label{fig:Auswahl der Zeiten}
+\end{figure}
 
 \subsection{Technische Umsetzung}
 Das Programm wurde mit Java geschrieben und benutzt die Semantic Web OWL API \autocite{semweb:owlapi} als Verbindung zur Ontologie. Beim benutzten Reasoner handelt es sich um HermIT\autocite{krr:hermit}. Die Verbindung zur Datenbank wird durch einen JDBC-Treiber\autocite{oracle:jdbc} realisiert.
@@ -132,7 +143,7 @@ Beim Ausführen der Suche wird zunächst eine Menge mit sämtlichen verfügbaren
 
 Das Listing \ref{lst:filtern} zeigt das Filtern an einem konkreten Beispiel. In einem ersten Schritt werden die Sportarten abgefragt. Danach werden die einzelnen Queries durchlaufen, wobei immer abgefragt wird, ob das entsprechende Auswahlkriterium nicht ignoriert werden soll. Im Beispiel wird der nach dem maximalen Preis und den Zielen gefiltert. Es sei noch darauf hingewiesen, dass es an dieser Stelle im Code keinen Unterschied macht, ob die Query über die Datenbank (für den Preis) oder die Ontologie (für die Ziele) ausgeführt wird. 
 
-\begin{lstlisting}[caption=Filtern von Sportarten, label=lst:filtern]
+\begin{lstlisting}[float=htbp, caption=Filtern von Sportarten, label=lst:filtern]
 Set<Sportangebot> sport = Queries.querySport();
 ...        
 if (!ignorePrice) {
