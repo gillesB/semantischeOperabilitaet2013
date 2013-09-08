@@ -55,10 +55,10 @@ public class KursMitDetails extends Kurs {
 	@Override
 	public String toString() {
 		return "Kursname:\t"			+ kursname +
-				"\n Ort:\t"				+ ort +
-				"\n Zielgruppe:\t"		+ zielgruppe + 
-				"\n Niveau:\t"			+ niveau +
-				"\n Campus:\t"			+ campus;
+				"<br/> Ort:\t"				+ ort +
+				"<br/> Zielgruppe:\t"		+ zielgruppe + 
+				"<br/> Niveau:\t"			+ niveau +
+				"<br/> Campus:\t"			+ campus;
 	}
 	
 	
