@@ -140,6 +140,7 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 		panel_3.add(scrollPane_2);
 
 		txtDetail = new JTextPane();
+		txtDetail.setContentType("text/html");
 		scrollPane_2.setViewportView(txtDetail);
 
 		JPanel panel_4 = new JPanel();
