@@ -721,12 +721,6 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 		@Override
 		protected Map<String, Sportangebot> doInBackground() throws Exception {
 			Map<String, Sportangebot> result = builder.execute();
-			List<Sportangebot> result_sportangebote = new ArrayList<Sportangebot>(
-					result.values());
-			Collections.sort(result_sportangebote);
-			for (Sportangebot sport : result_sportangebote) {
-				model.addElement(sport);
-			}
 
 			return result;
 		}
