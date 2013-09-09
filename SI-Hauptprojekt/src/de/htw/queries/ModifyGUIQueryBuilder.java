@@ -14,9 +14,10 @@ public class ModifyGUIQueryBuilder {
 
 	private boolean wantsToPay = false;
 	private KoerperlicheEinschraenkungen[] einschraenkungen = new KoerperlicheEinschraenkungen[0];
-	private static OntolgyConnection ontolgy = OntolgyConnection.getInstance();
 
 	public Set<Personen> execute() {
+		OntolgyConnection ontolgy = OntolgyConnection.getInstance();
+		
 		if(!wantsToPay && !(einschraenkungen.length > 0)){
 			return new HashSet<Personen>();
 		}	
