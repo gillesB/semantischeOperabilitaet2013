@@ -1,0 +1,21 @@
+\chapter{Realisierung der Sprünge}
+Wie bereits oben erwähnt beinhalten unsere Szenarien nur wenige Sprünge. Die einzelnen Sprünge sind im folgenden aufgelistet und es wird beschrieben, wie diese in der GUI dargestellt werden. 
+
+\subparagraph{Überspringen einzelner Fragen.} Der Benutzer kann in der GUI bei verschiedenen Fragen "`Egal"' auswählen, so dass diese nicht in Betracht gezogen werden.
+\subparagraph{Die Frage ob das Sportangebot etwas kosten darf.} Der Benutzer hat hier die Möglichkeit, die Frage zu ignorieren, oder einen maximal Preis anzugeben.
+\subparagraph{Hat der Benutzer eine Einschränkung, so darf beim Sportangebot kein Körperkontakt bestehen.} Wählt der Benutzer eine Einschränkung, so wird die Auswahlmöglichkeit zum Körperkontakt automatisch auf "`Nein"' gestellt und er kann diese Auswahl nicht mehr ändern. Es sei denn er wählt sämtliche Einschränkungen wieder ab.
+\subparagraph{Sprung zu einer beliebigen Frage.} Da der Benutzer sämtliche Auswahlkriterien zu jedem Zeitpunkt sehen kann, ist dieser Sprung nicht relevant.
+
+In einem ersten Schritt wurden diese Sprünge, einfachheitshalber, fest in die GUI hineinprogrammiert. Diese Vorgehensweise ist zwar recht gut geeignet, falls die Szenarien nur wenige Sprüngen enthalten. Ab einer bestimmten Anzahl solcher Sprünge, wird jedoch eine andere Vorgehensweise benötigt, bei der die Sprünge nicht mehr hart-codiert sind, sondern möglichst dynamisch verändert werden können. Diese, im folgenden Abschnitt beschriebene, Vorgehensweise, wurde in einem zweiten Schritt realisiert.   
+
+\section{Realisierung von mehreren Sprüngen}
+
+Die Grundidee der Vorgehensweise ist es, verschiedene Personenarten in die Ontologie einzuführen und dann über die bereits angegebenen Auswahlkriterien zu bestimmen um welche Personenart es sich beim Benutzer handelt. Mit dieser Information kann sich die GUI entsprechend anpassen und kann bei Bedarf verschiedene Komponenten automatisch auswählen, hervorheben oder verstecken etc...
+
+Als Beispiel sei hier die Personenart \lstinline"eingeschraenkte_Person" genannt. Hierbei handelt es sich um eine Unterklasse von \lstinline"Person" und als Property \lstinline"hat_Einschraenkung some koerperliche_Einschraenkung" besitzt. Wählt der Benutzer nun als körperliche Einschränkung den Beinbereich aus, so wird eine Query an die Ontologie abgesetzt, die wie folgt aussieht: \lstinline"Person and hat_Einschraenkung some Beinbereich", das Ergebnis dieser Query wäre die Klasse \lstinline"eingeschraenkte_Person". Da die GUI nun weiß, dass es sich beim Benutzer um eine \lstinline"eingeschraenkte_Person" handelt, kann die Auswahloption der Kampfsportart, wie im Szenario beschrieben, auf \lstinline"Nein" gesetzt werden.
+
+Das Beispiel kann wie folgt erweitert werden: führt man eine weitere Personenart \lstinline"zahlende_Person" mit der Property \lstinline"will_zahlen only True", wobei es sich bei dem True um einen von uns eingeführten Boolean Wert handelt. Dies ermöglicht es folgende Query abzusetzen: \lstinline"Person and (hat_Einschraenkung some Beinbereich or will_zahlen only True)". Das Ergebnis sind folgende Personenarten: \lstinline"eingeschraenkte_Person, zahlende_Person". Die GUI kann daraufhin auf die einzelnen Personenarten reagieren und wie oben beschrieben ihr Aussehen ändern. Ein Vorteil dieser Methode ist, dass man die Query beliebig mit der Oder-Verknüpfung erweitern kann, so dass man bei Bedarf weitere Kriterien aufnehmen kann.
+
+In diesem Beispiel müssen zwei unabhängige Teile der GUI verändert werden, es ist jedoch vorstellbar, dass es Personenarten gibt, die gleichzeitig auftreten können, allerdings widersprüchliche Effekte in der GUI auslösen sollen. So könnte z.B. ein bestimmtes Feld für die eine Personenart aus- und für die andere Personenart angeschaltet werden. Wie solche Konflikte zu lösen sind, hängt von den konkreten Fällen ab. Ein möglicher Lösungsansatz wäre aber ein Priorisieren der verschiedenen Personenarten. Dies bedeutet, dass sich die Personenart mit der höheren Priorität durchsetzt und die GUI deren Effekte übernimmt. Die Prioritäten könnten auch vom Benutzer mitbestimmt werden, indem er festlegen kann, wie wichtig ihm verschiedene Auswahlkriterien sind.
+
+\TODO{[PRIO:NORMAL]fÜr Gilles: beschreibe einzelne Fragen mit CardLayout}
