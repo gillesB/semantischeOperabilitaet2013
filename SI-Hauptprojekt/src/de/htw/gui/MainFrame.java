@@ -597,14 +597,14 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 
 	}
 
-	private class ModifyGUI extends SwingWorker<Set<Personen> , Void> {
+	private class ModifyGUI extends SwingWorker<Set<Personen>, Void> {
 
 		private ModifyGUIQueryBuilder builder = new ModifyGUIQueryBuilder();
-		
-		public void configBuilder(){
+
+		public void configBuilder() {
 			MainFrame.this.setCursor(Cursor
 					.getPredefinedCursor(Cursor.WAIT_CURSOR));
-			
+
 			configPrice();
 			configKoerperlicheEinschraenkung();
 		}
@@ -620,30 +620,31 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 			Set<Personen> personen;
 			try {
 				personen = get();
-				if (personen.isEmpty()) {
-					setDefaultValues();
-				} else {
-					for (Personen person : personen) {
-						switch (person) {
-						case ZAHLEND:
-							txtKosten.setEnabled(true);
-							break;
 
-						case EINGESCHRAENKT:
-							if (Choices.JA.equals(cboKoerperkontakt.getSelectedItem())) {
-								JOptionPane
-										.showMessageDialog(
-												MainFrame.this,
-												"Körperkontakt und Einschränkungen dürfen nicht gleichzeitig ausgewählt sein.\nKörperkontakt wird auf NEIN gesetzt");
-							}
-							cboKoerperkontakt.setEnabled(false);
-							cboKoerperkontakt.setSelectedItem(Choices.NEIN);
-							break;
+				resetValues(personen);
 
-						default:
-							break;
+				for (Personen person : personen) {
+					switch (person) {
+					case ZAHLEND:
+						txtKosten.setEnabled(true);
+						break;
+
+					case EINGESCHRAENKT:
+						if (Choices.JA.equals(cboKoerperkontakt
+								.getSelectedItem())) {
+							JOptionPane
+									.showMessageDialog(
+											MainFrame.this,
+											"Körperkontakt und Einschränkungen dürfen nicht gleichzeitig ausgewählt sein.\nKörperkontakt wird auf NEIN gesetzt");
 						}
+						cboKoerperkontakt.setEnabled(false);
+						cboKoerperkontakt.setSelectedItem(Choices.NEIN);
+						break;
+
+					default:
+						break;
 					}
+
 				}
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
@@ -652,18 +653,21 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 			MainFrame.this.setCursor(Cursor
 					.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
 
+		private void resetValues(Set<Personen> personen) {
+			if (!personen.contains(Personen.EINGESCHRAENKT)) {
+				cboKoerperkontakt.setEnabled(true);
+				cboKoerperkontakt.setSelectedItem(Choices.EGAL);
+			}
 
+			if (!personen.contains(Personen.ZAHLEND)) {
+				txtKosten.setEnabled(false);
+			}
 
-		private void setDefaultValues() {
-			cboKoerperkontakt.setEnabled(true);
-			cboKoerperkontakt.setSelectedItem(Choices.EGAL);
-			txtKosten.setEnabled(false);
-			
 		}
 
 		private void configPrice() {
@@ -694,16 +698,17 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 	 * 
 	 * @author Gilles
 	 */
-	private class ExecuteQuery extends SwingWorker<Map<String, Sportangebot>, Void> {
+	private class ExecuteQuery extends
+			SwingWorker<Map<String, Sportangebot>, Void> {
 
 		private DefaultListModel<Sportangebot> model = new DefaultListModel<Sportangebot>();
 		private QueryBuilder builder = new QueryBuilder();
 
-		public void config(){
+		public void config() {
 			MainFrame.this.setCursor(Cursor
 					.getPredefinedCursor(Cursor.WAIT_CURSOR));
 			btnSearch.setEnabled(false);
-			
+
 			configArtVonSport();
 			configPrice();
 			configKoerperlicheEinschraenkung();
@@ -712,7 +717,7 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 			config4Attributes();
 			configTimeFrames();
 		}
-		
+
 		@Override
 		protected Map<String, Sportangebot> doInBackground() throws Exception {
 			Map<String, Sportangebot> result = builder.execute();
@@ -725,7 +730,6 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 
 			return result;
 		}
-		
 
 		@Override
 		protected void done() {
@@ -745,16 +749,15 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 			MainFrame.this.setCursor(Cursor.getDefaultCursor());
 			btnSearch.setEnabled(true);
 			lstSportarten.setModel(model);
-		}	
+		}
 
 		private void configTimeFrames() {
 			builder.setSelectedTimeFames(timeFrames);
 		}
-
 
 		private void configArtVonSport() {
 			String selectedArtVonSportButton = getSelectedButtonText(btngArtVonSport);
