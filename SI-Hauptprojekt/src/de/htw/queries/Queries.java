@@ -394,7 +394,7 @@ public class Queries {
         	KursMitDetails kurs = kurse.get(i);
             termine = terminDAO.findAllTerminByIdKurs(kurs.getIdKurs());
             termine_details = printTermineMitDetails(termine);
-            ausgaben += kurs.toString().replaceAll("\t", "&#09;") + "<br/>" + termine_details;
+            ausgaben += kurs.toString().replaceAll("\t", " ") + "<br/>" + termine_details;
             if (i != kurse.size() - 1){
             	 ausgaben += "<hr><br/>";	
             }
