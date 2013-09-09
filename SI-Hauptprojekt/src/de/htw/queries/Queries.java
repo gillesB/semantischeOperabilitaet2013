@@ -310,7 +310,7 @@ public class Queries {
         try {
             while (acceptableClasses.next()) {
                 String sportName = acceptableClasses
-                        .getString("Sportangebot.name");
+                        .getString("Sportangebot.name").trim();
                 sportangebote.put(sportName, originalClasses.get(sportName));
             }
         }
