@@ -90,11 +90,97 @@ Nun lassen sich die Ziele und Einschränkungen mit den Sportarten verbinden. Ein
 
 Bei den Sportarten muss jetzt jede Sportart die Object Property \textit{ungeeignetBei} verwenden. Für die Object Property \textit{hatZiel} gilt das nicht.
 
+\begin{capitemize}[Properties - istExotisch, istKampfsport, istKoerperkontakt, istWassersport]
+	\item istExotisch
+		\begin{itemize}
+			\item Domains: \textit{Sport}
+			\item Ranges: \textit{Boolean}
+		\end{itemize}
+	\item istKampfsport
+		\begin{itemize}
+			\item Domains: \textit{Sport}
+			\item Ranges: \textit{Boolean}
+		\end{itemize}
+	\item istKoerperkontakt
+		\begin{itemize}
+			\item Domains: \textit{Sport}
+			\item Ranges: \textit{Boolean}
+		\end{itemize}
+	\item istWassersport
+		\begin{itemize}
+			\item Domains: \textit{Sport}
+			\item Ranges: \textit{Boolean}
+		\end{itemize}
+\end{capitemize}
+
+Alternativ wäre eine Realisierung über Data-Properties möglich gewesen (mit dem eingebauten Typ boolean als Range). Für die Einführung einer eigenen Klasse Boolean wurde mit den Unterklassen "`True"' und "`False"' als Range für die Object Properties haben wir uns entschieden, da es von der Komplexität her gleichwertig war. Außerdem ist dies übersichtlicher. Der Restriktionstyp "`value"' ist außerdem beim den Restriktionseditoren von Protégé beim Anlegen von Äquivalenzklassen nicht in der Dropdownbox aufgetaucht, so dass die Lösung über Object-Properties unterm Strich vereinfacht hat.
+
 \TODO{istExotisch, istKampfsport, istKoerperkontakt, istWassersport - Problem erw\"ahnen, dass man nicht nach Boolean abfragen kann}
 
-\TODO{Klasse Boolean als L\"osung f\"ur das Problem}
+\subsection{Äquivalenzklassen}
 
-\TODO{\"Aquivalenzklassen, Aufbau einer Sportart, etc.}
+Um die Ontologieprobleme in den Szenarien zu lösen, wurden in der Ontologie bereits Äquivalenzklassen beschrieben. Folgende Äquivalenzklassen wurden eingeführt:
+
+\TODO{format + Erläutern}
+
+\textbf{Sport}
+ExotischeSportarten  
+	istExotisch only True
+	
+FitnessZiel
+	hatZiel some Fitness
+	
+FreizeitvergnuegenZiel
+	hatZiel some  Freizeitvergnuegen)
+	
+GeeignetBeiArmbereichKE
+	Sport and (not (ungeeignetBei Armbereich))
+	
+GeeignetBeiBeinbereichKE
+	Sport and (not (ungeeignetBei some Beinbereich))
+	
+GeeignetBeiHoehenangst
+	Sport and (not (ungeeignetBei some Hoehenangst))
+	
+Kampfsportarten 
+	Sport and (istKampfsport only True)
+	
+Koerperkontaktsportarten 
+	Sport and (istKoerperkontakt only True)
+	
+NichtexotischeSportarten 
+	Sport and (istExotisch only False)
+	
+Nichtkampfsportarten 
+	Sport and (istKampfsport only False)
+	
+NichtkoerperkontaktSportarten 
+	Sport and (istKoerperkontakt only False)
+	
+Nichtwassersportarten 
+	Sport and (istWassersport only False)
+	
+SelfDefenseZiel 
+	hatZiel some SelfDefense
+	
+SozialkontakteZiel 
+	hatZiel some Sozialkontakte
+	
+Wassersportarten 
+	Sport and (istWassersport only True)
+	
+WettbewerbZiel 
+	hatZiel some Wettbewerb
+	
+\textbf{Koerperliche\_Einschraenkungen}
+Koerperliche Einschränkung
+Armbereich
+ or Beinbereich
+ or Hoehenangst
+
+\TODO{\"Aquivalenzklassen, Aufbau einer Sportart, etc. - ausformulieren}
+
+
 
 \section{Programm}
 
@@ -135,7 +221,7 @@ Bei der Abbildung \ref{fig:Auswahl der Zeiten} handelt es sich um einen "`Stunde
 \caption{Auswahl der Zeiten}
 \label{fig:Auswahl der Zeiten}
 \end{figure}
-
+\newpage
 \subsection{Technische Umsetzung}
 Das Programm wurde mit Java geschrieben und benutzt die Semantic Web OWL API \autocite{semweb:owlapi} als Verbindung zur Ontologie. Beim benutzten Reasoner handelt es sich um HermIT\autocite{krr:hermit}. Die Verbindung zur Datenbank wird durch einen JDBC-Treiber\autocite{oracle:jdbc} realisiert.
 
