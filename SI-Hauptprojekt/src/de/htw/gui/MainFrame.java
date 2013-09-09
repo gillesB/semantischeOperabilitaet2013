@@ -505,10 +505,9 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 		btnSearch.setMnemonic('S');
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.this.setCursor(Cursor
-						.getPredefinedCursor(Cursor.WAIT_CURSOR));
-				btnSearch.setEnabled(false);
-				new ExecuteQuery().execute();
+				ExecuteQuery executeQuery = new ExecuteQuery();
+				executeQuery.config();
+				executeQuery.execute();
 			}
 		});
 		btnZeit.addActionListener(new ActionListener() {
@@ -603,6 +602,9 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 		private ModifyGUIQueryBuilder builder = new ModifyGUIQueryBuilder();
 		
 		public void configBuilder(){
+			MainFrame.this.setCursor(Cursor
+					.getPredefinedCursor(Cursor.WAIT_CURSOR));
+			
 			configPrice();
 			configKoerperlicheEinschraenkung();
 		}
@@ -650,6 +652,9 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			MainFrame.this.setCursor(Cursor
+					.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
 
 
@@ -689,15 +694,16 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 	 * 
 	 * @author Gilles
 	 */
-	private class ExecuteQuery extends SwingWorker<Void, Void> {
+	private class ExecuteQuery extends SwingWorker<Map<String, Sportangebot>, Void> {
 
 		private DefaultListModel<Sportangebot> model = new DefaultListModel<Sportangebot>();
-		private QueryBuilder builder;
+		private QueryBuilder builder = new QueryBuilder();
 
-		@Override
-		protected Void doInBackground() throws Exception {
-			builder = new QueryBuilder();
-
+		public void config(){
+			MainFrame.this.setCursor(Cursor
+					.getPredefinedCursor(Cursor.WAIT_CURSOR));
+			btnSearch.setEnabled(false);
+			
 			configArtVonSport();
 			configPrice();
 			configKoerperlicheEinschraenkung();
@@ -705,7 +711,10 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 			configZiele();
 			config4Attributes();
 			configTimeFrames();
-
+		}
+		
+		@Override
+		protected Map<String, Sportangebot> doInBackground() throws Exception {
 			Map<String, Sportangebot> result = builder.execute();
 			List<Sportangebot> result_sportangebote = new ArrayList<Sportangebot>(
 					result.values());
@@ -714,19 +723,38 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 				model.addElement(sport);
 			}
 
-			return null;
+			return result;
 		}
+		
+
+		@Override
+		protected void done() {
+			Map<String, Sportangebot> result;
+			try {
+				result = get();
+				List<Sportangebot> result_sportangebote = new ArrayList<Sportangebot>(
+						result.values());
+				Collections.sort(result_sportangebote);
+				for (Sportangebot sport : result_sportangebote) {
+					model.addElement(sport);
+				}
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			MainFrame.this.setCursor(Cursor.getDefaultCursor());
+			btnSearch.setEnabled(true);
+			lstSportarten.setModel(model);
+		}	
 
 		private void configTimeFrames() {
 			builder.setSelectedTimeFames(timeFrames);
 		}
 
-		@Override
-		protected void done() {
-			MainFrame.this.setCursor(Cursor.getDefaultCursor());
-			btnSearch.setEnabled(true);
-			lstSportarten.setModel(model);
-		}
 
 		private void configArtVonSport() {
 			String selectedArtVonSportButton = getSelectedButtonText(btngArtVonSport);
