@@ -2,12 +2,14 @@ package de.htw.gui;
 
 import business.model.Sportangebot;
 import business.model.ontology.KoerperlicheEinschraenkungen;
+import business.model.ontology.Personen;
 import business.model.ontology.Ziele;
 import de.htw.gui.TimeFrameChooser.ITimeFrameChooserListener;
 import de.htw.gui.TimeFrameChooser.TimeFrame;
 import de.htw.gui.TimeFrameChooser.TimeFrameChooserFrame;
 import de.htw.logging.LoggerNames;
 import de.htw.logging.RootLogger;
+import de.htw.queries.ModifyGUIQueryBuilder;
 import de.htw.queries.Queries;
 import de.htw.queries.QueryBuilder;
 import de.htw.queries.QueryBuilder.ArtVonSport;
@@ -29,6 +31,8 @@ import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 
 public class MainFrame extends JFrame implements ITimeFrameChooserListener {
@@ -286,7 +290,9 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 		chckbxIgnorieren.setSelected(true);
 		chckbxIgnorieren.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				txtKosten.setEnabled(!chckbxIgnorieren.isSelected());
+				ModifyGUI modifyGUI = new ModifyGUI();
+				modifyGUI.configBuilder();
+				modifyGUI.execute();
 			}
 		});
 		GridBagConstraints gbc_chckbxIgnorieren = new GridBagConstraints();
@@ -580,26 +586,100 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 					Level.INFO);
 		}
 	}
-	
-	private class EinschraenkungListener implements ActionListener{
+
+	private class EinschraenkungListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if(Choices.JA.equals(cboKoerperkontakt.getSelectedItem())){
-				JOptionPane.showMessageDialog(MainFrame.this,
-					    "Körperkontakt und Einschränkungen dürfen nicht gleichzeitig ausgewählt sein.\nKörperkontakt wird auf NEIN gesetzt");
+			ModifyGUI modifyGUI = new ModifyGUI();
+			modifyGUI.configBuilder();
+			modifyGUI.execute();
+		}
+
+	}
+
+	private class ModifyGUI extends SwingWorker<Set<Personen> , Void> {
+
+		private ModifyGUIQueryBuilder builder = new ModifyGUIQueryBuilder();
+		
+		public void configBuilder(){
+			configPrice();
+			configKoerperlicheEinschraenkung();
+		}
+
+		@Override
+		protected Set<Personen> doInBackground() throws Exception {
+			Set<Personen> personen = builder.execute();
+			return personen;
+		}
+
+		@Override
+		protected void done() {
+			Set<Personen> personen;
+			try {
+				personen = get();
+				if (personen.isEmpty()) {
+					setDefaultValues();
+				} else {
+					for (Personen person : personen) {
+						switch (person) {
+						case ZAHLEND:
+							txtKosten.setEnabled(true);
+							break;
+
+						case EINGESCHRAENKT:
+							if (Choices.JA.equals(cboKoerperkontakt.getSelectedItem())) {
+								JOptionPane
+										.showMessageDialog(
+												MainFrame.this,
+												"Körperkontakt und Einschränkungen dürfen nicht gleichzeitig ausgewählt sein.\nKörperkontakt wird auf NEIN gesetzt");
+							}
+							cboKoerperkontakt.setEnabled(false);
+							cboKoerperkontakt.setSelectedItem(Choices.NEIN);
+							break;
+
+						default:
+							break;
+						}
+					}
+				}
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			
-			if(chckbxArmeinschraenkung.isSelected() || chckbxBeineinschrnkung.isSelected() || chckbxHhenangst.isSelected()){
-				cboKoerperkontakt.setEnabled(false);
-			    cboKoerperkontakt.setSelectedItem(Choices.NEIN);
-			} else {
-				cboKoerperkontakt.setEnabled(true);
-			    cboKoerperkontakt.setSelectedItem(Choices.EGAL);
-			}
+		}
+
+
+
+		private void setDefaultValues() {
+			cboKoerperkontakt.setEnabled(true);
+			cboKoerperkontakt.setSelectedItem(Choices.EGAL);
+			txtKosten.setEnabled(false);
 			
 		}
-		
+
+		private void configPrice() {
+			builder.setWantsToPay(!chckbxIgnorieren.isSelected());
+		}
+
+		private void configKoerperlicheEinschraenkung() {
+			ArrayList<KoerperlicheEinschraenkungen> einschraenkungen = new ArrayList<KoerperlicheEinschraenkungen>();
+			if (chckbxArmeinschraenkung.isSelected()) {
+				einschraenkungen.add(KoerperlicheEinschraenkungen.ARMBEREICH);
+			}
+			if (chckbxBeineinschrnkung.isSelected()) {
+				einschraenkungen.add(KoerperlicheEinschraenkungen.BEINBEREICH);
+			}
+			if (chckbxHhenangst.isSelected()) {
+				einschraenkungen.add(KoerperlicheEinschraenkungen.HOEHENANGST);
+			}
+			builder.setEinschraenkungen(einschraenkungen
+					.toArray(new KoerperlicheEinschraenkungen[0]));
+		}
+
 	}
 
 	/**
