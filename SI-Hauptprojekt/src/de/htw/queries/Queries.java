@@ -177,7 +177,7 @@ public class Queries {
                                  + wassersport.getOntoEquivalent());
         }
 
-        if (query.equals(queryBegin)) {
+        if (queryBegin.equals(query.toString())) {
             return inputClasses;
         } else {
             query.append(createAccepableClassesCondition_Ontology(inputClasses));
