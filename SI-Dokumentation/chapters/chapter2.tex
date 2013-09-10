@@ -71,7 +71,7 @@ Danach sieht die Ontologie wie folgt aus:
 		\end{itemize}
 \end{capitemize}
 
-Damit sind die Klassen soweit fertig. Beide Klassen wurden in dieser Art angelegt, da sie optional sind. Ein Sport muss keine Verknüpfung zu diesen Klassen haben. Jetzt werden noch die Object Properties dazu wie folgt angelegt:
+Damit sind die Klassen soweit fertig. Beide Klassen wurden in dieser Art angelegt, da sie optional sind. Ein Sport muss keine Verknüpfung zu diesen Klassen haben. \TODO{Ich versteh was du meinst, aber erst beim 2ten Lesen. Bitte umformulieren.} Jetzt werden noch die Object Properties dazu wie folgt angelegt: 
 
 \begin{capitemize}[Properties - hatZiel und ungeeignetBei]
 	\item hatZiel
@@ -86,10 +86,11 @@ Damit sind die Klassen soweit fertig. Beide Klassen wurden in dieser Art angeleg
 		\end{itemize}
 \end{capitemize}
 
-Nun lassen sich die Ziele und Einschränkungen mit den Sportarten verbinden. Ein Problem ergibt sich mit dieser Variante allerdings noch, man kann nicht nach Sportarten suchen die explizit keine Einschränkungen haben. Bei den Zielen gibt es die gleiche Einschränkung, allerdings ist sie dort egal, da eine Suche nach Sportarten, die explizit keine Ziele haben keinen Sinn ergibt. Bei den Einschränkungen muss allerdings eine Lösung her. Da in einem Open-World-Szenario nur nach dem Vorhandensein gefragt werden kann, haben wir uns dazu entschieden noch die Unterklasse \textit{Keine} bei den Körperlichen Einschränkungen zu ergänzen. Jetzt hat man die Möglichkeit, auch Sportarten zu suchen, die bei keiner Einschränkung ungeeignet sind.
+Nun lassen sich die Ziele und Einschränkungen mit den Sportarten verbinden. Ein Problem ergibt sich mit dieser Variante allerdings noch, man kann nicht nach Sportarten suchen die explizit keine Einschränkungen haben. Bei den Zielen gibt es die gleiche Einschränkung \TODO{Das Wort Einschränkung hat eine doppelte Bedeutung. Bitte anderes Wort benutzen, oder immer körperliche Einschränkung verwenden}, allerdings ist sie dort egal, da eine Suche nach Sportarten, die explizit keine Ziele haben keinen Sinn ergibt. Bei den Einschränkungen muss allerdings eine Lösung her. Da in einem Open-World-Szenario nur nach dem Vorhandensein gefragt werden kann, haben wir uns dazu entschieden noch die Unterklasse \textit{Keine} bei den Körperlichen Einschränkungen zu ergänzen. Jetzt hat man die Möglichkeit, auch Sportarten zu suchen, die bei keiner Einschränkung ungeeignet sind.
 
-Bei den Sportarten muss jetzt jede Sportart die Object Property \textit{ungeeignetBei} verwenden. Für die Object Property \textit{hatZiel} gilt das nicht.
+Bei den Sportarten muss jetzt jede Sportart die Object Property \textit{ungeeignetBei} verwenden.  \TODO{Bitte noch erwähnen, dass Keine explizit gesetzt werden muss.} Für die Object Property \textit{hatZiel} gilt das nicht. \TODO{Warum? Bitte in einem Satz erläutern.}
 
+\TODO{Erläutern was die folgende Liste darstellt.}
 \begin{capitemize}[Properties - istExotisch, istKampfsport, istKoerperkontakt, istWassersport]
 	\item istExotisch
 		\begin{itemize}
@@ -114,6 +115,7 @@ Bei den Sportarten muss jetzt jede Sportart die Object Property \textit{ungeeign
 \end{capitemize}
 
 Alternativ wäre eine Realisierung über Data-Properties möglich gewesen (mit dem eingebauten Typ boolean als Range). Für die Einführung einer eigenen Klasse Boolean wurde mit den Unterklassen "`True"' und "`False"' als Range für die Object Properties haben wir uns entschieden, da es von der Komplexität her gleichwertig war. Außerdem ist dies übersichtlicher. Der Restriktionstyp "`value"' ist außerdem beim den Restriktionseditoren von Protégé beim Anlegen von Äquivalenzklassen nicht in der Dropdownbox aufgetaucht, so dass die Lösung über Object-Properties unterm Strich vereinfacht hat.
+\TODO{Satzbau, Kontext. Ich versteh nicht auf was du hinauswillst.}
 
 \TODO{istExotisch, istKampfsport, istKoerperkontakt, istWassersport - Problem erw\"ahnen, dass man nicht nach Boolean abfragen kann}
 
@@ -122,6 +124,7 @@ Alternativ wäre eine Realisierung über Data-Properties möglich gewesen (mit d
 Um die Ontologieprobleme in den Szenarien zu lösen, wurden in der Ontologie bereits Äquivalenzklassen beschrieben. Folgende Äquivalenzklassen wurden eingeführt:
 
 \TODO{format + Erläutern}
+\TODO{Äquivalenzklassen nur kurz erwähnen. Auf keinen Fall alle aufzählen. Diese werden im Programm kaum benutzt. Die einzige die mir gerade einfällt ist Koerperliche\_Einschraenkungen, da man durch diese die tatsächlichen Einschränkungen abbilden kann.}
 
 \textbf{Sport}
 ExotischeSportarten  
@@ -180,7 +183,7 @@ Armbereich
 
 \TODO{\"Aquivalenzklassen, Aufbau einer Sportart, etc. - ausformulieren}
 
-
+\TODO{Ich habe die Ontologie ja nachträglich noch erweitert. Es ist jetzt die Frage, wie wir diese Änderungen rein nehmen. Meiner Meinung ist es das Beste, wenn du die Personen und neuen Properties kurz erwähnst und dann auf das entsprechende Kapitel oder Abschnitt verweist. das müsste mit \textbackslash nameref gut gehen. }
 
 \section{Programm}
 
