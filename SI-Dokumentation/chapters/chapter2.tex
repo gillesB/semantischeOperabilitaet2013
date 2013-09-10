@@ -25,7 +25,7 @@ TODO etwas mehr
 \TODO{[PRIO:SOFORT] Komplett neu machen}
 Die Erstellung der Ontology wird mit \gls{protege} durchgef\"uhrt. \gls{protege} erm\"oglichst nur die Verwendung von OWL-DL. OWL-Full wird nicht unterst\"utzt, daher m\"ussen gewisse Einschr\"ankungen ber\"ucksichtigt werden. Beispielsweise kann man keine Komplementklassen erstellen. 
 
-Desweiteren sollte man immer bedenken, dass eine Ontology ein Open-World-Szenario darstellt. Im speziellen kann man nur nach dem Vorhandensein eines Kriteriums abfragen.
+Des weiteren sollte man immer bedenken, dass eine Ontology ein Open-World-Szenario darstellt. Im speziellen kann man nur nach dem Vorhandensein eines Kriteriums abfragen.
 
 Im Laufe dieses Abschnitts wird erl\"autert, wie die Ontology erstellt wurde. Im Besonderen werden unsere Entscheidungen bei der Umsetzung begr\"undet und deren Folgen erkl\"art.
 
@@ -82,7 +82,7 @@ Damit sind die Klassen soweit fertig. Beide Klassen wurden in dieser Art angeleg
 		\end{itemize}
 \end{capitemize}
 
-Nun lassen sich die Ziele und Einschr\"ankungen mit den Sportarten verbinden. Ein Problem ergibt sich mit dieser Variante allerdings noch, man kann nicht nach Sportarten suchen die keine Einschr\"ankungen haben. Bei den Zielen gibt es die gleiche Einschr\"ankung, allerdings ist sie dort egal, da eine Suche nach Sportarten, die explizit kine Ziele haben keinen Sinn ergibt. Bei den Einschr\"ankungen muss allerdings eine L\"osung her. Da in einem Open-World-Szenario nur nach dem Vorhandensein gefragt werden kann, haben wir uns dazu entschieden noch die Unterklasse \textit{Keine} bei den K\"oerplichen Einschr\"ankungen zu erg\"anzen. Jetzt hat man die M\"oglichkeit auch Sportarten zu suchen, die bei keiner Einschr\"ankung ungeeignet sind.
+Nun lassen sich die Ziele und Einschr\"ankungen mit den Sportarten verbinden. Ein Problem ergibt sich mit dieser Variante allerdings noch, man kann nicht nach Sportarten suchen die keine Einschr\"ankungen haben. Bei den Zielen gibt es die gleiche Einschr\"ankung, allerdings ist sie dort egal, da eine Suche nach Sportarten, die explizit keine Ziele haben keinen Sinn ergibt. Bei den Einschr\"ankungen muss allerdings eine L\"osung her. Da in einem Open-World-Szenario nur nach dem Vorhandensein gefragt werden kann, haben wir uns dazu entschieden noch die Unterklasse \textit{Keine} bei den K\"oerplichen Einschr\"ankungen zu erg\"anzen. Jetzt hat man die M\"oglichkeit auch Sportarten zu suchen, die bei keiner Einschr\"ankung ungeeignet sind.
 
 Bei den Sportarten muss jetzt jede Sportart die Object Property \textit{ungeeignetBei} verwenden. F\"ur die Object Property \textit{hatZiel} gilt das nicht.
 
