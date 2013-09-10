@@ -21,3 +21,7 @@ SI-Dokumentation/*run.xml
 SI-Dokumentation/*thm
 SI-Dokumentation/*toc
 *aux
+SI-Dokumentation/document.idx
+SI-Dokumentation/document.lof
+SI-Dokumentation/document.lot
+SI-Dokumentation/document.tps

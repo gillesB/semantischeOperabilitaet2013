@@ -136,6 +136,9 @@
         <Class IRI="#Nichtwassersportarten"/>
     </Declaration>
     <Declaration>
+        <Class IRI="#Person"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="#Power_Workout"/>
     </Declaration>
     <Declaration>
@@ -196,7 +199,16 @@
         <Class IRI="#Ziele"/>
     </Declaration>
     <Declaration>
+        <Class IRI="#eingeschraenkte_Person"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#zahlende_Person"/>
+    </Declaration>
+    <Declaration>
         <ObjectProperty IRI="#hatZiel"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hat_Einschraenkung"/>
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="#istExotisch"/>
@@ -212,6 +224,9 @@
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="#ungeeignetBei"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#will_zahlen"/>
     </Declaration>
     <EquivalentClasses>
         <Class IRI="#ExotischeSportarten"/>
@@ -1998,6 +2013,42 @@
         <Class IRI="#WettbewerbZiel"/>
         <Class IRI="#Sport"/>
     </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#eingeschraenkte_Person"/>
+        <Class IRI="#Person"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#eingeschraenkte_Person"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hat_Einschraenkung"/>
+            <Class IRI="#Armbereich"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#eingeschraenkte_Person"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hat_Einschraenkung"/>
+            <Class IRI="#Beinbereich"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#eingeschraenkte_Person"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hat_Einschraenkung"/>
+            <Class IRI="#Hoehenangst"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#zahlende_Person"/>
+        <Class IRI="#Person"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#zahlende_Person"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#will_zahlen"/>
+            <Class IRI="#True"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
     <DisjointClasses>
         <Class IRI="#Armbereich"/>
         <Class IRI="#Beinbereich"/>
@@ -2066,6 +2117,10 @@
         <Class IRI="#Sport"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hat_Einschraenkung"/>
+        <Class IRI="#Person"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
         <ObjectProperty IRI="#istExotisch"/>
         <Class IRI="#Sport"/>
     </ObjectPropertyDomain>
@@ -2085,9 +2140,17 @@
         <ObjectProperty IRI="#ungeeignetBei"/>
         <Class IRI="#Sport"/>
     </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#will_zahlen"/>
+        <Class IRI="#Person"/>
+    </ObjectPropertyDomain>
     <ObjectPropertyRange>
         <ObjectProperty IRI="#hatZiel"/>
         <Class IRI="#Ziele"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hat_Einschraenkung"/>
+        <Class IRI="#Koerperliche_Einschraenkungen"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
         <ObjectProperty IRI="#istExotisch"/>
@@ -2108,6 +2171,10 @@
     <ObjectPropertyRange>
         <ObjectProperty IRI="#ungeeignetBei"/>
         <Class IRI="#Koerperliche_Einschraenkungen"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#will_zahlen"/>
+        <Class IRI="#Boolean"/>
     </ObjectPropertyRange>
 </Ontology>
 

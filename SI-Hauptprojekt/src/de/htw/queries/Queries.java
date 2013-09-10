@@ -177,7 +177,7 @@ public class Queries {
                                  + wassersport.getOntoEquivalent());
         }
 
-        if (query.equals(queryBegin)) {
+        if (queryBegin.equals(query.toString())) {
             return inputClasses;
         } else {
             query.append(createAccepableClassesCondition_Ontology(inputClasses));
@@ -310,7 +310,7 @@ public class Queries {
         try {
             while (acceptableClasses.next()) {
                 String sportName = acceptableClasses
-                        .getString("Sportangebot.name");
+                        .getString("Sportangebot.name").trim();
                 sportangebote.put(sportName, originalClasses.get(sportName));
             }
         }
@@ -379,29 +379,37 @@ public class Queries {
     public static String getDetailString(Sportangebot sport) {
         List<KursMitDetails> kurse = new ArrayList<KursMitDetails>();
         kurse = kursDao.findAllKurseByIdSportangebot(sport.getIdSportangebot());
-//        System.out.println("Die Kurse von " + sport.getName() + " finden statt:");
         return printKursMitDetails(kurse);
     }
+    
+    
+
 
     private static String printKursMitDetails(List<KursMitDetails> kurse) {
         String ausgaben = "";
         List<TerminDetails> termine = new ArrayList<TerminDetails>();
         String termine_details = "";
 
-        for (KursMitDetails kurs : kurse) {
+        for (int i = 0; i < kurse.size(); i++) {
+        	KursMitDetails kurs = kurse.get(i);
             termine = terminDAO.findAllTerminByIdKurs(kurs.getIdKurs());
             termine_details = printTermineMitDetails(termine);
-            ausgaben += kurs.toString() + "\n" + termine_details + "\n";
+            ausgaben += kurs.toString().replaceAll("\t", " ") + "<br/>" + termine_details;
+            if (i != kurse.size() - 1){
+            	 ausgaben += "<hr><br/>";	
+            }
+           
         }
-        ausgaben += "\n";
+        ausgaben += "<br/>";
         return ausgaben;
     }
 
     private static String printTermineMitDetails(List<TerminDetails> termine) {
-        String ausgaben = "";
+        String ausgaben = "<ul>";
         for (TerminDetails termin : termine) {
-            ausgaben += termin.toString() + "\n";
+            ausgaben += "<li>" + termin.toString() + "</li>" ;
         }
+        ausgaben += "</ul>";
         return ausgaben;
     }
 
