@@ -143,7 +143,7 @@ Beim Ausführen der Suche wird zunächst eine Menge mit sämtlichen verfügbaren
 
 Das Listing \ref{lst:filtern} zeigt das Filtern an einem konkreten Beispiel. In einem ersten Schritt werden die Sportarten abgefragt. Danach werden die einzelnen Queries durchlaufen, wobei immer abgefragt wird, ob das entsprechende Auswahlkriterium nicht ignoriert werden soll. Im Beispiel wird der nach dem maximalen Preis und den Zielen gefiltert. Es sei noch darauf hingewiesen, dass es an dieser Stelle im Code keinen Unterschied macht, ob die Query über die Datenbank (für den Preis) oder die Ontologie (für die Ziele) ausgeführt wird. 
 
-\begin{lstlisting}[float=htbp, caption=Filtern von Sportarten, label=lst:filtern]
+\begin{lstlisting}[float=htbp, caption=Filtern von Sportarten, label=lst:filtern, language=JAVA]
 Set<Sportangebot> sport = Queries.querySport();
 ...        
 if (!ignorePrice) {

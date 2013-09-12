@@ -12,7 +12,7 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
 NormalPos.right=722
-NormalPos.bottom=507
+NormalPos.bottom=690
 Class=LaTeXView
 Document=document.tex
 
@@ -30,13 +30,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
 NormalPos.right=722
-NormalPos.bottom=507
+NormalPos.bottom=690
 Class=LaTeXView
 Document=chapters\chapter2.tex
 
 [Frame1_View0,0]
-TopLine=21
-Cursor=2534
+TopLine=176
+Cursor=10461
 
 [Frame2]
 Flags=0
@@ -48,13 +48,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
 NormalPos.right=722
-NormalPos.bottom=507
+NormalPos.bottom=690
 Class=LaTeXView
-Document=utils\captions.tex
+Document=chapters\chapter1.tex
 
 [Frame2_View0,0]
-TopLine=114
-Cursor=0
+TopLine=0
+Cursor=1425
 
 [Frame3]
 Flags=0
@@ -66,7 +66,7 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
 NormalPos.right=722
-NormalPos.bottom=507
+NormalPos.bottom=690
 Class=LaTeXView
 Document=chapters\abstract.tex
 
@@ -84,13 +84,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
 NormalPos.right=722
-NormalPos.bottom=507
+NormalPos.bottom=690
 Class=LaTeXView
-Document=chapters\chapter1.tex
+Document=utils\captions.tex
 
 [Frame4_View0,0]
-TopLine=9
-Cursor=903
+TopLine=96
+Cursor=2601
 
 [SessionInfo]
 FrameCount=5
