@@ -2,12 +2,14 @@ package de.htw.gui;
 
 import business.model.Sportangebot;
 import business.model.ontology.KoerperlicheEinschraenkungen;
+import business.model.ontology.Personen;
 import business.model.ontology.Ziele;
 import de.htw.gui.TimeFrameChooser.ITimeFrameChooserListener;
 import de.htw.gui.TimeFrameChooser.TimeFrame;
 import de.htw.gui.TimeFrameChooser.TimeFrameChooserFrame;
 import de.htw.logging.LoggerNames;
 import de.htw.logging.RootLogger;
+import de.htw.queries.ModifyGUIQueryBuilder;
 import de.htw.queries.Queries;
 import de.htw.queries.QueryBuilder;
 import de.htw.queries.QueryBuilder.ArtVonSport;
@@ -29,6 +31,8 @@ import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 
 public class MainFrame extends JFrame implements ITimeFrameChooserListener {
@@ -140,6 +144,7 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 		panel_3.add(scrollPane_2);
 
 		txtDetail = new JTextPane();
+		txtDetail.setContentType("text/html");
 		scrollPane_2.setViewportView(txtDetail);
 
 		JPanel panel_4 = new JPanel();
@@ -285,7 +290,9 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 		chckbxIgnorieren.setSelected(true);
 		chckbxIgnorieren.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				txtKosten.setEnabled(!chckbxIgnorieren.isSelected());
+				ModifyGUI modifyGUI = new ModifyGUI();
+				modifyGUI.configBuilder();
+				modifyGUI.execute();
 			}
 		});
 		GridBagConstraints gbc_chckbxIgnorieren = new GridBagConstraints();
@@ -498,10 +505,9 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 		btnSearch.setMnemonic('S');
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.this.setCursor(Cursor
-						.getPredefinedCursor(Cursor.WAIT_CURSOR));
-				btnSearch.setEnabled(false);
-				new ExecuteQuery().execute();
+				ExecuteQuery executeQuery = new ExecuteQuery();
+				executeQuery.config();
+				executeQuery.execute();
 			}
 		});
 		btnZeit.addActionListener(new ActionListener() {
@@ -579,26 +585,110 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 					Level.INFO);
 		}
 	}
-	
-	private class EinschraenkungListener implements ActionListener{
+
+	private class EinschraenkungListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if(Choices.JA.equals(cboKoerperkontakt.getSelectedItem())){
-				JOptionPane.showMessageDialog(MainFrame.this,
-					    "Körperkontakt und Einschränkungen dürfen nicht gleichzeitig ausgewählt sein.\nKörperkontakt wird auf NEIN gesetzt");
-			}
-			
-			if(chckbxArmeinschraenkung.isSelected() || chckbxBeineinschrnkung.isSelected() || chckbxHhenangst.isSelected()){
-				cboKoerperkontakt.setEnabled(false);
-			    cboKoerperkontakt.setSelectedItem(Choices.NEIN);
-			} else {
-				cboKoerperkontakt.setEnabled(true);
-			    cboKoerperkontakt.setSelectedItem(Choices.EGAL);
-			}
-			
+			ModifyGUI modifyGUI = new ModifyGUI();
+			modifyGUI.configBuilder();
+			modifyGUI.execute();
 		}
-		
+
+	}
+
+	private class ModifyGUI extends SwingWorker<Set<Personen>, Void> {
+
+		private ModifyGUIQueryBuilder builder = new ModifyGUIQueryBuilder();
+
+		public void configBuilder() {
+			MainFrame.this.setCursor(Cursor
+					.getPredefinedCursor(Cursor.WAIT_CURSOR));
+
+			configPrice();
+			configKoerperlicheEinschraenkung();
+		}
+
+		@Override
+		protected Set<Personen> doInBackground() throws Exception {
+			Set<Personen> personen = builder.execute();
+			return personen;
+		}
+
+		@Override
+		protected void done() {
+			Set<Personen> personen;
+			try {
+				personen = get();
+
+				resetValues(personen);
+
+				for (Personen person : personen) {
+					switch (person) {
+					case ZAHLEND:
+						txtKosten.setEnabled(true);
+						break;
+
+					case EINGESCHRAENKT:
+						if (Choices.JA.equals(cboKoerperkontakt
+								.getSelectedItem())) {
+							JOptionPane
+									.showMessageDialog(
+											MainFrame.this,
+											"Körperkontakt und Einschränkungen dürfen nicht gleichzeitig ausgewählt sein.\nKörperkontakt wird auf NEIN gesetzt");
+						}
+						cboKoerperkontakt.setEnabled(false);
+						cboKoerperkontakt.setSelectedItem(Choices.NEIN);
+						break;
+
+					default:
+						break;
+					}
+
+				}
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			MainFrame.this.setCursor(Cursor
+					.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		}
+
+		private void resetValues(Set<Personen> personen) {
+			if (!personen.contains(Personen.EINGESCHRAENKT)) {
+				cboKoerperkontakt.setEnabled(true);
+				cboKoerperkontakt.setSelectedItem(Choices.EGAL);
+			}
+
+			if (!personen.contains(Personen.ZAHLEND)) {
+				txtKosten.setEnabled(false);
+			}
+
+		}
+
+		private void configPrice() {
+			builder.setWantsToPay(!chckbxIgnorieren.isSelected());
+		}
+
+		private void configKoerperlicheEinschraenkung() {
+			ArrayList<KoerperlicheEinschraenkungen> einschraenkungen = new ArrayList<KoerperlicheEinschraenkungen>();
+			if (chckbxArmeinschraenkung.isSelected()) {
+				einschraenkungen.add(KoerperlicheEinschraenkungen.ARMBEREICH);
+			}
+			if (chckbxBeineinschrnkung.isSelected()) {
+				einschraenkungen.add(KoerperlicheEinschraenkungen.BEINBEREICH);
+			}
+			if (chckbxHhenangst.isSelected()) {
+				einschraenkungen.add(KoerperlicheEinschraenkungen.HOEHENANGST);
+			}
+			builder.setEinschraenkungen(einschraenkungen
+					.toArray(new KoerperlicheEinschraenkungen[0]));
+		}
+
 	}
 
 	/**
@@ -608,14 +698,16 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 	 * 
 	 * @author Gilles
 	 */
-	private class ExecuteQuery extends SwingWorker<Void, Void> {
+	private class ExecuteQuery extends
+			SwingWorker<Map<String, Sportangebot>, Void> {
 
 		private DefaultListModel<Sportangebot> model = new DefaultListModel<Sportangebot>();
-		private QueryBuilder builder;
+		private QueryBuilder builder = new QueryBuilder();
 
-		@Override
-		protected Void doInBackground() throws Exception {
-			builder = new QueryBuilder();
+		public void config() {
+			MainFrame.this.setCursor(Cursor
+					.getPredefinedCursor(Cursor.WAIT_CURSOR));
+			btnSearch.setEnabled(false);
 
 			configArtVonSport();
 			configPrice();
@@ -624,27 +716,41 @@ public class MainFrame extends JFrame implements ITimeFrameChooserListener {
 			configZiele();
 			config4Attributes();
 			configTimeFrames();
-
-			Map<String, Sportangebot> result = builder.execute();
-			List<Sportangebot> result_sportangebote = new ArrayList<Sportangebot>(
-					result.values());
-			Collections.sort(result_sportangebote);
-			for (Sportangebot sport : result_sportangebote) {
-				model.addElement(sport);
-			}
-
-			return null;
 		}
 
-		private void configTimeFrames() {
-			builder.setSelectedTimeFames(timeFrames);
+		@Override
+		protected Map<String, Sportangebot> doInBackground() throws Exception {
+			Map<String, Sportangebot> result = builder.execute();
+
+			return result;
 		}
 
 		@Override
 		protected void done() {
+			Map<String, Sportangebot> result;
+			try {
+				result = get();
+				List<Sportangebot> result_sportangebote = new ArrayList<Sportangebot>(
+						result.values());
+				Collections.sort(result_sportangebote);
+				for (Sportangebot sport : result_sportangebote) {
+					model.addElement(sport);
+				}
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 			MainFrame.this.setCursor(Cursor.getDefaultCursor());
 			btnSearch.setEnabled(true);
 			lstSportarten.setModel(model);
+		}
+
+		private void configTimeFrames() {
+			builder.setSelectedTimeFames(timeFrames);
 		}
 
 		private void configArtVonSport() {
