@@ -12,13 +12,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
 NormalPos.right=1164
-NormalPos.bottom=491
+NormalPos.bottom=477
 Class=LaTeXView
 Document=chapters\chapter2.tex
 
 [Frame0_View0,0]
-TopLine=129
-Cursor=6403
+TopLine=0
+Cursor=0
 
 [Frame1]
 Flags=0
@@ -30,7 +30,7 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
 NormalPos.right=1164
-NormalPos.bottom=491
+NormalPos.bottom=477
 Class=LaTeXView
 Document=chapters\chapter1.tex
 
@@ -48,13 +48,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
 NormalPos.right=1164
-NormalPos.bottom=491
+NormalPos.bottom=477
 Class=LaTeXView
-Document=chapters\chapter3.tex
+Document=utils\captions.tex
 
 [Frame2_View0,0]
-TopLine=0
-Cursor=0
+TopLine=99
+Cursor=2599
 
 [Frame3]
 Flags=0
@@ -66,13 +66,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
 NormalPos.right=1164
-NormalPos.bottom=491
+NormalPos.bottom=477
 Class=LaTeXView
-Document=chapters\abstract.tex
+Document=chapters\chapter3.tex
 
 [Frame3_View0,0]
 TopLine=0
-Cursor=335
+Cursor=0
 
 [Frame4]
 Flags=0
@@ -84,13 +84,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
 NormalPos.right=1164
-NormalPos.bottom=491
+NormalPos.bottom=477
 Class=LaTeXView
-Document=document.tex
+Document=chapters\abstract.tex
 
 [Frame4_View0,0]
 TopLine=0
-Cursor=0
+Cursor=335
 
 [Frame5]
 Flags=0
@@ -102,13 +102,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
 NormalPos.right=1164
-NormalPos.bottom=491
+NormalPos.bottom=477
 Class=LaTeXView
-Document=glossary\glossary.tex
+Document=document.tex
 
 [Frame5_View0,0]
 TopLine=0
-Cursor=179
+Cursor=0
 
 [Frame6]
 Flags=0
@@ -120,13 +120,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
 NormalPos.right=1164
-NormalPos.bottom=491
+NormalPos.bottom=477
 Class=LaTeXView
-Document=utils\captions.tex
+Document=glossary\glossary.tex
 
 [Frame6_View0,0]
-TopLine=45
-Cursor=0
+TopLine=0
+Cursor=179
 
 [SessionInfo]
 FrameCount=7
