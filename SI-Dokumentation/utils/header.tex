@@ -91,7 +91,7 @@
 %define listing style
 \lstset
 {
-	basicstyle = \footnotesize\ttfamily\color{black}, %Standardschrift
+	basicstyle = \setstretch{1}\footnotesize\ttfamily\color{black}, %Standardschrift
 	numbers = left,
 	numberstyle = \tiny,
 	%stepnumber = 2, %Abstand zwischen Zeilennummern
@@ -99,7 +99,8 @@
 	tabsize = 2,
 	extendedchars = true,
 	breaklines = true,
-	%keywordstyle = \color{blue},
+	breakatwhitespace = true,
+	keywordstyle = \color{blue},
 	frame = b,
 	stringstyle = \color{black}, %Farbe der Strings
 	showspaces = false,
@@ -125,6 +126,18 @@
 	stringstyle = \itshape\color{mediumorchid},
 	commentstyle = \itshape\color{darkgreen},
 	morekeywords = {version, encoding, type, startswith, autocommit, key, name, condition}
+}
+
+\lstdefinelanguage{OWL}
+{
+	%morecomment = [s]{<!--}{-->},
+	morestring = [b]",
+	%morestring = [s]{>}{<},
+	identifierstyle = \color{mediumslateblue},
+	keywordstyle = \color{crimson},
+	stringstyle = \itshape\color{mediumorchid},
+	commentstyle = \itshape\color{darkgreen},
+	morekeywords = {and, or, not, only, some}
 }
 
 \lstloadlanguages{Java,XML,C++}
