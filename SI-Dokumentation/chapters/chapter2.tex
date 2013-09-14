@@ -25,8 +25,10 @@ Das genaue Datenbankmodell kann der Abbildung \ref{fig:Datenbank-Design} entnomm
 	\includegraphics[width=\textwidth]{images/db_design}
 \end{capfigure}
 
+\newpage
+
 \section{Ontologie}
-\TODO{[PRIO:SOFORT] Komplett neu machen}
+%\TODO{[PRIO:SOFORT] Komplett neu machen}
 Die Erstellung der Ontologie wird mit \gls{protege} durchgef\"uhrt. \gls{protege} erm\"oglicht nur die Verwendung von OWL-DL. OWL-Full wird nicht unterst\"utzt, daher m\"ussen gewisse Einschr\"ankungen ber\"ucksichtigt werden. Beispielsweise kann man keine Komplementklassen erstellen. 
 
 Des Weiteren sollte man immer bedenken, dass eine Ontologie ein Open-World-Szenario darstellt. Im Speziellen kann man nur nach dem Vorhandensein eines Kriteriums abfragen.
@@ -71,7 +73,11 @@ Danach sieht die Ontologie wie folgt aus:
 		\end{itemize}
 \end{capitemize}
 
-Damit sind die Klassen soweit fertig. Beide Klassen wurden in dieser Art angelegt, da sie optional sind. Ein Sport muss keine Verkn\"upfung zu diesen Klassen haben. \TODO{Ich versteh was du meinst, aber erst beim 2ten Lesen. Bitte umformulieren.} Jetzt werden noch die Object Properties dazu wie folgt angelegt: 
+Damit sind die Klassen soweit fertig. Die Klassen Koerperliche\_Einschraenkungen und Ziele wurden in dieser Art angelegt, da sie optional sind. Ein Sport muss keine Verkn\"upfung zu diesen Klassen haben. 
+
+%Damit sind die Klassen soweit fertig. Beide Klassen wurden in dieser Art angelegt, da sie optional sind. Ein Sport muss keine Verkn\"upfung zu diesen Klassen haben. \TODO{Ich versteh was du meinst, aber erst beim 2ten Lesen. Bitte umformulieren.} Jetzt werden noch die Object Properties dazu wie folgt angelegt:
+
+Jetzt werden noch die Object Properties dazu wie folgt angelegt: 
 
 \begin{capitemize}[Properties - hatZiel und ungeeignetBei]
 	\item hatZiel
@@ -86,11 +92,13 @@ Damit sind die Klassen soweit fertig. Beide Klassen wurden in dieser Art angeleg
 		\end{itemize}
 \end{capitemize}
 
-Nun lassen sich die Ziele und Einschr\"ankungen mit den Sportarten verbinden. Ein Problem ergibt sich mit dieser Variante allerdings noch, man kann nicht nach Sportarten suchen die explizit keine Einschr\"ankungen haben. Bei den Zielen gibt es die gleiche Einschr\"ankung \TODO{Das Wort Einschr\"ankung hat eine doppelte Bedeutung. Bitte anderes Wort benutzen, oder immer k\"orperliche Einschr\"ankung verwenden}, allerdings ist sie dort egal, da eine Suche nach Sportarten, die explizit keine Ziele haben keinen Sinn ergibt. Bei den Einschr\"ankungen muss allerdings eine L\"osung her. Da in einem Open-World-Szenario nur nach dem Vorhandensein gefragt werden kann, haben wir uns dazu entschieden noch die Unterklasse \textit{Keine} bei den K\"orperlichen Einschr\"ankungen zu erg\"anzen. Jetzt hat man die M\"oglichkeit, auch Sportarten zu suchen, die bei keiner Einschr\"ankung ungeeignet sind.
+Nun lassen sich die Ziele und Einschr\"ankungen mit den Sportarten verbinden. Ein Problem ergibt sich mit dieser Variante allerdings noch, man kann nicht nach Sportarten suchen die explizit keine Einschr\"ankungen haben. Bei den Zielen gibt es dieses Problem ebenfalls, allerdings spielt es hier keine Rolle, da eine Suche nach Sportarten, die explizit keine Ziele haben keinen Sinn ergibt. Bei den Einschr\"ankungen muss allerdings eine L\"osung her. Da in einem Open-World-Szenario nur nach dem Vorhandensein gefragt werden kann, haben wir uns dazu entschieden noch die Unterklasse \textit{Keine} bei den K\"orperlichen Einschr\"ankungen zu erg\"anzen. Jetzt hat man die M\"oglichkeit, auch Sportarten zu suchen, die bei keiner Einschr\"ankung ungeeignet sind.
 
-Bei den Sportarten muss jetzt jede Sportart die Object Property \textit{ungeeignetBei} verwenden.  \TODO{Bitte noch erw\"ahnen, dass Keine explizit gesetzt werden muss.} F\"ur die Object Property \textit{hatZiel} gilt das nicht. \TODO{Warum? Bitte in einem Satz erl\"autern.}
+Bei den Sportarten muss jetzt jede Sportart die Object Property \textit{ungeeignetBei} verwenden. Dies gilt auch, wenn die Sportart bei beliebigen K\"orperlichen Einschr\"ankungen geeigntet ist. Hierfür wird die oben genannte Unterklasse \textit{Keine} eingesetzt. F"ur die Object Property \textit{hatZiel} m"ussen nur die Ziele umgesetzt werden, nach denen explizit gesucht wird.
 
-\TODO{Erl\"autern was die folgende Liste darstellt.}
+
+Als n"achstes wurden die Eigenschaften umgesetzt, die abfragen ob es sich um Wassersport, Kampfsport, Wassersport oder Sportarten mit K"orperkontakt handelt:
+
 \begin{capitemize}[Properties - istExotisch, istKampfsport, istKoerperkontakt, istWassersport]
 	\item istExotisch
 		\begin{itemize}
@@ -114,76 +122,17 @@ Bei den Sportarten muss jetzt jede Sportart die Object Property \textit{ungeeign
 		\end{itemize}
 \end{capitemize}
 
-Alternativ w\"are eine Realisierung \"uber Data-Properties m\"oglich gewesen (mit dem eingebauten Typ boolean als Range). F\"ur die Einf\"uhrung einer eigenen Klasse Boolean wurde mit den Unterklassen "`True"' und "`False"' als Range f\"ur die Object Properties haben wir uns entschieden, da es von der Komplexit\"at her gleichwertig war. Außerdem ist dies \"ubersichtlicher. Der Restriktionstyp "`value"' ist außerdem beim den Restriktionseditoren von Protégé beim Anlegen von \"Aquivalenzklassen nicht in der Dropdownbox aufgetaucht, so dass die L\"osung \"uber Object-Properties unterm Strich vereinfacht hat.
-\TODO{Satzbau, Kontext. Ich versteh nicht auf was du hinauswillst.}
-
-\TODO{istExotisch, istKampfsport, istKoerperkontakt, istWassersport - Problem erw\"ahnen, dass man nicht nach Boolean abfragen kann}
+Dies sind Eigenschaften von Sportarten, die mit einem Boolean-Wert abgefragt werden. Wir haben die Klasse Boolean selbst mit den Unterklassen \textit{True} und \textit{False} definiert. Alternativ w\"are eine Realisierung \"uber Data-Properties m\"oglich gewesen (mit dem eingebauten Typ boolean als Range). Für die Boolean-Werte als eigene Klasse haben wir uns aus Gr"unden der Einfachheit und "Ubersichtlichkeit entschieden. 
 
 \subsection{\"Aquivalenzklassen}
 
-Um die Ontologieprobleme in den Szenarien zu l\"osen, wurden in der Ontologie bereits \"Aquivalenzklassen beschrieben. Folgende \"Aquivalenzklassen wurden eingef\"uhrt:
+Um die Ontologieprobleme in den Szenarien zu l\"osen, wurden in der Ontologie bereits \"Aquivalenzklassen beschrieben. 
+Hierzu geh"oren die Ziele (z. B. FitnessZiel, FreizeitvergnuegenZiel) und die Eignung bei K"oerperlichen Einschr"ankungen.
+Die Äquivalenzklassen vereinfachen die Query. Zum Beispiel wurde \textit{Sport and (not (ungeeignetBei some Beinbereich))} als "Aquivalenzklasse \textit{GeeignetBeiBeinbereichKE} umgesetzt. In der Umsetzung des Programms wurden die Queries allerdings in voller L"ange erstellt, so dass die Abfrage keine "Aquivalenzklassen mehr benutzt. 
 
-\TODO{format + Erl\"autern}
-\TODO{\"Aquivalenzklassen nur kurz erw\"ahnen. Auf keinen Fall alle aufz\"ahlen. Diese werden im Programm kaum benutzt. Die einzige die mir gerade einf\"allt ist Koerperliche\_Einschraenkungen, da man durch diese die tats\"achlichen Einschr\"ankungen abbilden kann.}
+%\TODO{Ich habe die Ontologie ja nachtr\"aglich noch erweitert. Es ist jetzt die Frage, wie wir diese \"Anderungen rein nehmen. Meiner Meinung ist es das Beste, wenn du die Personen und neuen Properties kurz erw\"ahnst und dann auf das entsprechende Kapitel oder Abschnitt verweist. das m\"usste mit \textbackslash nameref gut gehen. }
 
-\textbf{Sport}
-ExotischeSportarten  
-	istExotisch only True
-	
-FitnessZiel
-	hatZiel some Fitness
-	
-FreizeitvergnuegenZiel
-	hatZiel some  Freizeitvergnuegen)
-	
-GeeignetBeiArmbereichKE
-	Sport and (not (ungeeignetBei Armbereich))
-	
-GeeignetBeiBeinbereichKE
-	Sport and (not (ungeeignetBei some Beinbereich))
-	
-GeeignetBeiHoehenangst
-	Sport and (not (ungeeignetBei some Hoehenangst))
-	
-Kampfsportarten 
-	Sport and (istKampfsport only True)
-	
-Koerperkontaktsportarten 
-	Sport and (istKoerperkontakt only True)
-	
-NichtexotischeSportarten 
-	Sport and (istExotisch only False)
-	
-Nichtkampfsportarten 
-	Sport and (istKampfsport only False)
-	
-NichtkoerperkontaktSportarten 
-	Sport and (istKoerperkontakt only False)
-	
-Nichtwassersportarten 
-	Sport and (istWassersport only False)
-	
-SelfDefenseZiel 
-	hatZiel some SelfDefense
-	
-SozialkontakteZiel 
-	hatZiel some Sozialkontakte
-	
-Wassersportarten 
-	Sport and (istWassersport only True)
-	
-WettbewerbZiel 
-	hatZiel some Wettbewerb
-	
-\textbf{Koerperliche\_Einschraenkungen}
-Koerperliche Einschr\"ankung
-Armbereich
- or Beinbereich
- or Hoehenangst
-
-\TODO{\"Aquivalenzklassen, Aufbau einer Sportart, etc. - ausformulieren}
-
-\TODO{Ich habe die Ontologie ja nachtr\"aglich noch erweitert. Es ist jetzt die Frage, wie wir diese \"Anderungen rein nehmen. Meiner Meinung ist es das Beste, wenn du die Personen und neuen Properties kurz erw\"ahnst und dann auf das entsprechende Kapitel oder Abschnitt verweist. das m\"usste mit \textbackslash nameref gut gehen. }
+Um verschiedene Personenarten f"ur die GUI dauerhaft speichern zu k"onnen, haben wir uns "uberlegt, die Ontologie mit Personengruppen (Klasse \textit{Person}) wie \textit{zahlende\_Person} und \textit{eingeschraenkte\_Person} zu erweitern. Als dazugeh"'orende Properties wurden will\_zahlen (Boolean) und hat\_Einschraenkung (Koerperliche\_Einschraenkungen) noch als Properties eingeführt. Dies wurde nicht im Programm umgesetzt. Eine m"ogliche Umsetzung ist im Kapitel "`\nameref{cha:sprunge}"' beschrieben.
 
 \section{Programm}
 
