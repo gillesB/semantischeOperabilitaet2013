@@ -2,11 +2,16 @@
 
 \section{Verbesserungsmöglichkeiten}
 
-Eine Skalierung ist möglich, allerdings ist zu berücksichtigen, dass jede neue Sportart sowohl in der Ontologie, als auch in der Datenbank definiert werden muss mitsamt allen Informationen dazu. Dies kann sehr arbeitsintensiv werden. Bezüglich der Software bietet sich an, eine entsprechende Erweiterung zu entwickeln, die neue Sportarten erfassen kann. 
+Da es nicht das Ziel des Projektes war, ein möglichst gut funktionierendes Produkt herzustellen, sondern den Umgang mit Ontologien zu erproben, wurden einige Vereinfachungen vorgenommen. Die daraus resultierenden Verbesserungsmöglichkeiten werden im folgenden beschrieben. 
 
-Die Datenbank liegt auf einem Server im Internet. In der Realität wäre eine Stand-Alone-Anwendung denkbar. In diesem Fall stellt sich die Frage, ob eine andere Form der Datenhaltung als eine MySQL-Datenbank hier zweckmäßiger wäre. Auf webbasierte Anwendungen ist das Backend ausgelegt. Da die Zugangsdaten hardcodiert sind, ist auf Datenbankseite hier auch darauf zu achten, dass entsprechende Sicherheitsvorkehrungen getroffen werden (z. B. kein Schreibzugriff auf die Datenbank).
+Es ist zu berücksichtigen, dass jede neue Sportart sowohl in der Ontologie, als auch in der Datenbank, mitsamt allen dazugehörigen Informationen, definiert werden muss. Dies kann sehr arbeitsintensiv werden. Bezüglich der Software bietet sich an, eine entsprechende Erweiterung zu entwickeln, die Sportarten neu anlegen und bearbeiten kann. 
 
-Die Zeitangabe in einem Unterfenster ist nicht optimal, da bei Angaben einzelner Stunden am Tag für jede Stunde ein Klick gemacht werden muss. Dies wäre durch zielgerichteteres Eventhandling oder eine Andere Zeiterfassung möglich.
+Die Datenbank liegt auf einem Server im Internet. In der Realität wäre eine Stand-Alone-Anwendung denkbar. In diesem Fall stellt sich die Frage, ob eine andere Form der Datenhaltung als eine MySQL-Datenbank zweckmäßiger wäre. Weiterhin sind die Zugangsdaten hardcodiert, deshalb ist auf Datenbankseite auch darauf zu achten, dass entsprechende Sicherheitsvorkehrungen getroffen werden (z. B. kein Schreibzugriff auf die Datenbank).
+
+Des weiteren kann die Suche nach einer passenden Sportart für den Benutzer effizienter gemacht werden. Im Augenblick besteht diese aus vielen einzelnen Queries, die nacheinander ausgeführt werden. Diese könnte man wohl auf zwei einzelne Queries reduzieren, wobei eine für die Ontologie und die andere für die Datenbank bestimmt ist. 
+
+Außerdem gibt es noch Optimierungsmöglichkeiten bei der GUI. 
+So ist z.B. die Zeitangabe in einem Unterfenster nicht optimal, da bei Angaben einzelner Stunden am Tag für jede Stunde ein Klick gemacht werden muss. Dies wäre durch zielgerichteteres Eventhandling oder eine Andere Zeiterfassung möglich.
 
 \section{Fazit}
 
